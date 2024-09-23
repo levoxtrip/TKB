@@ -21,5 +21,5 @@ The steps we need to do to accomplish this are:
 ![Title Instancing On Grid](./img/ImageInstancingGrid5.png)
 - Set Index in Geo
 
-Download File [DownloadFile](./files/basicTextureInstancing.tox)
+[DownloadFile](./files/basicTextureInstancing.tox)
 

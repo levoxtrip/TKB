@@ -14,5 +14,6 @@ The steps we need to do to accomplish this are:
 - Assign material to Geo
 ![Title Instancing On Grid](./img/ImageInstancingGrid5.png)
 - Set Index in Geo
-![Title Instancing On Grid](./img/ImageInstancingGrid6.png)
+
+Download File [DownloadFile](./files/basicTextureInstancing.tox)
 

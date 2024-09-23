@@ -1,5 +1,6 @@
 # TOPS
 
-Welcome in TOPs Land!
+Welcome in Chop Land!
 
 ## Last added
+Animate through graph of datapoints [AnimateGraphData](AnimateTroughDataPoints.md)

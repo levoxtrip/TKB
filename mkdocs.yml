@@ -29,6 +29,8 @@ theme:
 plugins:
   - social
   - search
+  - tags:
+      tags_file: tags.md
 
 # extra:
 #   social:

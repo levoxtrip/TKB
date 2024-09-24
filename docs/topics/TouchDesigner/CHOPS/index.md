@@ -1,4 +1,4 @@
-# TOPS
+# CHOPs
 
 Welcome in Chop Land!
 

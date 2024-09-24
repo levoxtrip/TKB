@@ -1,4 +1,4 @@
-![Title Instancing On Grid](./img/HoldLastChangedValue.png.png)
+![Hold last changed value](./img/HoldLastChangedValue.png)
 # Hold last changed value
 Often it is super useful to hold the last changed value till a new change happens.
 This is easily made with a `overwriteCHOP`.

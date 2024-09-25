@@ -1,4 +1,4 @@
-![Title Instancing On Grid](./img/AnimateThroughData0.png)
+![Animate Through Data](./img/AnimateThroughData0.png)
 
 # Animate through graph of datapoints
 
@@ -6,14 +6,14 @@ Animating through graphs of datapoints in TouchDesigner allows us to visualize c
 Steps to do:
 Add Table data and convert to CHOP Data:
 
-![Title Instancing On Grid](./img/AnimateThroughData1.png)
+![Animate Through Data 1](./img/AnimateThroughData1.png)
 
 Add Constant and Speed to control how was to go through Data
 
-![Title Instancing On Grid](./img/AnimateThroughData2.png)
+![Animate Through Data 2](./img/AnimateThroughData2.png)
 
 Connect speed to Lookup and limit speed to loop through data
 
-![Title Instancing On Grid](./img/AnimateThroughData2.png)
+![Animate Through Data 3](./img/AnimateThroughData2.png)
 
 [DownloadFile](./files/animateThroughData.tox)

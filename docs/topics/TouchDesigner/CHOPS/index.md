@@ -3,4 +3,5 @@
 Welcome in Chop Land!
 
 ## Last added
-Animate through graph of datapoints [AnimateGraphData](AnimateTroughDataPoints.md)
+[Map CHOP to SOP Length](MapCHOPtoSOPLength.md)
+[Animate through graph of datapoints ](AnimateTroughDataPoints.md)

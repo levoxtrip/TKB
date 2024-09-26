@@ -7,4 +7,5 @@
 [TOPs](./TOPS/index.md)
 
 [Scripting](./SCRIPTING/index.md)
+[Techniques](./TECHNIQUES/index.md)
 

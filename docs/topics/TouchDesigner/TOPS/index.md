@@ -3,5 +3,6 @@
 Welcome in TOPs Land!
 
 ## Last added
-Image Instance on Grid [ImageInstanceOnGrid](ImageInstancingOnGrid.md)
-Set TextTOP from TableDAT [SetTextTopFromTableDAT](SetTextTOPFromTableDAT.md)
+[Change Values Locked TOP](ChangeValuesLockedTOP.md)
+ [Image Instance On Grid](ImageInstancingOnGrid.md)
+ [Set Text Top From TableDAT](SetTextTOPFromTableDAT.md)

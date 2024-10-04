@@ -12,3 +12,4 @@
 - docs/topics/VCVRack/index.md (added on 2024-09-29)
 - docs/topics/VCVRack/windowDoesntShow.md (added on 2024-09-29)
 - docs/topics/tags.md (added on 2024-10-04)
+- docs/topics/test1.md (added on 2024-10-04)

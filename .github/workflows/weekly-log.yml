@@ -24,8 +24,9 @@ jobs:
           FILE_DIR="docs/topics/"
 
           # Sammle alle Dateien, die in den letzten 7 Tagen hinzugefügt wurden (diff-filter=A zeigt nur neue Dateien)
-          NEW_FILES=$(git log --diff-filter=A --since="7 days ago" --name-only --pretty="" -- $FILE_DIR)
-
+          # Die Liste wird sortiert und in einer temporären Datei gespeichert
+          NEW_FILES=$(git log --diff-filter=A --since="7 days ago" --name-only --pretty="" -- $FILE_DIR | sort | uniq)
+          
           # Zeige die gesammelten neuen Dateien zur Überprüfung an
           echo "New files added in the last week in $FILE_DIR:"
           echo "$NEW_FILES"
@@ -39,11 +40,15 @@ jobs:
           # Erstelle eine leere Datei, um die Dateien mit ihren Erstellungsdaten zu speichern
           > new_files_with_dates.txt
 
-          # Für jede Datei in der Liste, hole das Erstellungsdatum mit `git log`
+          # Lese jede Datei in der Liste und finde das Erstellungsdatum
           while IFS= read -r file; do
             if [ -n "$file" ]; then
-              # Hole das Datum des ersten Commits für diese Datei (Erstellungsdatum)
-              DATE=$(git log --follow --format="%ad" --date=short -1 -- "$file")
+              # Hole die Commit-ID des ersten Commits, in dem die Datei hinzugefügt wurde
+              FIRST_COMMIT=$(git log --diff-filter=A --format="%H" -1 -- "$file")
+
+              # Hole das Erstellungsdatum basierend auf der Commit-ID
+              DATE=$(git show --format="%aI" --no-patch "$FIRST_COMMIT")
+
               # Wenn das Datum erfolgreich gefunden wurde, füge es zur Datei hinzu
               if [ -n "$DATE" ]; then
                 echo "- $file (added on $DATE)" >> new_files_with_dates.txt

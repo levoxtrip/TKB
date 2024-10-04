@@ -47,8 +47,8 @@ jobs:
       # 4. Füge die Log-Datei `log.md` zum Repository hinzu und committe sie
       - name: Commit and push log.md
         run: |
-          git config --local user.name "github-actions[bot]"
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "levoxtrip"
+          git config --local user.email "levoxtrip@gmail.com"
           git add log.md
           git commit -m "Weekly log update"
           git push

@@ -49,7 +49,8 @@ jobs:
               FIRST_COMMIT=$(git log --diff-filter=A --format="%H" -1 -- "$file")
 
               # Hole das Erstellungsdatum basierend auf der Commit-ID
-              DATE=$(git show --format="%aI" --no-patch "$FIRST_COMMIT")
+
+              DATE=$(git show --format="%aI" --no-patch "$FIRST_COMMIT" | cut -d'T' -f1)
 
               # Wenn das Datum erfolgreich gefunden wurde, füge es zur Datei hinzu
               if [ -n "$DATE" ]; then

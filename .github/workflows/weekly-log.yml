@@ -30,15 +30,16 @@ jobs:
           echo "New files added in the last week in $FILE_DIR:"
           echo "$NEW_FILES"
 
-          # Speichere die Ausgabe als Umgebungsvariable, um in den nächsten Schritten zu verwenden
-          echo "::set-output name=new_files::$NEW_FILES"
+          # Speichere die gesammelten Dateien in einer temporären Datei für den nächsten Schritt
+          echo "$NEW_FILES" > new_files.txt
 
       # 3. Generiere die Log-Datei `log.md` basierend auf den neuen Dateien
       - name: Create log.md
         run: |
-          # Empfange die neuen Dateien aus dem vorherigen Schritt
-          NEW_FILES="${{ steps.new-files.outputs.new_files }}"
+          # Lies die Liste der neuen Dateien aus der temporären Datei
+          NEW_FILES=$(cat new_files.txt)
 
+          # Überschreibe die bestehende log.md-Datei und füge die neuen Inhalte hinzu
           echo "# Commit-based Log" > log.md
           echo "## New files added in /docs/topics/ in the last week:" >> log.md
 
@@ -65,7 +66,7 @@ jobs:
           git config --local user.name "levoxtrip"
           git config --local user.email "levoxtrip@gmail.com"
           
-          # Füge die `log.md`-Datei zum Git hinzu und committe sie
+          # Füge die `log.md`-Datei zum Git hinzu und erzwinge das Hinzufügen
           git add -f log.md
 
           # Commit ausführen, auch wenn die Datei bereits existiert

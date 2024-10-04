@@ -1,5 +1,5 @@
 # Commit-based Log
-## New files added in /docs/topics/ in the last week with dates:
+## New files added in /docs/topics/ in the last week with accurate dates:
 - docs/topics/Python/LimitLenghtList.md (added on 2024-10-04)
 - docs/topics/Python/index.md (added on 2024-10-04)
 - docs/topics/TouchDesigner/CHOPS/AnimateThroughDataPoints.md (added on 2024-10-04)

@@ -22,10 +22,14 @@ jobs:
 
           # Setze ein Environment-Variable für das Verzeichnis
           FILE_DIR="docs/topics/"
-          
+
           # Sammle die neuen Dateien mit dem Format "Dateiname (added on YYYY-MM-DD)"
-          git log --diff-filter=A --since="7 days ago" --pretty=format:"%ad %H" --name-only --date=short -- $FILE_DIR | \
+          # Verwende `git log` mit angepasstem `awk`-Skript, um nur Dateiname und Datum anzuzeigen und den Commit-Hash zu entfernen.
+          git log --diff-filter=A --since="7 days ago" --pretty=format:"%ad" --name-only --date=short -- $FILE_DIR | \
           awk 'BEGIN {date=""} /^[0-9]{4}-[0-9]{2}-[0-9]{2}/ {date=$0; next} {print "- " $0 " (added on " date ")"}' > new_files_with_dates.txt
+
+          # Entferne doppelte Zeilen, um sicherzustellen, dass jede Datei nur einmal angezeigt wird
+          sort -u new_files_with_dates.txt -o new_files_with_dates.txt
 
           # Zeige die gesammelten neuen Dateien mit Datum zur Überprüfung an
           echo "New files with dates added in the last week in $FILE_DIR:"

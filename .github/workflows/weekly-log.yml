@@ -1,9 +1,14 @@
 name: Weekly Log
 
 on:
-  schedule:
-    # Wöchentlicher Zeitplan (jeden Montag um 8 Uhr)
-    - cron: '0 8 * * MON'
+  push:
+    branches:
+      - main 
+
+#on:
+ # schedule:
+  #  # Wöchentlicher Zeitplan (jeden Montag um 8 Uhr)
+   # - cron: '0 8 * * MON'
 
 jobs:
   create-log:

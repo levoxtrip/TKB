@@ -1,4 +1,4 @@
-name: Commit-based Log
+name: Commit-based Log with Dates
 
 on:
   push:
@@ -14,45 +14,39 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      # 2. Sammle alle neuen Dateien im Ordner `/docs/topics/`
-      - name: Get new files in /docs/topics/ since the last week
+      # 2. Sammle alle neuen Dateien im Ordner `/docs/topics/` und deren Erstellungsdatum
+      - name: Get new files with dates in /docs/topics/ since the last week
         id: new-files
         run: |
-          echo "Collecting new files in /docs/topics/..."
+          echo "Collecting new files and their dates in /docs/topics/..."
           
           # Setze ein Environment-Variable für das Verzeichnis
           FILE_DIR="docs/topics/"
           
-          # Sammle alle Dateien, die in den letzten 7 Tagen hinzugefügt wurden (diff-filter=A zeigt nur neue Dateien)
-          NEW_FILES=$(git log --diff-filter=A --since="7 days ago" --name-only --pretty="" -- $FILE_DIR)
+          # Sammle alle Dateien, die in den letzten 7 Tagen hinzugefügt wurden, und das Datum (diff-filter=A zeigt nur neue Dateien)
+          git log --diff-filter=A --since="7 days ago" --pretty=format:"%ad %H" --name-only --date=short -- $FILE_DIR > new_files_with_dates.txt
 
-          # Zeige die gesammelten neuen Dateien zur Überprüfung an
-          echo "New files added in the last week in $FILE_DIR:"
-          echo "$NEW_FILES"
+          # Zeige die gesammelten neuen Dateien und deren Erstellungsdatum zur Überprüfung an
+          echo "New files with dates added in the last week in $FILE_DIR:"
+          cat new_files_with_dates.txt
 
-          # Speichere die gesammelten Dateien in einer temporären Datei für den nächsten Schritt
-          echo "$NEW_FILES" > new_files.txt
-
-      # 3. Generiere die Log-Datei `log.md` basierend auf den neuen Dateien
-      - name: Create log.md
+      # 3. Generiere die Log-Datei `log.md` basierend auf den neuen Dateien und deren Erstellungsdatum
+      - name: Create log.md with dates
         run: |
-          # Lies die Liste der neuen Dateien aus der temporären Datei
-          NEW_FILES=$(cat new_files.txt)
-
           # Überschreibe die bestehende log.md-Datei und füge die neuen Inhalte hinzu
           echo "# Commit-based Log" > log.md
-          echo "## New files added in /docs/topics/ in the last week:" >> log.md
+          echo "## New files added in /docs/topics/ in the last week with dates:" >> log.md
 
-          # Wenn keine neuen Dateien vorhanden sind, schreibe eine entsprechende Nachricht
-          if [ -z "$NEW_FILES" ]; then
-            echo "No new files added in /docs/topics/ in the last week." >> log.md
-          else
-            # Verwende IFS, um Zeilenumbrüche als Trenner festzulegen, damit alle Dateien erfasst werden
-            IFS=$'\n'
-            for FILE in $NEW_FILES; do
-              echo "- $FILE" >> log.md
-            done
-          fi
+          # Lies die Liste der neuen Dateien mit Datum aus der temporären Datei
+          while IFS= read -r line; do
+            if [[ ! -z "$line" && ! "$line" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2} ]]; then
+              FILE="$line"
+            elif [[ "$line" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2} ]]; then
+              DATE="$line"
+              # Füge die Datei mit dem Datum in die log.md-Datei ein
+              echo "- $FILE (added on $DATE)" >> log.md
+            fi
+          done < new_files_with_dates.txt
 
           # Debugging: Zeige den Inhalt der `log.md`-Datei an
           echo "Generated log.md content:"
@@ -70,7 +64,7 @@ jobs:
           git add -f log.md
 
           # Commit ausführen, auch wenn die Datei bereits existiert
-          git commit -m "Overwrite log.md with updates for new files in /docs/topics/ in the last week" || echo "Nothing to commit"
+          git commit -m "Overwrite log.md with updates for new files with dates in /docs/topics/ in the last week" || echo "Nothing to commit"
           
           # Push die Änderungen, selbst wenn keine neuen Dateien hinzugefügt wurden
           git push https://levoxtrip:${{ secrets.PAT_TOKEN }}@github.com/levoxtrip/TKB.git || echo "Push failed, no changes to push."

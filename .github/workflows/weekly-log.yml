@@ -3,7 +3,7 @@ name: Commit-based Log
 on:
   push:
     branches:
-      - main  # Ändere diesen Branch-Namen, falls du einen anderen Branch verwendest, z.B. "master"
+      - main  # Ändere diesen Branch-Namen entsprechend deinem Haupt-Branch (z.B. "main" oder "master")
 
 jobs:
   create-log:
@@ -14,36 +14,35 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      # 2. Debugging: Zeige alle aktuellen Dateien im Verzeichnis /docs/topics/
-      - name: List all files in /docs/topics/
-        run: |
-          echo "Listing all files in /docs/topics/:"
-          ls -R docs/topics/
-
-      # 3. Sammle neue Dateien im Ordner `/docs/topics/` seit der letzten Woche
-      - name: Get new files from /docs/topics/ in the last week
+      # 2. Sammle alle neuen Dateien im Ordner `/docs/topics/`
+      - name: Get new files in /docs/topics/ since the last week
         id: new-files
         run: |
-          # Zeige das Commit-Log der letzten 7 Tage zur Überprüfung an
-          echo "Current git log for the last 7 days:"
-          git log --oneline --since="7 days ago"
+          echo "Collecting new files in /docs/topics/..."
+          
+          # Setze ein Environment-Variable für das Verzeichnis
+          FILE_DIR="docs/topics/"
+          
+          # Sammle alle Dateien, die in den letzten 7 Tagen hinzugefügt wurden (diff-filter=A zeigt nur neue Dateien)
+          NEW_FILES=$(git log --diff-filter=A --since="7 days ago" --name-only --pretty="" -- $FILE_DIR)
 
-          # Sammle alle neuen Dateien aus dem Ordner /docs/topics/, die in der letzten Woche hinzugefügt wurden
-          NEW_FILES=$(git log --diff-filter=A --since="7 days ago" --name-only --pretty="" -- docs/topics/ | sort | uniq)
-
-          # Debugging-Ausgabe: Neue Dateien anzeigen
-          echo "New files added in the last week in /docs/topics/:"
+          # Zeige die gesammelten neuen Dateien zur Überprüfung an
+          echo "New files added in the last week in $FILE_DIR:"
           echo "$NEW_FILES"
 
-          # Speichere die Ausgabe für den nächsten Schritt
+          # Speichere die Ausgabe als Umgebungsvariable, um in den nächsten Schritten zu verwenden
           echo "::set-output name=new_files::$NEW_FILES"
 
-      # 4. Generiere die Log-Datei `log.md` basierend auf den neuen Dateien
+      # 3. Generiere die Log-Datei `log.md` basierend auf den neuen Dateien
       - name: Create log.md
         run: |
-          NEW_FILES=${{ steps.new-files.outputs.new_files }}
+          # Empfange die neuen Dateien aus dem vorherigen Schritt
+          NEW_FILES="${{ steps.new-files.outputs.new_files }}"
+
           echo "# Commit-based Log" > log.md
           echo "## New files added in /docs/topics/ in the last week:" >> log.md
+
+          # Wenn keine neuen Dateien vorhanden sind, schreibe eine entsprechende Nachricht
           if [ -z "$NEW_FILES" ]; then
             echo "No new files added in /docs/topics/ in the last week." >> log.md
           else
@@ -56,7 +55,7 @@ jobs:
           echo "Generated log.md content:"
           cat log.md
 
-      # 5. Füge die Log-Datei `log.md` zum Repository hinzu und committe sie
+      # 4. Füge die Log-Datei `log.md` zum Repository hinzu und committe sie
       - name: Commit and push log.md
         env:
           PAT_TOKEN: ${{ secrets.PAT_TOKEN }}  # Verwendet den Personal Access Token (PAT) für Push-Berechtigungen
@@ -64,12 +63,12 @@ jobs:
           git config --local user.name "levoxtrip"
           git config --local user.email "levoxtrip@gmail.com"
           
-          # Füge alle Änderungen hinzu, einschließlich der neuen log.md
-          git add -A
-          
-          # Commit nur dann ausführen, wenn es tatsächlich Änderungen gibt
-          if git diff-index --quiet HEAD; then
-            echo "No changes to commit."
+          # Füge die `log.md`-Datei zum Git hinzu und committe sie
+          git add log.md
+
+          # Prüfe, ob es Änderungen gibt, bevor du einen Commit ausführst
+          if git diff --cached --quiet; then
+            echo "No changes to commit. Skipping push."
           else
             git commit -m "Update log.md for new files in /docs/topics/ in the last week"
             git push https://levoxtrip:${{ secrets.PAT_TOKEN }}@github.com/levoxtrip/TKB.git

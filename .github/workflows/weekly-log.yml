@@ -1,0 +1,49 @@
+name: Weekly Log
+
+on:
+  schedule:
+    # Wöchentlicher Zeitplan (jeden Montag um 8 Uhr)
+    - cron: '0 8 * * MON'
+
+jobs:
+  create-log:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checke das Repository aus
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # 2. Sammle neue Dateien der letzten Woche
+      - name: Get new files from last week
+        id: new-files
+        run: |
+          # Sammle alle Dateien, die in der letzten Woche hinzugefügt wurden
+          NEW_FILES=$(git log --diff-filter=A --since="7 days ago" --name-only --pretty="" | sort | uniq)
+          echo "New files added in the last week:"
+          echo "$NEW_FILES"
+          # Speichere die Ausgabe für den nächsten Schritt
+          echo "::set-output name=new_files::$NEW_FILES"
+
+      # 3. Generiere die Log-Datei log.md
+      - name: Create log.md
+        run: |
+          NEW_FILES=${{ steps.new-files.outputs.new_files }}
+          echo "# Weekly Log" > log.md
+          echo "## New files added in the last week:" >> log.md
+          if [ -z "$NEW_FILES" ]; then
+            echo "No new files added this week." >> log.md
+          else  
+            echo "$NEW_FILES" | while read FILE; do
+              echo "- $FILE" >> log.md
+            done
+          fi
+
+      # 4. Füge die Log-Datei `log.md` zum Repository hinzu und committe sie
+      - name: Commit and push log.md
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git add log.md
+          git commit -m "Weekly log update"
+          git push

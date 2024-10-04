@@ -46,7 +46,9 @@ jobs:
           if [ -z "$NEW_FILES" ]; then
             echo "No new files added in /docs/topics/ in the last week." >> log.md
           else
-            echo "$NEW_FILES" | while read FILE; do
+            # Verwende IFS, um Zeilenumbrüche als Trenner festzulegen, damit alle Dateien erfasst werden
+            IFS=$'\n'
+            for FILE in $NEW_FILES; do
               echo "- $FILE" >> log.md
             done
           fi

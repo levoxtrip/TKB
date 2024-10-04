@@ -1,6 +1,6 @@
-# CHOPs
+# Python
 
 Welcome in Python Land!
 
 ## Last added
-[Limit length List](LimitLenghtList.md)
+[Limit length of List](LimitLenghtList.md)

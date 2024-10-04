@@ -66,12 +66,10 @@ jobs:
           git config --local user.email "levoxtrip@gmail.com"
           
           # Füge die `log.md`-Datei zum Git hinzu und committe sie
-          git add log.md
+          git add -f log.md
 
-          # Prüfe, ob es Änderungen gibt, bevor du einen Commit ausführst
-          if git diff --cached --quiet; then
-            echo "No changes to commit. Skipping push."
-          else
-            git commit -m "Update log.md for new files in /docs/topics/ in the last week"
-            git push https://levoxtrip:${{ secrets.PAT_TOKEN }}@github.com/levoxtrip/TKB.git
-          fi
+          # Commit ausführen, auch wenn die Datei bereits existiert
+          git commit -m "Overwrite log.md with updates for new files in /docs/topics/ in the last week" || echo "Nothing to commit"
+          
+          # Push die Änderungen, selbst wenn keine neuen Dateien hinzugefügt wurden
+          git push https://levoxtrip:${{ secrets.PAT_TOKEN }}@github.com/levoxtrip/TKB.git || echo "Push failed, no changes to push."

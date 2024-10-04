@@ -19,14 +19,15 @@ jobs:
         id: new-files
         run: |
           echo "Collecting new files and their dates in /docs/topics/..."
-          
+
           # Setze ein Environment-Variable für das Verzeichnis
           FILE_DIR="docs/topics/"
           
-          # Sammle alle Dateien, die in den letzten 7 Tagen hinzugefügt wurden, und das Datum (diff-filter=A zeigt nur neue Dateien)
-          git log --diff-filter=A --since="7 days ago" --pretty=format:"%ad %H" --name-only --date=short -- $FILE_DIR > new_files_with_dates.txt
+          # Sammle die neuen Dateien mit dem Format "Dateiname (added on YYYY-MM-DD)"
+          git log --diff-filter=A --since="7 days ago" --pretty=format:"%ad %H" --name-only --date=short -- $FILE_DIR | \
+          awk 'BEGIN {date=""} /^[0-9]{4}-[0-9]{2}-[0-9]{2}/ {date=$0; next} {print "- " $0 " (added on " date ")"}' > new_files_with_dates.txt
 
-          # Zeige die gesammelten neuen Dateien und deren Erstellungsdatum zur Überprüfung an
+          # Zeige die gesammelten neuen Dateien mit Datum zur Überprüfung an
           echo "New files with dates added in the last week in $FILE_DIR:"
           cat new_files_with_dates.txt
 
@@ -37,16 +38,8 @@ jobs:
           echo "# Commit-based Log" > log.md
           echo "## New files added in /docs/topics/ in the last week with dates:" >> log.md
 
-          # Lies die Liste der neuen Dateien mit Datum aus der temporären Datei
-          while IFS= read -r line; do
-            if [[ ! -z "$line" && ! "$line" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2} ]]; then
-              FILE="$line"
-            elif [[ "$line" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2} ]]; then
-              DATE="$line"
-              # Füge die Datei mit dem Datum in die log.md-Datei ein
-              echo "- $FILE (added on $DATE)" >> log.md
-            fi
-          done < new_files_with_dates.txt
+          # Füge die Inhalte von new_files_with_dates.txt zur log.md hinzu
+          cat new_files_with_dates.txt >> log.md
 
           # Debugging: Zeige den Inhalt der `log.md`-Datei an
           echo "Generated log.md content:"
@@ -64,7 +57,7 @@ jobs:
           git add -f log.md
 
           # Commit ausführen, auch wenn die Datei bereits existiert
-          git commit -m "Overwrite log.md with updates for new files with dates in /docs/topics/ in the last week" || echo "Nothing to commit"
+          git commit -m "Update log.md with new files and their dates from /docs/topics/ in the last week" || echo "Nothing to commit"
           
           # Push die Änderungen, selbst wenn keine neuen Dateien hinzugefügt wurden
           git push https://levoxtrip:${{ secrets.PAT_TOKEN }}@github.com/levoxtrip/TKB.git || echo "Push failed, no changes to push."

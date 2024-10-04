@@ -25,7 +25,7 @@ jobs:
         run: |
           # Sammle alle Dateien, die in der letzten Woche hinzugefügt wurden
 
-          NEW_FILES=$(git log --diff-filter=A --since="7 days ago" --name-only --pretty="" | sort | uniq -r HEAD -- docs/topics/)
+          NEW_FILES=$(git log --diff-filter=A --since="7 days ago" --name-only --pretty="" -- docs/topics/ | sort | uniq)
           echo "New files added in the last week:"
           echo "$NEW_FILES"
           # Speichere die Ausgabe für den nächsten Schritt

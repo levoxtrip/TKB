@@ -1,4 +1,4 @@
-name: Commit-based Log with Dates
+name: Commit-based Log with Accurate Dates
 
 on:
   push:
@@ -14,33 +14,55 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      # 2. Sammle alle neuen Dateien im Ordner `/docs/topics/` und deren Erstellungsdatum
-      - name: Get new files with dates in /docs/topics/ since the last week
+      # 2. Sammle alle neuen Dateien im Ordner `/docs/topics/`
+      - name: Get new files in /docs/topics/ since the last week
         id: new-files
         run: |
-          echo "Collecting new files and their dates in /docs/topics/..."
+          echo "Collecting new files in /docs/topics/..."
 
-          # Setze ein Environment-Variable für das Verzeichnis
+          # Setze das Zielverzeichnis als Variable
           FILE_DIR="docs/topics/"
 
-          # Sammle die neuen Dateien mit dem Format "Dateiname (added on YYYY-MM-DD)"
-          # Verwende `git log` mit angepasstem `awk`-Skript, um nur Dateiname und Datum anzuzeigen und den Commit-Hash zu entfernen.
-          git log --diff-filter=A --since="7 days ago" --pretty=format:"%ad" --name-only --date=short -- $FILE_DIR | \
-          awk 'BEGIN {date=""} /^[0-9]{4}-[0-9]{2}-[0-9]{2}/ {date=$0; next} {print "- " $0 " (added on " date ")"}' > new_files_with_dates.txt
+          # Sammle alle Dateien, die in den letzten 7 Tagen hinzugefügt wurden (diff-filter=A zeigt nur neue Dateien)
+          NEW_FILES=$(git log --diff-filter=A --since="7 days ago" --name-only --pretty="" -- $FILE_DIR)
 
-          # Entferne doppelte Zeilen, um sicherzustellen, dass jede Datei nur einmal angezeigt wird
-          sort -u new_files_with_dates.txt -o new_files_with_dates.txt
+          # Zeige die gesammelten neuen Dateien zur Überprüfung an
+          echo "New files added in the last week in $FILE_DIR:"
+          echo "$NEW_FILES"
 
-          # Zeige die gesammelten neuen Dateien mit Datum zur Überprüfung an
-          echo "New files with dates added in the last week in $FILE_DIR:"
+          # Speichere die Ausgabe als temporäre Datei, um in den nächsten Schritten zu verwenden
+          echo "$NEW_FILES" > new_files_list.txt
+
+      # 3. Hole das Erstellungsdatum für jede Datei
+      - name: Get creation date for each new file
+        run: |
+          # Erstelle eine leere Datei, um die Dateien mit ihren Erstellungsdaten zu speichern
+          > new_files_with_dates.txt
+
+          # Für jede Datei in der Liste, hole das Erstellungsdatum mit `git log`
+          while IFS= read -r file; do
+            if [ -n "$file" ]; then
+              # Hole das Datum des ersten Commits für diese Datei (Erstellungsdatum)
+              DATE=$(git log --follow --format="%ad" --date=short -1 -- "$file")
+              # Wenn das Datum erfolgreich gefunden wurde, füge es zur Datei hinzu
+              if [ -n "$DATE" ]; then
+                echo "- $file (added on $DATE)" >> new_files_with_dates.txt
+              else
+                echo "Error: Could not retrieve creation date for $file" >> error_log.txt
+              fi
+            fi
+          done < new_files_list.txt
+
+          # Zeige die Datei mit den Namen und Erstellungsdaten an
+          echo "Files with their creation dates:"
           cat new_files_with_dates.txt
 
-      # 3. Generiere die Log-Datei `log.md` basierend auf den neuen Dateien und deren Erstellungsdatum
-      - name: Create log.md with dates
+      # 4. Generiere die Log-Datei `log.md` basierend auf den neuen Dateien und deren Erstellungsdatum
+      - name: Create log.md with accurate dates
         run: |
           # Überschreibe die bestehende log.md-Datei und füge die neuen Inhalte hinzu
           echo "# Commit-based Log" > log.md
-          echo "## New files added in /docs/topics/ in the last week with dates:" >> log.md
+          echo "## New files added in /docs/topics/ in the last week with accurate dates:" >> log.md
 
           # Füge die Inhalte von new_files_with_dates.txt zur log.md hinzu
           cat new_files_with_dates.txt >> log.md
@@ -49,7 +71,7 @@ jobs:
           echo "Generated log.md content:"
           cat log.md
 
-      # 4. Füge die Log-Datei `log.md` zum Repository hinzu und committe sie
+      # 5. Füge die Log-Datei `log.md` zum Repository hinzu und committe sie
       - name: Commit and push log.md
         env:
           PAT_TOKEN: ${{ secrets.PAT_TOKEN }}  # Verwendet den Personal Access Token (PAT) für Push-Berechtigungen
@@ -61,7 +83,7 @@ jobs:
           git add -f log.md
 
           # Commit ausführen, auch wenn die Datei bereits existiert
-          git commit -m "Update log.md with new files and their dates from /docs/topics/ in the last week" || echo "Nothing to commit"
+          git commit -m "Update log.md with new files and their accurate dates from /docs/topics/ in the last week" || echo "Nothing to commit"
           
           # Push die Änderungen, selbst wenn keine neuen Dateien hinzugefügt wurden
           git push https://levoxtrip:${{ secrets.PAT_TOKEN }}@github.com/levoxtrip/TKB.git || echo "Push failed, no changes to push."

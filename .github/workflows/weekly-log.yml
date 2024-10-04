@@ -3,12 +3,7 @@ name: Weekly Log
 on:
   push:
     branches:
-      - main 
-
-#on:
- # schedule:
-  #  # Wöchentlicher Zeitplan (jeden Montag um 8 Uhr)
-   # - cron: '0 8 * * MON'
+      - main  # Ändere diesen Branch-Namen, falls du einen anderen Branch verwendest, z.B. "master"
 
 jobs:
   create-log:
@@ -19,37 +14,51 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      # 2. Sammle neue Dateien der letzten Woche
-      - name: Get new files from last week
+      # 2. Debugging: Zeige alle aktuellen Dateien im Verzeichnis /docs/topics/
+      - name: List all files in /docs/topics/
+        run: |
+          echo "Listing all files in /docs/topics/:"
+          ls -R docs/topics/
+
+      # 3. Sammle neue Dateien im Ordner `/docs/topics/` seit der letzten Woche
+      - name: Get new files from /docs/topics/ in the last week
         id: new-files
         run: |
-          # Sammle alle Dateien, die in der letzten Woche hinzugefügt wurden
+          # Zeige das Commit-Log der letzten 7 Tage zur Überprüfung an
+          echo "Current git log for the last 7 days:"
+          git log --oneline --since="7 days ago"
 
+          # Sammle alle neuen Dateien aus dem Ordner /docs/topics/, die in der letzten Woche hinzugefügt wurden
           NEW_FILES=$(git log --diff-filter=A --since="7 days ago" --name-only --pretty="" -- docs/topics/ | sort | uniq)
-          echo "New files added in the last week:"
+          
+          # Debugging-Ausgabe: Neue Dateien anzeigen
+          echo "New files added in the last week in /docs/topics/:"
           echo "$NEW_FILES"
+
           # Speichere die Ausgabe für den nächsten Schritt
           echo "::set-output name=new_files::$NEW_FILES"
 
-      # 3. Generiere die Log-Datei log.md
+      # 4. Generiere die Log-Datei `log.md` basierend auf den neuen Dateien
       - name: Create log.md
         run: |
           NEW_FILES=${{ steps.new-files.outputs.new_files }}
-          echo "# Weekly Log" > log.md
-          echo "## New files added in the last week:" >> log.md
+          echo "# Commit-based Log" > log.md
+          echo "## New files added in /docs/topics/ in the last week:" >> log.md
           if [ -z "$NEW_FILES" ]; then
-            echo "No new files added this week." >> log.md
-          else  
+            echo "No new files added in /docs/topics/ in the last week." >> log.md
+          else
             echo "$NEW_FILES" | while read FILE; do
               echo "- $FILE" >> log.md
             done
           fi
 
-      # 4. Füge die Log-Datei `log.md` zum Repository hinzu und committe sie
+      # 5. Füge die Log-Datei `log.md` zum Repository hinzu und committe sie
       - name: Commit and push log.md
+        env:
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}  # Verwendet den Personal Access Token (PAT) für Push-Berechtigungen
         run: |
           git config --local user.name "levoxtrip"
           git config --local user.email "levoxtrip@gmail.com"
           git add log.md
-          git commit -m "Weekly log update"
-          git push
+          git commit -m "Update log.md for new files in /docs/topics/ in the last week"
+          git push https://levoxtrip:${{ secrets.PAT_TOKEN }}@github.com/levoxtrip/TKB.git

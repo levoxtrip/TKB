@@ -1,4 +1,4 @@
-name: Weekly Log
+name: Commit-based Log
 
 on:
   push:
@@ -30,7 +30,7 @@ jobs:
 
           # Sammle alle neuen Dateien aus dem Ordner /docs/topics/, die in der letzten Woche hinzugefügt wurden
           NEW_FILES=$(git log --diff-filter=A --since="7 days ago" --name-only --pretty="" -- docs/topics/ | sort | uniq)
-          
+
           # Debugging-Ausgabe: Neue Dateien anzeigen
           echo "New files added in the last week in /docs/topics/:"
           echo "$NEW_FILES"
@@ -52,6 +52,10 @@ jobs:
             done
           fi
 
+          # Debugging: Zeige den Inhalt der `log.md`-Datei an
+          echo "Generated log.md content:"
+          cat log.md
+
       # 5. Füge die Log-Datei `log.md` zum Repository hinzu und committe sie
       - name: Commit and push log.md
         env:
@@ -59,6 +63,14 @@ jobs:
         run: |
           git config --local user.name "levoxtrip"
           git config --local user.email "levoxtrip@gmail.com"
-          git add log.md
-          git commit -m "Update log.md for new files in /docs/topics/ in the last week"
-          git push https://levoxtrip:${{ secrets.PAT_TOKEN }}@github.com/levoxtrip/TKB.git
+          
+          # Füge alle Änderungen hinzu, einschließlich der neuen log.md
+          git add -A
+          
+          # Commit nur dann ausführen, wenn es tatsächlich Änderungen gibt
+          if git diff-index --quiet HEAD; then
+            echo "No changes to commit."
+          else
+            git commit -m "Update log.md for new files in /docs/topics/ in the last week"
+            git push https://levoxtrip:${{ secrets.PAT_TOKEN }}@github.com/levoxtrip/TKB.git
+          fi

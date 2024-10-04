@@ -10,4 +10,4 @@ tags:
 
 To swap the data of columns or rows in your tableDAT you can use a reorderDAT and set the *Order* e.g. to `1 0`.
 
-[Download](./files/swapColRowsData.tox.tox)    
+[Download](./files/swapColRowsData.tox)    

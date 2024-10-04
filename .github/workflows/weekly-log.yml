@@ -10,9 +10,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checke das Repository aus
-      - name: Checkout repository
+      # 1. Checke das Repository aus mit vollständiger Historie
+      - name: Checkout repository with full history
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Lade die gesamte Historie
 
       # 2. Sammle alle neuen Dateien im Ordner `/docs/topics/`
       - name: Get new files in /docs/topics/ since the last week

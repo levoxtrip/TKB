@@ -14,6 +14,7 @@
 - docs/topics/TouchDesigner/SOPS/DisplaceGridMagnetSOP.md (added on 2024-10-07)
 - docs/topics/TouchDesigner/SOPS/files/DisplaceGridMagnet.tox (added on 2024-10-07)
 - docs/topics/TouchDesigner/SOPS/img/DisplaceGridByMagnet.png (added on 2024-10-07)
+- docs/topics/TouchDesigner/SOPS/img/DisplaceGridByMagnetCreative.png (added on 2024-10-07)
 - docs/topics/TouchDesigner/SOPS/index.md (added on 2024-10-07)
 - docs/topics/tags.md (added on 2024-10-04)
 - docs/topics/test1.md (added on 2024-10-04)

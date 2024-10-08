@@ -10,4 +10,4 @@ tags:
 
 If you want to change values of locked TOP with for example a slider, you can when the value changes unlock the TOP and then lock it after you assigned the value.
 
-[DownloadFile](./files/changeValuesLockedVisuals.tox.tox)
+[DownloadFile](./files/changeValuesLockedVisuals.tox)

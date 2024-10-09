@@ -1,4 +1,4 @@
-# Weekly Log - 2024-10-09 17:48:29 UTC
+# Weekly Log - 2024-10-09 17:51:20 UTC
 
 List of newly created Markdown files in the last week from the docs folder:
 
@@ -92,7 +92,7 @@ List of newly created Markdown files in the last week from the docs folder:
 
 **[topics/Unity/.EnableFunctionCallOnlyOnce/](https://levoxtrip.github.io/TKB/topics/Unity/.EnableFunctionCallOnlyOnce/)**
 
-## No headline found
+## # Dublicate Adressable Group in Android APK
   - First image: ![](No image found)
 
 **[topics/Unity/DuplicateAdressableGroupInApk/](https://levoxtrip.github.io/TKB/topics/Unity/DuplicateAdressableGroupInApk/)**

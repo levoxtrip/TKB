@@ -3,13 +3,14 @@ name: Weekly Markdown Log
 on:
   push:
     branches:
-        - main  # Adjust this if your main branch is named differently
-    # schedule:
-      # - cron: '0 12 * * 5'  # Run every Friday at 12:00 PM (UTC)
+      - main  # Adjust this if your main branch is named differently
+  schedule:
+    - cron: '0 12 * * 5'  # Run every Friday at 12:00 PM (UTC)
 
 jobs:
   create-log:
     runs-on: ubuntu-latest
+
     steps:
       # Step 1: Checkout the code
       - name: Checkout code
@@ -30,9 +31,14 @@ jobs:
       - name: Get new files from last week
         id: new_files
         run: |
-          # Get the list of files added in the last 7 days
+          # Get the list of files added in the last 7 days (or from last commit on push)
           last_week_files=$(git log --since="7 days ago" --pretty="" --name-only --diff-filter=A | grep '\.md$' | sort | uniq)
-          echo "new_markdown_files=$last_week_files" >> $GITHUB_ENV
+          
+          # Replace newlines with space to format the list correctly
+          formatted_files=$(echo "$last_week_files" | tr '\n' ' ')
+          
+          # Set the formatted files as an environment variable
+          echo "new_markdown_files=$formatted_files" >> $GITHUB_ENV
 
       # Step 5: Extract information from new Markdown files
       - name: Extract information and create log
@@ -42,8 +48,8 @@ jobs:
           from datetime import datetime
           from urllib.parse import urljoin
 
-          # Get the list of newly created Markdown files
-          markdown_files = os.getenv('new_markdown_files').split()
+          # Get the list of newly created Markdown files from the environment variable
+          markdown_files = os.getenv('new_markdown_files', '').split()
 
           # Base URL of your GitHub repository
           repo_url = 'https://github.com/<user>/<repo>/blob/main/'
@@ -81,8 +87,8 @@ jobs:
       # Step 6: Commit and push the log file
       - name: Commit and Push Log File
         run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "GitHub Actions"
+          git config --local user.name "levoxtrip"
+          git config --local user.email "levoxtrip@gmail.com"
           git add log.md
           git commit -m "Weekly log update - $(date -u)"
           git push

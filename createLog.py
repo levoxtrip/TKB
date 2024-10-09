@@ -23,6 +23,11 @@ with open(log_file, "w", encoding="utf-8") as log:
 
     # Extract and log information from each file
     for file in markdown_files:
+        # Skip any index.md files
+        if file.endswith("index.md"):
+            print(f"Skipping index file: {file}")
+            continue
+
         if not os.path.exists(file):
             print(f"File not found: {file}")
             continue

@@ -32,7 +32,7 @@ jobs:
         id: new_files
         run: |
           # Get the list of files added in the last 7 days (or from last commit on push)
-          last_week_files=$(git log --since="7 days ago" --pretty="" --name-only --diff-filter=A | grep '\.md$' | sort | uniq)
+          last_week_files=$(git log --since="7 days ago" --pretty="" --name-only --diff-filter=A -- docs/*.md | sort | uniq)
           
           # Replace newlines with space to format the list correctly
           formatted_files=$(echo "$last_week_files" | tr '\n' ' ')

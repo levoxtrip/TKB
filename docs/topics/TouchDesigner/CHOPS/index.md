@@ -11,4 +11,4 @@ Welcome in Chop Land!
 
 [Map CHOP to SOP Length](MapCHOPtoSOPLength.md)
 
-[Animate through graph of datapoints ](AnimateTroughDataPoints.md)
+[Animate through graph of datapoints ](AnimateThroughDataPoints.md)

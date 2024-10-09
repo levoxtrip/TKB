@@ -12,6 +12,7 @@ if markdown_files == ["none"] or not markdown_files:
     markdown_files = []
 
 repo_url = "https://github.com/levoxtrip/TKB"
+pages_url = "https://levoxtrip.github.io/TKB/"
 log_file = "log.md"
 
 with open(log_file, "w", encoding="utf-8") as log:
@@ -36,7 +37,7 @@ with open(log_file, "w", encoding="utf-8") as log:
             image_match = re.search(r"!\[.*?\]\((.*?)\)", content)
             image_link = image_match.group(1) if image_match else "No image found"
 
-            file_url = urljoin(repo_url, file)
+            file_url = urljoin(pages_url, file)
 
             log.write(f"- **[{file}]({file_url})**\n")
             log.write(f"  - Headline: {headline}\n")

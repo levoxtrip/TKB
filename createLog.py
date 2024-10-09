@@ -60,11 +60,12 @@ with open(log_file, "w", encoding="utf-8") as log:
                 # Construct the image URL relative to the `img` directory
                 image_url = urljoin(pages_url, f"{parent_dir}/img/{image_filename}")
             else:
-                image_url = "No image found"
+                image_url = ""
 
             # Write details to log with the correct image URL
             log.write(f"## {headline}\n")
-            log.write(f"  - First image: ![]({image_url})\n\n")
+            log.write(f"![]({image_url})\n\n")
+            log.write(f"\n\n")
             log.write(f"**[{relative_path}]({file_url})**\n\n")
 
         print(f"Processed: {file}")

@@ -5,7 +5,7 @@ on:
     branches:
       - main  # Adjust this if your main branch is named differently
   schedule:
-    - cron: '0 12 * * 5'  # Also run every Friday at 12:00 PM (UTC)
+    - cron: '0 12 * * 5'  # Run every Friday at 12:00 PM (UTC)
 
 jobs:
   create-log:
@@ -42,70 +42,18 @@ jobs:
             last_week_files="none"
           fi
           
-          # Set the output variable for the next step
-          echo "::set-output name=new_markdown_files::$last_week_files"
+          # Set the environment variable for the next step
+          echo "NEW_MARKDOWN_FILES=$last_week_files" >> $GITHUB_ENV
 
-      # Step 5: Create a Python script to extract information and create log
-      - name: Create Python script for log creation
-        run: |
-          echo '
-import os
-import re
-from datetime import datetime
-from urllib.parse import urljoin
+      # Step 5: Run the Python script to create the log
+      - name: Run log creation script
+        run: python createLog.py
 
-# Get the list of newly created Markdown files from the environment variable
-markdown_files = os.getenv("new_markdown_files", "").strip().split()
-print(f"Markdown files to process: {markdown_files}")
-
-if markdown_files == ["none"]:
-    print("No new Markdown files were found in the last week.")
-    markdown_files = []
-
-# Base URL of your GitHub repository (update with your repo details)
-repo_url = "https://github.com/levoxtrip/TKB"
-
-# Create a new log file or overwrite existing one
-log_file = "log.md"
-with open(log_file, "w", encoding="utf-8") as log:
-    log.write(f"# Weekly Log - {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')} UTC\n\n")
-    log.write("List of newly created Markdown files in the last week from the docs folder:\n\n")
-
-    # Extract and log information from each file
-    for file in markdown_files:
-        if not os.path.exists(file):
-            print(f"File not found: {file}")
-            continue
-
-        with open(file, "r", encoding="utf-8") as f:
-            content = f.read()
-
-            # Extract the first headline (first line starting with #)
-            headline_match = re.search(r"^(# .+)", content, re.MULTILINE)
-            headline = headline_match.group(1) if headline_match else "No headline found"
-
-            # Extract the first image link (Markdown image syntax ![alt](link))
-            image_match = re.search(r"!\[.*?\]\((.*?)\)", content)
-            image_link = image_match.group(1) if image_match else "No image found"
-
-            # Create a link to the file in the GitHub repo
-            file_url = urljoin(repo_url, file)
-
-            # Write extracted information to the log
-            log.write(f"- **[{file}]({file_url})**\n")
-            log.write(f"  - Headline: {headline}\n")
-            log.write(f"  - First image: ![]({image_link})\n\n")
-' > script.py
-
-      # Step 6: Run the Python script
-      - name: Run log creation Python script
-        run: python script.py
-
-      # Step 6: Commit and push the log file
+      # Step 6: Commit and Push Log File
       - name: Commit and Push Log File
         run: |
-          git config --local user.name "levoxtrip"
           git config --local user.email "levoxtrip@gmail.com"
+          git config --local user.name "levoxtrip"
           git add log.md
           git commit -m "Weekly log update - $(date -u)"
           git push

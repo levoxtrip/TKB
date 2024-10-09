@@ -54,9 +54,10 @@ with open(log_file, "w", encoding="utf-8") as log:
                 # Extract the image filename from the markdown reference
                 image_filename = os.path.basename(image_link)
                 
-                # Construct the image URL relative to the `img/` directory at the same level
-                # Image should always be in the 'img' folder of the markdown's parent directory
-                parent_dir = os.path.dirname(relative_path)
+                # The `parent_dir` should be the grandparent directory, removing the file-specific folder
+                parent_dir = os.path.dirname(os.path.dirname(relative_path))  # Go up two levels
+                
+                # Construct the image URL relative to the `img` directory
                 image_url = urljoin(pages_url, f"{parent_dir}/img/{image_filename}")
             else:
                 image_url = "No image found"

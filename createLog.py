@@ -39,6 +39,11 @@ with open(log_file, "w", encoding="utf-8") as log:
             image_match = re.search(r"!\[.*?\]\((.*?)\)", content)
             image_link = image_match.group(1) if image_match else ""
 
+            
+
+            relative_path = file.replace("docs/", "").replace(".md", "/")
+            file_url = urljoin(pages_url, relative_path)
+
             # Construct the correct image URL if an image is found
             if image_link:
                 # Convert relative image path to an absolute URL
@@ -47,9 +52,6 @@ with open(log_file, "w", encoding="utf-8") as log:
                 image_url = urljoin(pages_url, os.path.join(relative_path, image_link).replace("\\", "/"))
             else:
                 image_url = "No image found"
-
-            relative_path = file.replace("docs/", "").replace(".md", "/")
-            file_url = urljoin(pages_url, relative_path)
 
             # Write details to log
             log.write(f"## {headline}\n")

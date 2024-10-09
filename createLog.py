@@ -36,8 +36,9 @@ with open(log_file, "w", encoding="utf-8") as log:
 
             image_match = re.search(r"!\[.*?\]\((.*?)\)", content)
             image_link = image_match.group(1) if image_match else "No image found"
-
-            file_url = urljoin(pages_url, file)
+            relative_path = file.replace("docs/", "").replace(".md", "/")
+            file_url = urljoin(pages_url, relative_path)
+        
 
             log.write(f"- **[{file}]({file_url})**\n")
             log.write(f"  - Headline: {headline}\n")

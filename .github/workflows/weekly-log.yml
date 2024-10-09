@@ -32,7 +32,7 @@ jobs:
         id: get_new_files
         run: |
           # Get the list of Markdown files added in the last 7 days in the docs folder
-          last_week_files=$(git log --since="7 days ago" --pretty="" --name-only --diff-filter=A -- docs/topics/*.md | sort | uniq)
+          last_week_files=$(git log --since="7 days ago" --pretty="" --name-only --diff-filter=A -- docs/topics/*.md | grep -v "index.md" | sort | uniq)
           
           # Print the list of files found for debugging
           echo "Files found: $last_week_files"

@@ -1,97 +1,90 @@
-name: Commit-based Log with Accurate Dates
+name: Weekly Markdown Log
 
 on:
-  push:
-    branches:
-      - main  # Ändere diesen Branch-Namen entsprechend deinem Haupt-Branch (z.B. "main" oder "master")
+push:
+  branches:
+      - main  # Adjust this if your main branch is named differently
+  schedule:
+    - cron: '0 12 * * 5'  # Run every Friday at 12:00 PM (UTC)
 
 jobs:
   create-log:
     runs-on: ubuntu-latest
-
     steps:
-      # 1. Checke das Repository aus mit vollständiger Historie
-      - name: Checkout repository with full history
-        uses: actions/checkout@v2
+      # Step 1: Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Python environment
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          fetch-depth: 0  # Lade die gesamte Historie
+          python-version: '3.x'  # Use the latest Python version
 
-      # 2. Sammle alle neuen Dateien im Ordner `/docs/topics/`
-      - name: Get new files in /docs/topics/ since the last week
-        id: new-files
+      # Step 3: Install dependencies
+      - name: Install dependencies
         run: |
-          echo "Collecting new files in /docs/topics/..."
+          python -m pip install pyyaml markdown
 
-          # Setze das Zielverzeichnis als Variable
-          FILE_DIR="docs/topics/"
-
-          # Sammle alle Dateien, die in den letzten 7 Tagen hinzugefügt wurden (diff-filter=A zeigt nur neue Dateien)
-          # Die Liste wird sortiert und in einer temporären Datei gespeichert
-          NEW_FILES=$(git log --diff-filter=A --since="7 days ago" --name-only --pretty="" -- $FILE_DIR | sort | uniq)
-          
-          # Zeige die gesammelten neuen Dateien zur Überprüfung an
-          echo "New files added in the last week in $FILE_DIR:"
-          echo "$NEW_FILES"
-
-          # Speichere die Ausgabe als temporäre Datei, um in den nächsten Schritten zu verwenden
-          echo "$NEW_FILES" > new_files_list.txt
-
-      # 3. Hole das Erstellungsdatum für jede Datei
-      - name: Get creation date for each new file
+      # Step 4: Get files created in the last week
+      - name: Get new files from last week
+        id: new_files
         run: |
-          # Erstelle eine leere Datei, um die Dateien mit ihren Erstellungsdaten zu speichern
-          > new_files_with_dates.txt
+          # Get the list of files added in the last 7 days
+          last_week_files=$(git log --since="7 days ago" --pretty="" --name-only --diff-filter=A | grep '\.md$' | sort | uniq)
+          echo "new_markdown_files=$last_week_files" >> $GITHUB_ENV
 
-          # Lese jede Datei in der Liste und finde das Erstellungsdatum
-          while IFS= read -r file; do
-            if [ -n "$file" ]; then
-              # Hole die Commit-ID des ersten Commits, in dem die Datei hinzugefügt wurde
-              FIRST_COMMIT=$(git log --diff-filter=A --format="%H" -1 -- "$file")
-
-              # Hole das Erstellungsdatum basierend auf der Commit-ID
-
-              DATE=$(git show --format="%aI" --no-patch "$FIRST_COMMIT" | cut -d'T' -f1)
-
-              # Wenn das Datum erfolgreich gefunden wurde, füge es zur Datei hinzu
-              if [ -n "$DATE" ]; then
-                echo "- $file (added on $DATE)" >> new_files_with_dates.txt
-              else
-                echo "Error: Could not retrieve creation date for $file" >> error_log.txt
-              fi
-            fi
-          done < new_files_list.txt
-
-          # Zeige die Datei mit den Namen und Erstellungsdaten an
-          echo "Files with their creation dates:"
-          cat new_files_with_dates.txt
-
-      # 4. Generiere die Log-Datei `log.md` basierend auf den neuen Dateien und deren Erstellungsdatum
-      - name: Create log.md with accurate dates
+      # Step 5: Extract information from new Markdown files
+      - name: Extract information and create log
         run: |
-          # Überschreibe die bestehende log.md-Datei und füge die neuen Inhalte hinzu
-          echo "# Commit-based Log" > log.md
-          echo "## New files added in /docs/topics/ in the last week with accurate dates:" >> log.md
+          import os
+          import re
+          from datetime import datetime
+          from urllib.parse import urljoin
 
-          # Füge die Inhalte von new_files_with_dates.txt zur log.md hinzu
-          cat new_files_with_dates.txt >> log.md
+          # Get the list of newly created Markdown files
+          markdown_files = os.getenv('new_markdown_files').split()
 
-          # Debugging: Zeige den Inhalt der `log.md`-Datei an
-          echo "Generated log.md content:"
-          cat log.md
+          # Base URL of your GitHub repository
+          repo_url = 'https://github.com/<user>/<repo>/blob/main/'
 
-      # 5. Füge die Log-Datei `log.md` zum Repository hinzu und committe sie
-      - name: Commit and push log.md
+          # Create a new log file or overwrite existing one
+          log_file = 'log.md'
+          with open(log_file, 'w', encoding='utf-8') as log:
+              log.write(f'# Weekly Log - {datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")} UTC\n\n')
+              log.write('List of newly created Markdown files in the last week:\n\n')
+
+              # Extract and log information from each file
+              for file in markdown_files:
+                  if not os.path.exists(file):
+                      continue
+
+                  with open(file, 'r', encoding='utf-8') as f:
+                      content = f.read()
+
+                      # Extract the first headline (first line starting with #)
+                      headline_match = re.search(r'^(# .+)', content, re.MULTILINE)
+                      headline = headline_match.group(1) if headline_match else 'No headline found'
+
+                      # Extract the first image link (Markdown image syntax ![alt](link))
+                      image_match = re.search(r'!\[.*?\]\((.*?)\)', content)
+                      image_link = image_match.group(1) if image_match else 'No image found'
+
+                      # Create a link to the file in the GitHub repo
+                      file_url = urljoin(repo_url, file)
+
+                      # Write extracted information to the log
+                      log.write(f'- **[{file}]({file_url})**\n')
+                      log.write(f'  - Headline: {headline}\n')
+                      log.write(f'  - First image: ![]({image_link})\n\n')
+
+      # Step 6: Commit and push the log file
+      - name: Commit and Push Log File
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "GitHub Actions"
+          git add log.md
+          git commit -m "Weekly log update - $(date -u)"
+          git push
         env:
-          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}  # Verwendet den Personal Access Token (PAT) für Push-Berechtigungen
-        run: |
-          git config --local user.name "levoxtrip"
-          git config --local user.email "levoxtrip@gmail.com"
-          
-          # Füge die `log.md`-Datei zum Git hinzu und erzwinge das Hinzufügen
-          git add -f log.md
-
-          # Commit ausführen, auch wenn die Datei bereits existiert
-          git commit -m "Update log.md with new files and their accurate dates from /docs/topics/ in the last week" || echo "Nothing to commit"
-          
-          # Push die Änderungen, selbst wenn keine neuen Dateien hinzugefügt wurden
-          git push https://levoxtrip:${{ secrets.PAT_TOKEN }}@github.com/levoxtrip/TKB.git || echo "Push failed, no changes to push."
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

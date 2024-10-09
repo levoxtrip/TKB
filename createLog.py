@@ -15,6 +15,7 @@ repo_url = "https://github.com/levoxtrip/TKB"
 pages_url = "https://levoxtrip.github.io/TKB/"
 log_file = "log.md"
 
+# Create a log file and write the initial log message
 with open(log_file, "w", encoding="utf-8") as log:
     log.write(f"# Weekly Log - {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')} UTC\n\n")
     log.write("List of newly created Markdown files in the last week from the docs folder:\n\n")
@@ -28,6 +29,7 @@ with open(log_file, "w", encoding="utf-8") as log:
             print(f"File not found: {file}")
             continue
 
+        # Read the contents of the markdown file
         with open(file, "r", encoding="utf-8") as f:
             content = f.read()
 
@@ -35,21 +37,18 @@ with open(log_file, "w", encoding="utf-8") as log:
             headline_match = re.search(r"^(# .+)", content, re.MULTILINE)
             headline = headline_match.group(1) if headline_match else "No headline found"
 
-            # Get the first image link
+            # Get the first image link from the markdown content
             image_match = re.search(r"!\[.*?\]\((.*?)\)", content)
             image_link = image_match.group(1) if image_match else ""
 
-            
-
+            # Determine the relative path and construct the file URL
             relative_path = file.replace("docs/", "").replace(".md", "/")
             file_url = urljoin(pages_url, relative_path)
 
-            # Construct the correct image URL if an image is found
+            # Construct the correct image URL based on the 'img/' folder structure
             if image_link:
-                # Convert relative image path to an absolute URL
-                if image_link.startswith('./'):
-                    image_link = image_link[2:]
-                image_url = urljoin(pages_url, os.path.join(relative_path, image_link).replace("\\", "/"))
+                # Replace './img/' with the correct relative path to the image folder
+                image_url = urljoin(pages_url, os.path.join("topics", os.path.dirname(relative_path), "img", os.path.basename(image_link)).replace("\\", "/"))
             else:
                 image_url = "No image found"
 

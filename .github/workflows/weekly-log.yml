@@ -52,7 +52,7 @@ jobs:
           markdown_files = os.getenv('new_markdown_files', '').split()
 
           # Base URL of your GitHub repository
-          repo_url = 'https://github.com/<user>/<repo>/blob/main/'
+          repo_url = 'https://github.com/levoxtrip/TKB'
 
           # Create a new log file or overwrite existing one
           log_file = 'log.md'

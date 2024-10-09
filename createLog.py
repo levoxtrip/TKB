@@ -13,7 +13,6 @@ if markdown_files == ["none"] or not markdown_files:
     markdown_files = []
 
 # Define the base URLs for the repository and GitHub Pages
-repo_url = "https://github.com/levoxtrip/TKB"
 pages_url = "https://levoxtrip.github.io/TKB/"
 log_file = "log.md"
 
@@ -46,18 +45,25 @@ with open(log_file, "w", encoding="utf-8") as log:
             image_match = re.search(r"!\[.*?\]\((.*?)\)", content)
             image_link = image_match.group(1) if image_match else ""
 
-            # Construct the correct file URL
+            # Determine the relative path of the file and construct the file URL
             relative_path = file.replace("docs/", "").replace(".md", "/")
             file_url = urljoin(pages_url, relative_path)
 
-            # Construct the correct image URL based on the fixed folder structure
+            # Construct the correct image URL based on the folder structure
             if image_link:
-                # The image link should reference the `img/` directory only, without subfolders like `AnimateThroughDataPoints`
-                image_filename = os.path.basename(image_link)  # Extract just the image filename
-                image_url = urljoin(pages_url, f"topics/TouchDesigner/CHOPS/img/{image_filename}")
+                # Extract the image filename from the markdown reference
+                image_filename = os.path.basename(image_link)
+                
+                # Construct the image URL relative to the `img/` directory at the same level
+                # Image should always be in the 'img' folder of the markdown's parent directory
+                parent_dir = os.path.dirname(relative_path)
+                image_url = urljoin(pages_url, f"{parent_dir}/img/{image_filename}")
             else:
                 image_url = "No image found"
 
-            # Write details to log with corrected image URL
+            # Write details to log with the correct image URL
             log.write(f"## {headline}\n")
-            log.write(f"  - First image
+            log.write(f"  - First image: ![]({image_url})\n\n")
+            log.write(f"**[{relative_path}]({file_url})**\n\n")
+
+        print(f"Processed: {file}")

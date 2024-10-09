@@ -1,11 +1,11 @@
 name: Weekly Markdown Log
 
 on:
-push:
-  branches:
-      - main  # Adjust this if your main branch is named differently
-  schedule:
-    - cron: '0 12 * * 5'  # Run every Friday at 12:00 PM (UTC)
+  push:
+    branches:
+        - main  # Adjust this if your main branch is named differently
+    # schedule:
+      # - cron: '0 12 * * 5'  # Run every Friday at 12:00 PM (UTC)
 
 jobs:
   create-log:

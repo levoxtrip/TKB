@@ -3,6 +3,11 @@
 Welcome in Chop Land!
 
 ## Last added
+
+[Trigger Single Sound](TriggerSingleSound.md)
+
+[Manipulate CHOP Values with ExpressionCHOP](ManipulateCHOPValueExpressionCHOP.md)
+
 [Measure Change Of Value](MeasureChangeOfValue.md)
 
 [Hold last changed Value](HoldLastChangedValue.md)

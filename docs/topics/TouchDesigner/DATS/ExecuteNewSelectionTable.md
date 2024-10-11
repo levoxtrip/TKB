@@ -7,7 +7,7 @@ tags:
 ![ExecuteDAT when new selection from table](./img/ExecuteNewSelectionTable0.png)
 # ExecuteDAT when new selection from table
 
-To execute something when your selection has changed we can just hook an `ExecuteDAT`and run the code when `TableChange`
+To execute something when your selection has changed we can just hook an `ExecuteDAT` and run the code on `TableChange` Method.
 
 ![ExecuteDAT Script](./img/ExecuteNewSelectionTable1.png)
 

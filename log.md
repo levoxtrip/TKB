@@ -1,8 +1,22 @@
-# Weekly Log - 2024-10-09 17:52:15 UTC
+# Weekly Log - 2024-10-11 08:07:10 UTC
 
 List of newly created Markdown files in the last week from the docs folder:
 
-## # Animate through graph of datapoints
+## # Setting up a local HTTP Server
+![]()
+
+
+
+**[topics/Networking/LocalHttpServer/](https://levoxtrip.github.io/TKB/topics/Networking/LocalHttpServer/)**
+
+## # Limit length of list
+![]()
+
+
+
+**[topics/Python/LimitLenghtList/](https://levoxtrip.github.io/TKB/topics/Python/LimitLenghtList/)**
+
+## # Animate Through Graphs of Data Points
 ![](https://levoxtrip.github.io/TKB/topics/TouchDesigner/CHOPS/img/AnimateThroughData0.png)
 
 
@@ -15,6 +29,13 @@ List of newly created Markdown files in the last week from the docs folder:
 
 
 **[topics/TouchDesigner/CHOPS/HoldLastChangedValue/](https://levoxtrip.github.io/TKB/topics/TouchDesigner/CHOPS/HoldLastChangedValue/)**
+
+## # Manipulate CHOP Values with ExpressionCHOP
+![](https://levoxtrip.github.io/TKB/topics/TouchDesigner/CHOPS/img/ManipulateCHOPValueWithExpression.png)
+
+
+
+**[topics/TouchDesigner/CHOPS/ManipulateCHOPValueExpressionCHOP/](https://levoxtrip.github.io/TKB/topics/TouchDesigner/CHOPS/ManipulateCHOPValueExpressionCHOP/)**
 
 ## # Map CHOP to SOP length
 ![](https://levoxtrip.github.io/TKB/topics/TouchDesigner/CHOPS/img/MapCHOPtoSOPLength.png)
@@ -37,6 +58,20 @@ List of newly created Markdown files in the last week from the docs folder:
 
 **[topics/TouchDesigner/CHOPS/StretchCHOPToNumSamples/](https://levoxtrip.github.io/TKB/topics/TouchDesigner/CHOPS/StretchCHOPToNumSamples/)**
 
+## # Trigger Single Sound
+![](https://levoxtrip.github.io/TKB/topics/TouchDesigner/CHOPS/img/TriggerSoundWhenTrue.png)
+
+
+
+**[topics/TouchDesigner/CHOPS/TriggerSingleSound/](https://levoxtrip.github.io/TKB/topics/TouchDesigner/CHOPS/TriggerSingleSound/)**
+
+## # Converting DAT into CHOP Graph
+![](https://levoxtrip.github.io/TKB/topics/TouchDesigner/DATS/img/ConvertingDATIntoGraph.png)
+
+
+
+**[topics/TouchDesigner/DATS/ConvertingDATIntoGraph/](https://levoxtrip.github.io/TKB/topics/TouchDesigner/DATS/ConvertingDATIntoGraph/)**
+
 ## # ExecuteDAT when new selection from table
 ![](https://levoxtrip.github.io/TKB/topics/TouchDesigner/DATS/img/ExecuteNewSelectionTable0.png)
 
@@ -50,6 +85,13 @@ List of newly created Markdown files in the last week from the docs folder:
 
 
 **[topics/TouchDesigner/DATS/PopulateTableDATViaScript/](https://levoxtrip.github.io/TKB/topics/TouchDesigner/DATS/PopulateTableDATViaScript/)**
+
+## # Often used scripting for DATS
+![]()
+
+
+
+**[topics/TouchDesigner/DATS/ScriptingDAT/](https://levoxtrip.github.io/TKB/topics/TouchDesigner/DATS/ScriptingDAT/)**
 
 ## # Swapping columns or rows in TableDAT
 ![](https://levoxtrip.github.io/TKB/topics/TouchDesigner/DATS/img/SwappingColsRowsTable.png)
@@ -79,6 +121,13 @@ List of newly created Markdown files in the last week from the docs folder:
 
 **[topics/TouchDesigner/SOPS/DisplaceGridMagnetSOP/](https://levoxtrip.github.io/TKB/topics/TouchDesigner/SOPS/DisplaceGridMagnetSOP/)**
 
+## # Rotate Camera On CircleSOP
+![](https://levoxtrip.github.io/TKB/topics/TouchDesigner/SOPS/img/)
+
+
+
+**[topics/TouchDesigner/SOPS/RotateCameraOnCirlceSOP/](https://levoxtrip.github.io/TKB/topics/TouchDesigner/SOPS/RotateCameraOnCirlceSOP/)**
+
 ## # Change the Seed With a ClockCHOP
 ![](https://levoxtrip.github.io/TKB/topics/TouchDesigner/TECHNIQUES/img/ChangeSeedWithClock.png)
 
@@ -92,6 +141,13 @@ List of newly created Markdown files in the last week from the docs folder:
 
 
 **[topics/TouchDesigner/TECHNIQUES/SetCustomFrameRateProcess/](https://levoxtrip.github.io/TKB/topics/TouchDesigner/TECHNIQUES/SetCustomFrameRateProcess/)**
+
+## # Apply Effects for Certain Channels
+![](https://levoxtrip.github.io/TKB/topics/TouchDesigner/TOPS/img/ApplyEffectForOnlySpecificChannel.png)
+
+
+
+**[topics/TouchDesigner/TOPS/ApplyEffectForOnlySpecificChannels/](https://levoxtrip.github.io/TKB/topics/TouchDesigner/TOPS/ApplyEffectForOnlySpecificChannels/)**
 
 ## # Change values for locked visuals
 ![](https://levoxtrip.github.io/TKB/topics/TouchDesigner/TOPS/img/ChangeVisualsLockedTOP.png)

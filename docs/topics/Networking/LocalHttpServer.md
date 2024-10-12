@@ -1,8 +1,8 @@
 ---
+comments: true
 tags:
- - CHOP
- - NOISE
- - TOP
+ - Networking
+
 ---
 
 # Setting up a local HTTP Server

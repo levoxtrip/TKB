@@ -1,0 +1,21 @@
+{
+	"NewEntry Template": {
+	  "prefix": "markdown",
+	  "body": [
+		"---",
+		"comments: true",
+		"tags:",
+		" - TD/CHOPS",
+		"---",
+		"",
+		"![Trigger simple sound file](./img/TriggerSoundWhenTrue.png)",
+		"",
+		"# Trigger Single Sound",
+		"",
+		"If we don't need a continuously playing audio file and just want to trigger a single sound, we can use the `AudioPlayCHOP`. It also returns `true` while the sound is playing, which can be handy, for example, for muting other sounds or executing functionality.",
+		"",
+		"[Download](./files/)"
+	  ],
+	  "description": "Template for new Entry"
+	}
+  }	

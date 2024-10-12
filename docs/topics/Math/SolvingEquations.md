@@ -1,6 +1,7 @@
 ---
+comments: true
 tags:
-    -  
+    - Math
 ---
 # Solving Equations
 

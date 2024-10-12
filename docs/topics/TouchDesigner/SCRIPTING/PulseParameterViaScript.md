@@ -1,4 +1,5 @@
 ---
+comments: true
 tags:
  - TouchDesigner
  - TD/Scripting

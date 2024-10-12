@@ -1,3 +1,13 @@
+---
+comments: true
+tags:
+ - TD/Instancing
+ - TD/TOPS
+ - TD/TEXT
+ - TD/TABLEDAT
+ - TD/DAT
+---
+
 ![Set Text From TableDAT](./img/SetTextTOPFromTableDAT.png)
 
 # Set Text from tableDAT

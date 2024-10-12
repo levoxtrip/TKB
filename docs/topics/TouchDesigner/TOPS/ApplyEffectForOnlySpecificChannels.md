@@ -1,7 +1,8 @@
 ---
+comments: true
 tags:
- - TOPS
- - Effects
+ - TD/TOPS
+ - TD/Effects
 ---
 
 ![Change Values Locked TOP](./img/ApplyEffectForOnlySpecificChannel.png)

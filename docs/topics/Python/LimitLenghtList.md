@@ -2,7 +2,7 @@
 tags:
  - Python
  - List
-
+comments: true
 ---
 
 

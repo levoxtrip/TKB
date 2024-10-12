@@ -1,8 +1,9 @@
 ---
+comments: true
 tags:
- - instancing
- - TOPS
- - Grid
+ - TD/Instancing
+ - TD/TOPS
+ - TD/Grid
 ---
 
 ![Title Instancing On Grid](./img/ImageInstancingGrid0.png)

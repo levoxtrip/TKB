@@ -1,3 +1,9 @@
+---
+tags:
+ - TD/CHOPS
+ - TouchDesigner
+---
+
 ![Animate Through Data](./img/AnimateThroughData0.png)
 
 # Animate Through Graphs of Data Points

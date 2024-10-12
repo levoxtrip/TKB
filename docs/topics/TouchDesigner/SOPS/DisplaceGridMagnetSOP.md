@@ -1,9 +1,9 @@
 ---
 tags:
- - SOP
- - GRID
- - SURFACE
- - DISPLACE
+ - TD/SOP
+ - TD/GRID
+ - TD/DISPLACE
+ - TouchDesigner
 
 ---
 

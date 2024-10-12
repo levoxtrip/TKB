@@ -1,8 +1,8 @@
 ---
 tags:
- - CHOP
- - SOP
- - Conversion
+ - TD/CHOP
+ - TD/SOP
+ - TD/Conversion
  - TouchDesigner
 ---
 

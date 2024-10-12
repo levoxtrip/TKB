@@ -1,8 +1,8 @@
 ---
 tags:
- - DAT
- - TableDAT
-
+ - TD/DAT
+ - TD/TableDAT
+ - TouchDesigner
 ---
 
 ![How to swap the columns of your tableDAT](./img/SwappingColsRowsTable.png)

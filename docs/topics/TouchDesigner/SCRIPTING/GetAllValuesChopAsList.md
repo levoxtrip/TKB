@@ -1,9 +1,9 @@
 ---
 tags:
- - CHOP
+ - TD/CHOP
  - Scripting
- - DAT
- - Conversion
+ - TD/DAT
+ - TD/Conversion
  - Python
  - TouchDesigner
 ---

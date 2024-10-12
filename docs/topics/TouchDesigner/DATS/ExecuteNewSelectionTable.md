@@ -2,7 +2,8 @@
 tags:
  - TD/DAT
  - TD/TableDAT
- - Execute
+ - TD/Execute
+ - TouchDesigner
 ---
 ![ExecuteDAT when new selection from table](./img/ExecuteNewSelectionTable0.png)
 # ExecuteDAT when new selection from table

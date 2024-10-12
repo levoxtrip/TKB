@@ -1,7 +1,8 @@
 ---
 tags:
- - BASE
- - Framerate
+ - TD/BASE
+ - TD/Framerate
+ - TouchDesigner
 ---
 
 ![Set custom Framerate in Base](./img/SetCustomFrameRate1.png)

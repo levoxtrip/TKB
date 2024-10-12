@@ -1,8 +1,9 @@
 ---
 tags:
- - CHOP
- - NOISE
- - TOP
+ - TD/CHOP
+ - TD/NOISE
+ - TD/TOP
+ - TouchDesigner
 ---
 
 ![Change Seed With Clock](./img/ChangeSeedWithClock.png)

@@ -1,3 +1,9 @@
+---
+tags:
+ - TD/CHOPS
+ - TouchDesigner
+---
+
 ![Hold last changed value](./img/HoldLastChangedValue.png)
 # Hold last changed value
 Often it is super useful to hold the last changed value till a new change happens.

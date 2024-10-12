@@ -1,7 +1,8 @@
 ---
 tags:
- - CHOPS
+ - TD/CHOPS
  - Measuring
+ - TouchDesigner
 ---
 
 ![Measure how fast the value changes](./img/MeasureSpeedValChange.png)

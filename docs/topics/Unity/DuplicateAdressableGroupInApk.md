@@ -1,7 +1,7 @@
 ---
 tags:
   - Unity
-  - Adressable
+  - Unity/Adressable
   - Android
 ---
 # Dublicate Adressable Group in Android APK

@@ -1,7 +1,7 @@
 ---
 tags:
- - CHOP
- - Samples
+ - TD/CHOP
+ - TD/Samples
  - Conversion
  - TouchDesigner
 ---

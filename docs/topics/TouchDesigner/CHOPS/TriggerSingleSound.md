@@ -1,7 +1,8 @@
 ---
 tags:
- - CHOPS
+ - TD/CHOPS
  - Audio
+ - TouchDesigner
 ---
 
 ![Trigger simple sound file](./img/TriggerSoundWhenTrue.png)

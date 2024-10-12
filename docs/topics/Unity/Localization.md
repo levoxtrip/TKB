@@ -1,3 +1,8 @@
+---
+tags:
+  - Unity
+---
+
 # Localization - Multiple Languages in Unity
 
 ## Install package

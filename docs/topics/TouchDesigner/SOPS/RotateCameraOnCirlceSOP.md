@@ -1,7 +1,8 @@
 ---
 tags:
- - SOP
- - CAMERA
+ - TD/SOP
+ - TD/CAMERA
+ - TouchDesigner
 
 ---
 

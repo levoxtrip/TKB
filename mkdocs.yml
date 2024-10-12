@@ -30,7 +30,6 @@ theme:
 plugins:
   - social
   - search
-  - meta
   - tags:
       tags_file: tags.md
 

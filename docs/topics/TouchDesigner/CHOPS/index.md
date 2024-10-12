@@ -1,3 +1,6 @@
+---
+comments: true
+--- 
 # CHOPs
 
 Welcome in Chop Land!
@@ -17,3 +20,6 @@ Welcome in Chop Land!
 [Map CHOP to SOP Length](MapCHOPtoSOPLength.md)
 
 [Animate through graph of datapoints ](AnimateThroughDataPoints.md)
+
+## Suggestions
+Got a topic or technique you'd love to see me dive into? Drop your suggestions below, and let's create something amazing together

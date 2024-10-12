@@ -3,6 +3,8 @@ tags:
  - TD/CHOPS
  - TD/Scripting
  - TouchDesigner
+
+comments: true
 ---
 
 ![Manipulate CHOP Values with ExpressionCHOP](./img/ManipulateCHOPValueWithExpression.png)

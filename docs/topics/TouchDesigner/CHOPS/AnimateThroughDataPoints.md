@@ -3,7 +3,6 @@ comments: true
 tags:
  - TD/CHOPS
  - TouchDesigner
- - HÖÖ
 ---
 
 ![Animate Through Data](./img/AnimateThroughData0.png)

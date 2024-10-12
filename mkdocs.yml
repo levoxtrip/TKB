@@ -30,9 +30,12 @@ theme:
 plugins:
   - social
   - search
+  - blog
   - tags:
       tags_file: tags.md
 
+extra_css:
+  - stylesheets/extra.css
 
 # extra:
 #   social:

@@ -6,6 +6,8 @@ comments: true
 Welcome in SOPs Land!
 
 ## Last added
+[Displace SOP By CHOP Values](DisplaceSOPByCHOPValues.md)
+[Rotate Camera On CircleSOP](RotateCameraOnCirlceSOP.md)
 [Displace Grid By MagnetSOOP](DisplaceGridMagnetSOP.md)
 
 

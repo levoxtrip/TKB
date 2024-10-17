@@ -6,6 +6,8 @@ comments: true
 Welcome to Scripting Topis
 
 ## Last added
+
+[Python in Touch](PythonInTouch.md)
 [Get all values of chop as a list](GetAllValuesChopAsList.md)
 
 [Pulse Parameter via Script ](PulseParameterViaScript.md)

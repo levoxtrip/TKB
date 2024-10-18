@@ -3,6 +3,8 @@ import re
 from datetime import datetime, timezone
 from urllib.parse import urljoin
 
+now_utc = datetime.now(timezone.utc)
+
 # Retrieve the new markdown files to be processed
 markdown_files = os.getenv("NEW_MARKDOWN_FILES", "").strip().split(' ')
 print(f"Markdown files to process: {markdown_files}")

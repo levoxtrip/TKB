@@ -5,42 +5,44 @@ on:
     branches:
       - main  # Replace with your target branch
     paths-ignore:
-      - 'newsletter.md'  # Prevent recursion when the action commits newsletter.md
+      - 'newsletter.md'  # Prevent the action from re-triggering when the newsletter is committed
 
 jobs:
   generate-newsletter:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout the repository
         uses: actions/checkout@v3
         with:
           fetch-depth: 0  # Ensure full history is available
 
-      - name: Set up date utility
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.x'
+
+      - name: Install coreutils (for date command with ISO format)
         run: |
           sudo apt-get update && sudo apt-get install -y coreutils
-          
-      - name: Generate newsletter of new .md files
-        shell: bash
-        run: |
-          #!/bin/bash
 
+      - name: Generate newsletter of newly added .md files
+        run: |
           # Get the date and time for one week ago in ISO 8601 format
           one_week_ago=$(date -d "7 days ago" --iso-8601=seconds)
 
           # Initialize an array to hold new files
           new_files=()
 
-          # Get a list of all .md files tracked by Git
+          # Get a list of all .md files currently tracked by Git
           all_md_files=$(git ls-files '*.md')
 
           # Loop over each .md file
           for file in $all_md_files; do
               # Get the first commit date of the file in ISO 8601 format
               first_commit_date=$(git log --diff-filter=A --follow --format="%aI" -- "$file" | tail -1)
-              
-              # If the first commit date is after one week ago, add to new_files
+
+              # If the first commit date is after one week ago, add the file to the list
               if [[ "$first_commit_date" > "$one_week_ago" ]]; then
                   new_files+=("$file")
               fi
@@ -50,22 +52,21 @@ jobs:
           if [ ${#new_files[@]} -eq 0 ]; then
               echo "No new markdown files added in the last week." > newsletter.md
           else
-              {
-                  echo "# Weekly Newsletter"
-                  echo "## Newly Added Files (Last Week)"
-                  for file in "${new_files[@]}"; do
-                      echo "- $file"
-                  done
-              } > newsletter.md
+              echo "# Weekly Newsletter" > newsletter.md
+              echo "## Newly Added Files (Last Week)" >> newsletter.md
+              for file in "${new_files[@]}"; do
+                  echo "- $file" >> newsletter.md
+              done
           fi
 
       - name: Commit and push newsletter
         run: |
-          git config --global user.name "levoxtrip"
-          git config --global user.email "levoxtrip@gmail.com"
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
           git add newsletter.md
           git commit -m "Add weekly newsletter"
+          
+          # Set the author and committer date within the shell
+          GIT_AUTHOR_DATE=$(date) GIT_COMMITTER_DATE=$(date) git commit --amend --no-edit
+          
           git push
-        env:
-          GIT_AUTHOR_DATE: "$(date)"
-          GIT_COMMITTER_DATE: "$(date)"

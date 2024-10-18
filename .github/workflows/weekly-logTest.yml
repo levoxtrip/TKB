@@ -1,4 +1,4 @@
-name: Weekly Markdown Log
+name: Weekly Markdown Log Test
 
 on:
   push:

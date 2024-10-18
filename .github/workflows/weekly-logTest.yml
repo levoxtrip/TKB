@@ -1,9 +1,9 @@
 name: Generate Weekly Newsletter
 
-# Run this job every Monday at 9:00 AM (UTC)
 on:
-  schedule:
-    - cron: '0 9 * * MON'
+  push:
+    branches:
+      - main  # Or change this to the branch you want to monitor
 
 jobs:
   create-newsletter:

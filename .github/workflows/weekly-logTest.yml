@@ -3,8 +3,6 @@ name: Weekly Markdown Log Test
 on:
   push:
     - main
-  schedule:
-    - cron: '0 12 * * 5'  # Run every Friday at 12:00 PM (UTC)
 
 jobs:
   create-log:
@@ -24,7 +22,7 @@ jobs:
           python -m pip install pyyaml markdown
 
       - name: Get new Markdown files from the last week in docs/topics folder, excluding index.md files
-        id: get_new_files
+        id: get_new_files_2
         run: |
           last_week_files=$(git log --since="7 days ago" --pretty=format: --name-only --diff-filter=A -- docs/topics/*.md | grep -v "index.md" | sort | uniq)
 

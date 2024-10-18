@@ -28,7 +28,11 @@ jobs:
           last_week_files=$(git log --since="7 days ago" --pretty=format: --name-only --diff-filter=A -- docs/topics/*.md | grep -v "index.md" | sort | uniq)
 
 
-          last_week_files=$(echo "$last_week_files" | while read file; do if [ "$(git log -1 --format="%ai" -- "$file" | cut -d' ' -f1)" > "$(date -d '7 days ago' +%Y-%m-%d)" ]; then echo "$file" fi done)
+          last_week_files=$(echo "$last_week_files" | while read file; do 
+            if [[ "$(git log -1 --format="%ai" -- "$file" | cut -d' ' -f1)" > "$(date -d '7 days ago' +%Y-%m-%d)" ]]; then
+              echo "$file"
+            fi 
+          done)
 
           echo "Files found: $last_week_files"
           

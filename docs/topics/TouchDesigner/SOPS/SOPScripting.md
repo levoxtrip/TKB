@@ -12,4 +12,3 @@ tags:
 
 [Download](./files/crossfadeSOPValuesWithCHOP.tox)    
 
-

@@ -1,4 +1,4 @@
-# Weekly Log - 2024-10-12 11:55:50 UTC
+# Weekly Log - 2024-10-18 12:34:46 UTC
 
 List of newly created Markdown files in the last week from the docs folder:
 
@@ -15,6 +15,20 @@ List of newly created Markdown files in the last week from the docs folder:
 
 
 **[topics/Python/LimitLenghtList/](https://levoxtrip.github.io/TKB/topics/Python/LimitLenghtList/)**
+
+## # Set the color of date picker to white
+![]()
+
+
+
+**[topics/SwiftUI/InvertColorDatePicker/](https://levoxtrip.github.io/TKB/topics/SwiftUI/InvertColorDatePicker/)**
+
+## # Problems
+![]()
+
+
+
+**[topics/SwiftUI/ProblemFixing/](https://levoxtrip.github.io/TKB/topics/SwiftUI/ProblemFixing/)**
 
 ## # Animate Through Graphs of Data Points
 ![](https://levoxtrip.github.io/TKB/topics/TouchDesigner/CHOPS/img/AnimateThroughData0.png)
@@ -100,6 +114,41 @@ List of newly created Markdown files in the last week from the docs folder:
 
 **[topics/TouchDesigner/DATS/SwappingColsRowsTable/](https://levoxtrip.github.io/TKB/topics/TouchDesigner/DATS/SwappingColsRowsTable/)**
 
+## # Define Custom Startup File
+![](https://levoxtrip.github.io/TKB/topics/TouchDesigner/QUICK/img/QuickTipParameter.png)
+
+
+
+**[topics/TouchDesigner/QUICK/DefineCustomStartupFile/](https://levoxtrip.github.io/TKB/topics/TouchDesigner/QUICK/DefineCustomStartupFile/)**
+
+## # Docking Operators Together.
+![](https://levoxtrip.github.io/TKB/topics/TouchDesigner/QUICK/img/DockOperatorToOther.png)
+
+
+
+**[topics/TouchDesigner/QUICK/DockingOperatorsTogether/](https://levoxtrip.github.io/TKB/topics/TouchDesigner/QUICK/DockingOperatorsTogether/)**
+
+## # Navigation Shortcuts
+![]()
+
+
+
+**[topics/TouchDesigner/QUICK/NavigationShortcuts/](https://levoxtrip.github.io/TKB/topics/TouchDesigner/QUICK/NavigationShortcuts/)**
+
+## # See how TD Elements are build
+![]()
+
+
+
+**[topics/TouchDesigner/QUICK/SeeHowElementsBuildTD/](https://levoxtrip.github.io/TKB/topics/TouchDesigner/QUICK/SeeHowElementsBuildTD/)**
+
+## # Showing quicktips for parameter
+![](https://levoxtrip.github.io/TKB/topics/TouchDesigner/QUICK/img/getValuesChopAsList.png)
+
+
+
+**[topics/TouchDesigner/QUICK/ShowingQuicktipsParameter/](https://levoxtrip.github.io/TKB/topics/TouchDesigner/QUICK/ShowingQuicktipsParameter/)**
+
 ## # Get all values of CHOP as a list
 ![](https://levoxtrip.github.io/TKB/topics/TouchDesigner/SCRIPTING/img/getValuesChopAsList.png)
 
@@ -114,6 +163,13 @@ List of newly created Markdown files in the last week from the docs folder:
 
 **[topics/TouchDesigner/SCRIPTING/PulseParameterViaScript/](https://levoxtrip.github.io/TKB/topics/TouchDesigner/SCRIPTING/PulseParameterViaScript/)**
 
+## # Python in Touch
+![]()
+
+
+
+**[topics/TouchDesigner/SCRIPTING/PythonInTouch/](https://levoxtrip.github.io/TKB/topics/TouchDesigner/SCRIPTING/PythonInTouch/)**
+
 ## # Displace Grid With MagnetSOP
 ![](https://levoxtrip.github.io/TKB/topics/TouchDesigner/SOPS/img/DisplaceGridByMagnet.png)
 
@@ -121,12 +177,26 @@ List of newly created Markdown files in the last week from the docs folder:
 
 **[topics/TouchDesigner/SOPS/DisplaceGridMagnetSOP/](https://levoxtrip.github.io/TKB/topics/TouchDesigner/SOPS/DisplaceGridMagnetSOP/)**
 
+## # Displace SOP By CHOP Values
+![]()
+
+
+
+**[topics/TouchDesigner/SOPS/DisplaceSOPByCHOPValues/](https://levoxtrip.github.io/TKB/topics/TouchDesigner/SOPS/DisplaceSOPByCHOPValues/)**
+
 ## # Rotate Camera On CircleSOP
 ![](https://levoxtrip.github.io/TKB/topics/TouchDesigner/SOPS/img/)
 
 
 
 **[topics/TouchDesigner/SOPS/RotateCameraOnCirlceSOP/](https://levoxtrip.github.io/TKB/topics/TouchDesigner/SOPS/RotateCameraOnCirlceSOP/)**
+
+## # Various SOP Scripting References
+![]()
+
+
+
+**[topics/TouchDesigner/SOPS/SOPScripting/](https://levoxtrip.github.io/TKB/topics/TouchDesigner/SOPS/SOPScripting/)**
 
 ## # Change the Seed With a ClockCHOP
 ![](https://levoxtrip.github.io/TKB/topics/TouchDesigner/TECHNIQUES/img/ChangeSeedWithClock.png)
@@ -155,6 +225,13 @@ List of newly created Markdown files in the last week from the docs folder:
 
 
 **[topics/TouchDesigner/TOPS/ChangeValuesLockedTOP/](https://levoxtrip.github.io/TKB/topics/TouchDesigner/TOPS/ChangeValuesLockedTOP/)**
+
+## # Higher Quality Feedback
+![](https://levoxtrip.github.io/TKB/topics/TouchDesigner/TOPS/img/HigherQualityFeedback.png)
+
+
+
+**[topics/TouchDesigner/TOPS/HigherQualityFeedback/](https://levoxtrip.github.io/TKB/topics/TouchDesigner/TOPS/HigherQualityFeedback/)**
 
 ## # Image Instancing On Grid
 ![](https://levoxtrip.github.io/TKB/topics/TouchDesigner/TOPS/img/ImageInstancingGrid0.png)
@@ -211,4 +288,11 @@ List of newly created Markdown files in the last week from the docs folder:
 
 
 **[topics/VSCode/OpenFolderWithVSCodeMacOS/](https://levoxtrip.github.io/TKB/topics/VSCode/OpenFolderWithVSCodeMacOS/)**
+
+## # Weekly Log - 2024-10-12 11:55:50 UTC
+![]()
+
+
+
+**[topics/blog/posts/241011/](https://levoxtrip.github.io/TKB/topics/blog/posts/241011/)**
 

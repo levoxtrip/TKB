@@ -1,6 +1,6 @@
 import os
 import re
-from datetime import datetime
+from datetime import datetime, timezone
 from urllib.parse import urljoin
 
 # Retrieve the new markdown files to be processed

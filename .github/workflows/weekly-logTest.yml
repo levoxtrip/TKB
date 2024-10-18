@@ -25,7 +25,7 @@ jobs:
       - name: Get new Markdown files from the last week in docs/topics folder, excluding index.md files
         id: get_new_files_2
         run: |
-          last_week_files=$(find docs/topics/ -name '*.md' -exec git log --since="7 days ago" --name-status --diff-filter=A {} + | grep -v "index.md")
+          last_week_files=$(git log --since="7 days ago" --name-status --diff-filter=A -- docs/topics | grep '\.md$' | grep -v "index.md")
 
           echo "Files found: $last_week_files"
           

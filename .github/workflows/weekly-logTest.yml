@@ -25,24 +25,22 @@ jobs:
       - name: Get newly added Markdown files from the last week in docs/topics folder
         id: get_new_files
         run: |
-          # Get all markdown files that have been added in docs/topics folder
+          # Get the list of added markdown files in the last 7 days, skipping the commit metadata
           last_week_files=$(git log --since="7 days ago" --diff-filter=A --name-only -- docs/topics/*.md | grep -v "index.md")
-          
-          echo "Files added in the last week: $last_week_files"
-          
-          # Initialize a variable to store the truly new files
+
+          # Initialize a variable to store the new files
           new_files=""
           
-          # Get the creation date of each file and check if it falls within the last 7 days
+          # Loop through the files and get the first commit date (creation date)
           for file in $last_week_files; do
-            creation_date=$(git log --diff-filter=A --follow --format=%aD -1 -- $file)
-            echo "File: $file - Created on: $creation_date"
-            
-            # Convert the creation date and the "7 days ago" reference to Unix timestamps
+            # Get the creation date of the file
+            creation_date=$(git log --diff-filter=A --follow --format=%aD -1 -- "$file")
+
+            # Convert the creation date and 7 days ago to timestamps for comparison
             creation_timestamp=$(date -d "$creation_date" +%s)
             one_week_ago=$(date -d "7 days ago" +%s)
 
-            # Compare creation date with the "7 days ago" timestamp
+            # Compare the file's creation date to the 7 days ago timestamp
             if [ "$creation_timestamp" -gt "$one_week_ago" ]; then
               new_files="$new_files $file"
             fi

@@ -22,29 +22,39 @@ jobs:
         run: |
           python -m pip install pyyaml markdown
 
-      - name: Get new Markdown files from the last week in docs/topics folder, excluding index.md files
-        id: get_new_files_2
+      - name: Get newly added Markdown files from the last week in docs/topics folder
+        id: get_new_files
         run: |
+          # Get new markdown files added in the last 7 days
           last_week_files=$(git log --since="7 days ago" --diff-filter=A --name-only -- docs/topics/*.md | grep -v "index.md")
+          
+          echo "Files added in the last week: $last_week_files"
+          
+          # Get the initial commit date for each file and filter to files created in the last 7 days
+          new_files=""
+          for file in $last_week_files; do
+            creation_date=$(git log --diff-filter=A --follow --format=%aD -- $file | tail -1)
+            creation_timestamp=$(date -d "$creation_date" +%s)
+            one_week_ago=$(date -d "7 days ago" +%s)
 
-          echo "Files found: $last_week_files"
-          
-          # Replace newlines with spaces and escape quotes
-          escaped_files=$(echo "$last_week_files" | tr '\n' ' ' | sed 's/\"/\\"/g')
-          
-          # If no new files are found, set the variable to 'none'
-          if [ -z "$escaped_files" ]; then
-            escaped_files="none"
+            if [ "$creation_timestamp" -gt "$one_week_ago" ]; then
+              new_files="$new_files $file"
+            fi
+          done
+
+          # If no new files were found, set the variable to 'none'
+          if [ -z "$new_files" ]; then
+            new_files="none"
           fi
-          
-          # Set the environment variable for the next step
-          echo "NEW_MARKDOWN_FILES=\"$escaped_files\"" >> $GITHUB_ENV
 
-      # Step 5: Run the Python script to create the log
+          echo "Final new files: $new_files"
+
+          # Set the environment variable for the next step
+          echo "NEW_MARKDOWN_FILES=\"$new_files\"" >> $GITHUB_ENV
+
       - name: Run log creation script
         run: python createLog.py
 
-      # Step 6: Commit and Push Log File
       - name: Commit and Push Log File
         run: |
           git config --local user.email "levoxtrip@gmail.com"

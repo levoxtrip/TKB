@@ -14,10 +14,18 @@ if markdown_files == ["none"] or not markdown_files:
 
 # Define the base URLs for the repository and GitHub Pages
 pages_url = "https://levoxtrip.github.io/TKB/"
-log_file = "log.md"
+current_date = datetime.now(timezone.utc).strftime('%Y-%m-%d')
+log_filename = f"weekly-log-{current_date}.md"
+
+blogposts_folder = os.path.join(os.getcwd(), "docs/topics/blog/posts")
+
+os.makedirs(blogposts_folder, exist_ok=True)
+
+# Full path to save the new log file
+log_file_path = os.path.join(blogposts_folder, log_filename)
 
 # Create and open the log file for writing
-with open(log_file, "w", encoding="utf-8") as log:
+with open(log_file_path, "w", encoding="utf-8") as log:
     log.write(f"# Weekly Log - {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')} UTC\n\n")
     log.write("List of newly created Markdown files in the last week from the docs folder:\n\n")
 

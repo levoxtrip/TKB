@@ -58,4 +58,4 @@ jobs:
 
       - name: Run Python script to process new markdown files
         run: |
-          python create-log.py
+          python createLog.py

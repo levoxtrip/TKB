@@ -59,3 +59,14 @@ jobs:
       - name: Run Python script to process new markdown files
         run: |
           python createLog.py
+
+            # Step 6: Commit and Push Log File
+      - name: Commit and Push Log File
+        run: |
+          git config --local user.email "levoxtrip@gmail.com"
+          git config --local user.name "levoxtrip"
+          git add log.md
+          git commit -m "Weekly log update - $(date -u)"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

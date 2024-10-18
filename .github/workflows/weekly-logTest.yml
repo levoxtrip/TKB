@@ -2,7 +2,8 @@ name: Weekly Markdown Log Test
 
 on:
   push:
-    - main
+    branches:
+      - main
 
 jobs:
   create-log:

@@ -1,52 +1,46 @@
-name: Weekly Markdown Log Test
+name: Generate Weekly Newsletter
 
+# Run this job every Monday at 9:00 AM (UTC)
 on:
-  push:
-    branches:
-      - main
+  schedule:
+    - cron: '0 9 * * MON'
 
 jobs:
-  create-log:
+  create-newsletter:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.x'
 
-      - name: Install dependencies
-        run: |
-          python -m pip install pyyaml markdown
+    - name: Generate list of new .md files
+      id: new_files
+      run: |
+        last_week=$(date -d "7 days ago" +%Y-%m-%d)
+        new_files=$(git log --diff-filter=A --since="$last_week" --name-only -- '*.md')
+        
+        # If there are no new files, set a default message
+        if [ -z "$new_files" ]; then
+          echo "No new markdown files added this week." > newsletter.md
+        else
+          echo "# Weekly Newsletter" > newsletter.md
+          echo "## Newly Added Files (Last Week)" >> newsletter.md
+          echo "$new_files" | while read file; do
+            echo "- $file" >> newsletter.md
+          done
+        fi
 
-      - name: Get newly added Markdown files from the last week in docs/topics folder
-        id: get_new_files
-        run: |
-          # Get all markdown files that have been added in the last 7 days
-          last_week_files=$(git log --diff-filter=A --name-only --since="1 week ago" -- docs/topics/ | grep '\.md$' | grep -v "index.md")
+    - name: Commit and push newsletter
+      run: |
+        git config --global user.name "levoxtrip"
+        git config --global user.email "levoxtrip@gmail.com"
+        git add newsletter.md
+        git commit -m "Add weekly newsletter"
+        git push
+      if: success()
 
-          echo "Files added in the last week: $last_week_files"
-
-          # If no new files were found, set the variable to 'none'
-          if [ -z "$last_week_files" ]; then
-            last_week_files="none"
-          fi
-
-          # Set the environment variable for the next step
-          echo "NEW_MARKDOWN_FILES=\"$last_week_files\"" >> $GITHUB_ENV
-
-      - name: Run log creation script
-        run: python createLog.py
-
-      - name: Commit and Push Log File
-        run: |
-          git config --local user.email "levoxtrip@gmail.com"
-          git config --local user.name "levoxtrip"
-          git add log.md
-          git commit -m "Weekly log update - $(date -u)"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

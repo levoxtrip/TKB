@@ -26,7 +26,8 @@ log_file_path = os.path.join(blogposts_folder, log_filename)
 
 # Create and open the log file for writing
 with open(log_file_path, "w", encoding="utf-8") as log:
-    log.write(f"# Weekly Log - {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')} UTC\n\n")
+    log.write(f"# Weekly Log - {now_utc.strftime('%Y-%m-%d')}\n\n")
+
     log.write("List of newly created Markdown files in the last week from the docs folder:\n\n")
 
     # Loop through each markdown file to process
@@ -46,7 +47,8 @@ with open(log_file_path, "w", encoding="utf-8") as log:
             content = f.read()
 
             # Get the first headline (e.g., # Hold last changed value)
-            headline_match = re.search(r"^(# .+)", content, re.MULTILINE)
+            # headline_match = re.search(r"^(# .+)", content, re.MULTILINE)
+            headline_match = re.search(r"^(#{1,6} .+)", content, re.MULTILINE)
             headline = headline_match.group(1) if headline_match else "No headline found"
 
             # Get the first image link from the markdown content

@@ -1,4 +1,4 @@
-# Weekly Log - 2024-10-18 17:38:20 UTC
+# Weekly Log - 2024-10-18 17:42:24 UTC
 
 List of newly created Markdown files in the last week from the docs folder:
 
@@ -295,11 +295,4 @@ List of newly created Markdown files in the last week from the docs folder:
 
 
 **[topics/VSCode/OpenFolderWithVSCodeMacOS/](https://levoxtrip.github.io/TKB/topics/VSCode/OpenFolderWithVSCodeMacOS/)**
-
-## # Weekly Log - 2024-10-12 11:55:50 UTC
-![]()
-
-
-
-**[topics/blog/posts/241011/](https://levoxtrip.github.io/TKB/topics/blog/posts/241011/)**
 

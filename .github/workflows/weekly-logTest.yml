@@ -1,11 +1,8 @@
 name: Generate and Process New Markdown Files on Push
 
 on:
-  push:
-    branches:
-      - main  # Replace with your target branch
-    paths-ignore:
-      - 'newsletter.md'  # Prevent the action from re-triggering when the newsletter is committed
+  schedule:
+    - cron: '0 12 * * 5'  # Run every Friday at 12:00 PM (UTC)
 
 jobs:
   process-markdown:

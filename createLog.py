@@ -50,9 +50,15 @@ with open(log_file_path, "w", encoding="utf-8") as log:
 
             # Get the first headline (e.g., # Hold last changed value)
             # headline_match = re.search(r"^(# .+)", content, re.MULTILINE)
-            headline_match = re.search(r"^(#{1,6} .+)", content, re.MULTILINE)
+            # headline_match = re.search(r"^(#{1,6} .+)", content, re.MULTILINE)
             # headline = headline_match.group(1) if headline_match else "No headline found"
-            headline = headline_match.group(2).strip() if headline_match else "No headline found"
+            headline_match = re.search(r"^(#{1,6})\s*(.+)", content, re.MULTILINE)
+            if headline_match:
+                headline = headline_match.group(2).strip()  # Capture only the headline text (group 2)
+                print(f"Captured headline: {headline}")
+            else:
+                headline = "No headline found"
+                print(f"No headline found in file: {file}")
             
             # Get the first image link from the markdown content
             image_match = re.search(r"!\[.*?\]\((.*?)\)", content)

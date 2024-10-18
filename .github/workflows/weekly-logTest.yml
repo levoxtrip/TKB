@@ -1,4 +1,4 @@
-name: Generate Newsletter on Push
+name: Generate and Process New Markdown Files on Push
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
       - 'newsletter.md'  # Prevent the action from re-triggering when the newsletter is committed
 
 jobs:
-  generate-newsletter:
+  process-markdown:
     runs-on: ubuntu-latest
 
     steps:
@@ -26,7 +26,8 @@ jobs:
         run: |
           sudo apt-get update && sudo apt-get install -y coreutils
 
-      - name: Generate newsletter of newly added .md files
+      - name: Gather newly added markdown files
+        id: gather_files
         run: |
           # Get the date and time for one week ago in ISO 8601 format
           one_week_ago=$(date -d "7 days ago" --iso-8601=seconds)
@@ -48,25 +49,13 @@ jobs:
               fi
           done
 
-          # Generate the newsletter content
+          # Export the list of new files as an environment variable, space-separated
           if [ ${#new_files[@]} -eq 0 ]; then
-              echo "No new markdown files added in the last week." > newsletter.md
+              echo "NEW_MARKDOWN_FILES=none" >> $GITHUB_ENV
           else
-              echo "# Weekly Newsletter" > newsletter.md
-              echo "## Newly Added Files (Last Week)" >> newsletter.md
-              for file in "${new_files[@]}"; do
-                  echo "- $file" >> newsletter.md
-              done
+              echo "NEW_MARKDOWN_FILES=${new_files[*]}" >> $GITHUB_ENV
           fi
 
-      - name: Commit and push newsletter
+      - name: Run Python script to process new markdown files
         run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-          git add newsletter.md
-          git commit -m "Add weekly newsletter"
-          
-          # Set the author and committer date within the shell
-          GIT_AUTHOR_DATE=$(date) GIT_COMMITTER_DATE=$(date) git commit --amend --no-edit
-          
-          git push
+          python create-log.py

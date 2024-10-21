@@ -6,7 +6,7 @@ tags:
 
 ---
 
-![Merging lines into a surface](./img/DisplaceGridByMagnet.png)
+![Merging lines into a surface](./img/MergeLinesIntoSurface.png)
 # Merge Lines into a Surface with SkinSOP
 
 If you want to use `lineSOP` to create a surface you can combine the lines in a `mergeSOP` and then create a group of points in `groupSOP`. With the `skinSOP` you create the surface. To be able to show 

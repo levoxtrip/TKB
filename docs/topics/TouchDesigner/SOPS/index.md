@@ -6,8 +6,12 @@ comments: true
 Welcome in SOPs Land!
 
 ## Last added
+[Merge Lines Into Surface](MergeLinesIntoSurface.md)
+
 [Displace SOP By CHOP Values](DisplaceSOPByCHOPValues.md)
+
 [Rotate Camera On CircleSOP](RotateCameraOnCirlceSOP.md)
+
 [Displace Grid By MagnetSOOP](DisplaceGridMagnetSOP.md)
 
 

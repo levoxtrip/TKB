@@ -6,8 +6,10 @@ comments: true
 Welcome in TOPs Land!
 
 ## Last added
+[TOP Scripting](TOPScripting.md)
 
 [Higher Quality Feedback](HigherQualityFeedback.md)
+
 [Apply Effect To Specific Channels](ApplyEffectForOnlySpecificChannels.md)
 
 [Change Values Locked TOP](ChangeValuesLockedTOP.md)

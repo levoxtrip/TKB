@@ -10,5 +10,4 @@ tags:
 
 `op('SOP').numPoints` - Get Amount of Points of SOP
 
-[Download](./files/crossfadeSOPValuesWithCHOP.tox)    
 

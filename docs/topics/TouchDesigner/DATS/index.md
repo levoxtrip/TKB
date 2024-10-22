@@ -9,6 +9,7 @@ comments: true
 Welcome in DATs Land!
 
 ## Last added
+[Apply expression to all Values in DAT](ExpressionValuesDAT.md)
 
 [Scripting DAT](ScriptingDAT.md)
 

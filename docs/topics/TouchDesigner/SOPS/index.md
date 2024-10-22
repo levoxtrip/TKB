@@ -6,6 +6,8 @@ comments: true
 Welcome in SOPs Land!
 
 ## Last added
+[Delete Copy of CopySOP With Group](DeleteCopyWithGroup.md)
+
 [Merge Lines Into Surface](MergeLinesIntoSurface.md)
 
 [Displace SOP By CHOP Values](DisplaceSOPByCHOPValues.md)

@@ -7,6 +7,8 @@ Welcome in Chop Land!
 
 ## Last added
 
+[Offset Single Channel in CHOP](OffsetSingleChannelCHOP.md)
+
 [Trigger Single Sound](TriggerSingleSound.md)
 
 [Manipulate CHOP Values with ExpressionCHOP](ManipulateCHOPValueExpressionCHOP.md)

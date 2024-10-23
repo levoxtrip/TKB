@@ -4,6 +4,8 @@ comments: true
 # VCV Rack
 
 # Latest added
+[Rhythm](Rhythm.md)
+
 [Window doesn't show](windowDoesntShow.md)
 
 ## Suggestions

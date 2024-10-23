@@ -7,6 +7,10 @@ Welcome in Chop Land!
 
 ## Last added
 
+[Full Image TOP to CHOP](FullImageTopToCHOP.md)
+
+[Get Specific Sample From CHOP](GetSpecificSampleFromCHOP.md)
+
 [Offset Single Channel in CHOP](OffsetSingleChannelCHOP.md)
 
 [Trigger Single Sound](TriggerSingleSound.md)

@@ -11,6 +11,8 @@ Welcome in COMPs Land!
 
 ## Last added
 
+[SelectCOMP to Select UI Elements](SelectCOMPSelectUIElements.md)
+
 [Set the value of slider via script](SetValueOfSliderViaScript.md)
 
 

@@ -1,3 +1,8 @@
+---
+title: "Weekly Log - 2024-10-18"
+date: 2024-10-18
+description: "Kurzbeschreibung des Posts"
+---
 # Weekly Log - 2024-10-18
 
 List of newly created Markdown files in the last week from the docs folder:

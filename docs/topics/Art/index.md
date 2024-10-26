@@ -1,7 +1,7 @@
 ---
 comments: true
 --- 
-# SOPs
+# Art
 
 Welcome in the land of artists!
 

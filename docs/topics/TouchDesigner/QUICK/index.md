@@ -6,6 +6,7 @@ comments: true
 Welcome in Quick Tips Land!
 
 ## Last added
+[Test Effects of Low Performance](TestEffectsLowPerformanceCHOP.md)
 
 [Parameter Expression vs Export](ParameterExpressionVSExport.md)
 

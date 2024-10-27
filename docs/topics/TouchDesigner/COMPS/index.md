@@ -10,6 +10,7 @@ comments: true
 Welcome in COMPs Land!
 
 ## Last added
+[Show Specific Operator in Container](ShowSpecificOperatorContainer.md)
 
 [SelectCOMP to Select UI Elements](SelectCOMPSelectUIElements.md)
 

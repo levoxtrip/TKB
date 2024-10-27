@@ -7,6 +7,12 @@ Welcome in Chop Land!
 
 ## Last added
 
+[Resample Audio To SOP length](ResampleAudioToSOPLength.md)
+
+[Keep Channel Count Stable](KeepChannelCountStableReplaceCHOP.md)
+
+[Map CHOP Values to New Interval](MapCHOPValuesToNewIntervall.md)
+
 [Full Image TOP to CHOP](FullImageTopToCHOP.md)
 
 [Get Specific Sample From CHOP](GetSpecificSampleFromCHOP.md)

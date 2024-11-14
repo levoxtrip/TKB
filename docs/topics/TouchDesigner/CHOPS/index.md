@@ -6,6 +6,7 @@ comments: true
 Welcome in Chop Land!
 
 ## Last added
+[Delete Samples at Beginning or End of CHOP](DeleteSamplesBeginningEndCHOP.md)
 
 [Add Channels after each other into a Sequenz](AddChannelsIntoSequenz.md)
 

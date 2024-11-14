@@ -9,6 +9,8 @@ comments: true
 Welcome in DATs Land!
 
 ## Last added
+[Storing Values](StoringDataViaScript.md)
+
 [Apply expression to all Values in DAT](ExpressionValuesDAT.md)
 
 [Scripting DAT](ScriptingDAT.md)

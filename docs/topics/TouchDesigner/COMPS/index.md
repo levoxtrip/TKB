@@ -10,6 +10,9 @@ comments: true
 Welcome in COMPs Land!
 
 ## Last added
+
+[Floating Window](FloatingWindow.md)
+
 [Show Specific Operator in Container](ShowSpecificOperatorContainer.md)
 
 [SelectCOMP to Select UI Elements](SelectCOMPSelectUIElements.md)

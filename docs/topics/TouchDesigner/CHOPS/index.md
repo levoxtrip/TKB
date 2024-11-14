@@ -7,6 +7,10 @@ Welcome in Chop Land!
 
 ## Last added
 
+[Add Channels after each other into a Sequenz](AddChannelsIntoSequenz.md)
+
+[Iterate through Channels of ConstantChop via Script](IterateThroughConstantChannelsViaScript.md)
+
 [Resample Audio To SOP length](ResampleAudioToSOPLength.md)
 
 [Keep Channel Count Stable](KeepChannelCountStableReplaceCHOP.md)
@@ -34,4 +38,4 @@ Welcome in Chop Land!
 [Animate through graph of datapoints ](AnimateThroughDataPoints.md)
 
 ## Suggestions
-Got a topic or technique you'd love to see me dive into? Drop your suggestions below, and let's create something amazing together
+Got a topic or technique you'd love to see me dive into? Drop your suggestions below, and let's create something amazing together   

@@ -6,6 +6,8 @@ comments: true
 Welcome in Quick Tips Land!
 
 ## Last added
+[Finding Reference of Parameter Export](FindingReferenceParameterExport.md)
+
 [Test Effects of Low Performance](TestEffectsLowPerformanceCHOP.md)
 
 [Parameter Expression vs Export](ParameterExpressionVSExport.md)

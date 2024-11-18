@@ -6,6 +6,9 @@ comments: true
 Welcome in SOPs Land!
 
 ## Last added
+
+[Import Specific Geo from FBX](ImportSpecificGeoFromFBX.md)
+
 [Delete Copy of CopySOP With Group](DeleteCopyWithGroup.md)
 
 [Merge Lines Into Surface](MergeLinesIntoSurface.md)

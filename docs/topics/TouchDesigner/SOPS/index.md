@@ -6,6 +6,7 @@ comments: true
 Welcome in SOPs Land!
 
 ## Last added
+[Create Polygon Look for SphereSOP](PolygonLookSOP.md)
 
 [Import Specific Geo from FBX](ImportSpecificGeoFromFBX.md)
 

@@ -6,6 +6,11 @@ comments: true
 Welcome in TOPs Land!
 
 ## Last added
+
+[Output NoiseTOP with Transparency](OutputNoiseTOPTransparency.md)
+
+[Access Pixel Value of TOP via Script](AccessPixelValueTOP.md)
+
 [Defining Image if MovieFileInTop has Loading Error](DefiningLoadingErrorImage.md)
 
 [Rendering Multiple Screens](RenderingMultipleScreens.md)

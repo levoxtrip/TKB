@@ -1,4 +1,4 @@
-site_name: techKnowledge Base
+site_name: TKB
 theme:
   name: material
   custom_dir: overrides

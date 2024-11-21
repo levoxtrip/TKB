@@ -13,5 +13,5 @@ For full documentation visit [VSCode](./topics/VSCode/index.md).
 
 For full documentation visit [Unity](./topics/Unity/index.md).
 
-
+For full documentation visit [Terminal](./topics/Terminal/index.md).
 

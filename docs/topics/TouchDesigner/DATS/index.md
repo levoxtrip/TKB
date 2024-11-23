@@ -9,6 +9,9 @@ comments: true
 Welcome in DATs Land!
 
 ## Last added
+
+[Replace Specific Data in Table with MergeDAT](ReplaceSpecificDataTableMerge.md)
+
 [Storing Values](StoringDataViaScript.md)
 
 [Apply expression to all Values in DAT](ExpressionValuesDAT.md)

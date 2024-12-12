@@ -66,3 +66,8 @@ op = op('lfo1')
 op.par.parameterName
 ``` 
 
+## Reference Python Math Library
+``` py
+import math
+math.sin(...)
+```

@@ -3,7 +3,6 @@ comments: true
 tags:
  - TD/DAT
  - TD/TableDAT
- - TD/Execute
  - TouchDesigner
 ---
 ![Replace Values of Row with MergeDAT](./img/ReplaceSpecifValueTable.png)

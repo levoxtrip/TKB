@@ -1,7 +1,7 @@
 ---
 tags:
  - TD/CHOPS
- - TD/Perfromance
+ - TD/Performance
  - TouchDesigner
 
 comments: true
@@ -21,4 +21,3 @@ comments: true
 
 
 
-[DownloadFile](./files/ManipulateInputWithExpressionCHOP.tox)

@@ -3,9 +3,16 @@ comments: true
 --- 
 # CHOPs
 
-Welcome in Chop Land!
+Welcome in CHOP Land!
 
 ## Last added
+
+[Creating Stepped Noise](CreatingSteppedNoise.md)
+
+[Combining Channels in MathCHOP](CombiningChannelsMathCHOP.md)
+
+[Keep Channel Count Stable with ReplaceCHOP](KeepChannelCountStableReplaceCHOP.md)
+
 [Delete Samples at Beginning or End of CHOP](DeleteSamplesBeginningEndCHOP.md)
 
 [Add Channels after each other into a Sequenz](AddChannelsIntoSequenz.md)

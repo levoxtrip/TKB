@@ -7,7 +7,12 @@ Welcome to Scripting Topis
 
 ## Last added
 
+[Set random Parameter Value ](SetRandomParameterValue.md)
+
+[Specific TouchDesigner Scripting](TouchSpecificScripting.md)
+
 [Python in Touch](PythonInTouch.md)
+
 [Get all values of chop as a list](GetAllValuesChopAsList.md)
 
 [Pulse Parameter via Script ](PulseParameterViaScript.md)

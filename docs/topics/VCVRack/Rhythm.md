@@ -58,3 +58,42 @@ E.g. In house music
 
 ## Strong and weak beats
 
+*Downbeat* - The first beat of a measure. Usally the strongest and most emphasized beat in the music. Putting kicks on these beats can create a steady pulse to ground the beat. 
+
+*Upbeat* - Last beat of the measure
+
+*Backbeat* - Beats 2 and 4 are accented by snare drums or claps in most pop and rock music. Rhymic accentuating of even beats.
+
+*Offbeat* - Weaker beats(Snares, Low Frequency, Kicks, Low Tomps) that occur between main beats. Create rhythmic energy and forward movement. The stronger the beats on the offbeats the more the whole beat seems offbeat.
+
+## Syncopation
+When you put notes on hits on the weaker beats or between beats to create tension and supprise -> Rhythm feels more complex and exciting.
+Instead of only playing on the strong beat you can add hits on the ands(offbeat eigth notes)
+
+## Ghost nodes
+Soft quieter hits that are played on weaker beats. Drummers often use ghost nodes on snare drum to add texture and depth to a rhythm. Fill in the spaces between stronger beats.
+
+## Polymeter & Polyrithms
+*Polymeter:* When two or more different time signatures are playing at the same time. 
+One instrument at 4/4 and the other on 3/4. The length remains the same.
+
+*Polyrhythm:* Two or more rhythms with different numbers of beats are played simultanously. Within same time signature. 3 Nodes gainst 2 beats in single measure.
+
+## Meter and Phasing
+*Meter:* How the beats in a measure are grouped. Common groups: Duple, Triple, Quadruple meter
+
+*Phasing:* How do you organise rhythms over long stretches of time like 4,8,16 Measures. Helps guiding flow and structure of song. POints of progression and change.
+
+## Drum machine sounds
+Iconic drum machines:
+*Roland808:* Deep Boomin Kick Drums(Hip Hop)
+*Rolang909:* Sharp punchy snares (House,Techno)
+
+## Highs Mids Lows
+It's important how differnt frequencies affect the groove
+*Lows:* Kicks and bass heavy instruments - usally placed on strong beats
+
+*Mid:* Like snares and claps often sit on backbeats (2 and 4)
+
+*High* High hats and cymbals to fill in the gaps and create forward motion.
+

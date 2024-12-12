@@ -6,6 +6,16 @@ comments: true
 Welcome in SOPs Land!
 
 ## Last added
+[Creating Merging Metaballs](CreatingMergingMetaballs.md)
+
+[Changing the Order of Points with SortSOP](ChangeOrderPointsSortSOP.md)
+
+[Creating Cutout Shapes with BoolSOP](CreatingCutoutShapes.md)
+
+[Move Instanced Shapes on Spiral Path with CHOPs](MoveInstancedShapesOnSpiralPath.md)
+
+[Manipulate SOP with DATA](ManipulateSOPwithData.md)
+
 [Create Polygon Look for SphereSOP](PolygonLookSOP.md)
 
 [Import Specific Geo from FBX](ImportSpecificGeoFromFBX.md)

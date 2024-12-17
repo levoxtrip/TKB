@@ -7,6 +7,8 @@ Welcome to Scripting Topis
 
 ## Last added
 
+[Set Local Variables Operator](SetLocalVariablesOperator.md)
+
 [Set random Parameter Value ](SetRandomParameterValue.md)
 
 [Specific TouchDesigner Scripting](TouchSpecificScripting.md)

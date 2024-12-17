@@ -6,6 +6,13 @@ comments: true
 Welcome in SOPs Land!
 
 ## Last added
+
+[Skinned Shape From Lines](SkinnedShapeFromLines.md)
+
+[Displace fixed SOP Surface with SpringSOP](DisplaceFixedSOPSurfaceSpringSOP.md)
+
+[Displace SOP Only in XY directions](DisplaceSOPOnlyXY.md)
+
 [Creating Merging Metaballs](CreatingMergingMetaballs.md)
 
 [Changing the Order of Points with SortSOP](ChangeOrderPointsSortSOP.md)

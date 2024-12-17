@@ -7,20 +7,19 @@ tags:
  - Python
  - TouchDesigner
 ---
-![Get all values of CHOP as List](./img/SetVariablesOperator.png.png)
+![Get all values of CHOP as List](./img/SetVariablesOperator.png)
 # Set Variables in OPs
 
 This is an older approach but can be useful if you working with older files or someone gives you a non updated file.
 
-mit setVar werden Variablen gesetzt
+We set the variables with `setVar()`
+```py
+me.parent().setVar('Height',720)
 
-Bsp.
+me.parent().setVar('Width',1280)
+```
+With `me.var('Height') can we retrieve the value from the variable.
 
-`me.parent().setVar('Height',720)`
-
-`me.parent().setVar('Width',1280)`
-
-mit `me.var(‚Height‘)` kann Variablen aufgerufen werden
 
 
 [Download](./files/SetVariableOperator.tox)  

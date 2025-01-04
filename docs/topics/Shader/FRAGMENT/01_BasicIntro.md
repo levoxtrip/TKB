@@ -18,3 +18,17 @@ With `gl_FragColor` the shader definies the final color value of the pixel that 
 `gl_FragColor` is `vec4` - a Vector that contains 4 values - `vec4(r,g,b,a)`
 
 ![VertexFragmentShader](../img/VertexFragmentShader.png)
+
+# Coordinates of the pixel
+`gl_FragCoord` is the GLSL variable that provides the coordinates of the pixel currently being processed by the shader.
+
+`gl_FragCoord` is a vec4 with the `vec4(x,y,z,w)` value.
+
+The coordinate system of a shader is: ![Fragment coordinate system](../img/FragCoordSystem.png)
+
+Because the value range of a the final pixelcolor lies between 0.0 - 1.0 it makes sense to normalise the coordinates of the pixels in the screen. 
+
+We can nomalise the these with by dividing the coordinates by the resolution.
+`gl_FragCoord.xy/u_resolution`.
+
+With that we can map the xy position of the pixel onto the value range from 0.0 - 1.0.

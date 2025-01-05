@@ -32,3 +32,11 @@ We can nomalise the these with by dividing the coordinates by the resolution.
 `gl_FragCoord.xy/u_resolution`.
 
 With that we can map the xy position of the pixel onto the value range from 0.0 - 1.0.
+
+# Parallel Processing
+The GPU of a computer enables that multiple small programms can be executed in parallel. It executes for each pixel the shader programm at the same time.
+
+Shader programm doesn't know anything about the values of the other pixels when a pixel gets painted.
+
+So every pixel and vertex is independent from the other.
+

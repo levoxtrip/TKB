@@ -66,3 +66,62 @@ for(int i=0; i<count;i++){
     //do something
 }
 ```
+
+# Functions
+If you have functions that have the same name but they have differnt input parameters the get considered as different functions.
+```
+bool inRect(vec2 pt, vec4 rect){
+	bool result = false;
+	//calculate
+	return bool;
+}
+
+bool inRect(float x, float y, vec4 rect){
+	bool result = false;
+	//calculate
+	return bool;
+}
+```
+
+The fragment and the vertex shader have a `void main()` function that automatically gets called.
+
+# Swizzling
+*Swizzling* in GLSL is the possibility to reorder values from a vector. 
+
+```
+vec4 color = vec4(1.0,0.5,0.0,0.25);
+
+color.argb -> vec4(0.25,1.0,0.5,0.0);
+```
+
+Swizzling also allows to write shorter versions of the variables
+`fragCoord.xy <=> vec2(fragCoord.x,fragCoord.y);`
+
+When the vectors have the same length writing the calculations between the vectors can be shortened
+`vec2(v1.x/v2.x,v1.y/v2.y) <=> v1/v2`
+
+# Preprocessor Macros
+With preprocessor macros you can define values like constants for example.
+
+They get evaluated in the first step before the compiling of the shader.
+
+`#define float TWO_PI = 3.1415926535`
+
+You also can define conditional definitions with
+```
+#ifdef
+
+#enddef
+```
+
+## Float defintion
+In shader float values and their accuracy play a big role. If the accuracy the values are less acurate but the shader is faster.
+
+We define the accuracy of these in a preprocessor macro
+```
+#ifdef
+precision mediump float
+#enddef
+```
+
+# Uniforms

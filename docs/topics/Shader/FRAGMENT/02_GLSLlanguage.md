@@ -125,3 +125,22 @@ precision mediump float
 ```
 
 # Uniforms
+The GPU of a computer is executing a big amount of parallel tasks - called *threads*. Every thread calculates the color value for one pixel.
+
+GLSL uses `uniform` to pass Data from the control framework like *P5.js, TouchDesigner, Three.js, etc.* into the shader and the single *threads* so the data is available and can be processed by the shader. 
+
+`uniform` is the same for all threads and can just be read by the shader -> so the shader can't change the value of the uniform.
+
+*Uniforms* can have all possible GLSL datatypes.
+
+*So uniforms save values from outside the shader so they can used in the shader* 
+
+There are some standard *uniforms*:
+- `u_mouse` Coordinates of the mouse on the screen
+- `u_time` passed time in seconds since the program start
+- `u_resolution` size of canvas/window in pixels 
+
+We define uniforms like `uniform datatype name`.
+
+# Debugging
+In shader there aren't many possibilities to debug. One option is to assign the currently calculated pixel extreme color values.

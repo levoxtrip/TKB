@@ -22,7 +22,11 @@ To animate graphics it's a good start to use the trigonimic functions Sine `sin(
 <iframe src="https://thebookofshaders.com/05/sincos.gif" allow="fullscreen" allowfullscreen="" style="height:100%;width:100%; aspect-ratio: 16 / 9; "></iframe>
 
 If you insert the the uv.x values into the sin function you get a gradient from left to right.
-<iframe width="640" height="360" frameborder="0" src="https://codepen.io/levoxtrip/pen/YPKeYKE"></iframe>
+<iframe height="300" style="width: 100%;" scrolling="no" title="Simple Sin(uvx)" src="https://codepen.io/levoxtrip/embed/YPKeYKE?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/levoxtrip/pen/YPKeYKE">
+  Simple Sin(uvx)</a> by levoxtrip (<a href="https://codepen.io/levoxtrip">@levoxtrip</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
 If you insert uv.y you get a gradient from top to buttom.
 
 If you multiply the uv.x inside the `sin(uv.x*10.)` you can change the frequency of the sin function and 

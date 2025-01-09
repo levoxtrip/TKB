@@ -4,7 +4,9 @@ comments: true
 # Fragment Shader
 
 [Basic Intro](01_BasicIntro.md)
+
 [GLSL Language](02_GLSLlanguage.md)
+
 [Algorithmic drawing](03_AlgorithmicDrawing.md)
 
 ## Suggestions

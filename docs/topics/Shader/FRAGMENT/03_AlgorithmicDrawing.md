@@ -16,7 +16,7 @@ GLSL provides mathematical functions to set or calculate values in the shader.
 A basic questions to ask yourself when using these functions is: ==what shapes does the math. function create
 when I insert values like the pixelposition==.
 
-## Trigonomic Functions
+## Trigonomic Functions(Oscillation & Periodicity)
 To animate graphics it's a good start to use the trigonimic functions Sine `sin()` and Cosine `cos()`.
 
 <iframe src="https://thebookofshaders.com/05/sincos.gif" allow="fullscreen" allowfullscreen="" style="height:100%;width:100%; aspect-ratio: 16 / 9; "></iframe>
@@ -38,5 +38,103 @@ If you add/subtract values to the `uv` inside the function `sin(uv.x+time)` you 
 
 If you add/subtract values outside the `sin(uv.x)+0.5` you move the graph along the y-axis.
 
+## Basic Math Functions
+
 <iframe src="https://thebookofshaders.com/glossary/?search=sin" allow="fullscreen" allowfullscreen="" style="height:100%;width:100%; aspect-ratio: 16 / 9; "></iframe>
 
+With the `pow(base,n)` function we can calculate the power/exponentiation of a value, where we raise a base number to an exponent: baseⁿ. 
+
+The `exp(x)` computes `e` Eulers number raised to the given power eˣ.
+<iframe src="https://thebookofshaders.com/glossary/?search=exp" allow="fullscreen" allowfullscreen="" style="height:100%;width:100%; aspect-ratio: 16 / 9; "></iframe>
+
+The `abs(x)` returns the absolute value of the input. So if the input value is 0.2 `abs(-0.2)` the function return 0.2.
+<iframe src="https://thebookofshaders.com/glossary/?search=abs" allow="fullscreen" allowfullscreen="" style="height:100%;width:100%; aspect-ratio: 16 / 9; "></iframe>
+
+Try to insert `abs(sin(x))`. 
+`abs()` basically mirrors/reflects the values from the y-axis.
+
+## Interpolation & Transitions
+### step()
+The `step()` function works as a binary threshold. You can use it to test if a value is smaller
+or bigger then a threshold value. It works similar to an `if()` function.
+`step(threshold,valueToTest)`
+`If value > threshold -> return 1.0`
+`If value < threshold -> return 0.0`
+
+<iframe height="300" style="width: 100%;" scrolling="no" title="step(uv.x)" src="https://codepen.io/levoxtrip/embed/dPbebRg?default-tab=html%2Cresult&editable=true" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/levoxtrip/pen/dPbebRg">
+  step(uv.x)</a> by levoxtrip (<a href="https://codepen.io/levoxtrip">@levoxtrip</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+We use `step()` to create hard edges between colors for example when we want to mix to colors
+based on a threshold value.
+
+### smoothstep()
+To create a smoother transition between two values we can use `smoothstep()`.
+`smoothstep(edge1,edge2,value)`
+`if value <edge1 -> return 0.0`
+`if value >edge2 -> return 1.0`
+`if value > edge1 and value < edge2 interpolate between edge1 and edge2 value`
+Smoothstep linearly interpolates between the two edge values.
+
+If we combine two smoothstep functions with each other we can create a smoothline. 
+Uncomment the second statement to see that.
+
+<iframe height="300" style="width: 100%;" scrolling="no" title="smoothstep" src="https://codepen.io/levoxtrip/embed/jENxNYM?default-tab=html%2Cresult&editable=true" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/levoxtrip/pen/jENxNYM">
+  smoothstep</a> by levoxtrip (<a href="https://codepen.io/levoxtrip">@levoxtrip</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+
+### mix()
+Another function to create a linear interpolation is the `mix()` function. 
+```
+vec3 color1 = vec3(1.0,0.0,0.0);
+vec3 color2 = vec3(0.0,0.0,1.0);
+vec3 color = mix(color1,color2,uv.x);
+
+for uv.x = 0.0 is the color of the pixel color1
+for uv.x = 1.0 the color of the pixel color2
+```
+
+### fract()
+The GLSL `fract()` function takes a decimal number as input and returns the decimal part.
+```
+fract(3.3) = 0.3
+fract(1.5) = 0.5
+```
+<iframe src="https://thebookofshaders.com/glossary/?search=abs" allow="fullscreen" allowfullscreen="" style="height:100%;width:100%; aspect-ratio: 16 / 9; "></iframe>
+
+So `fract()` wraps any number that goes above 1 back into the range 0.0 to 1.0 no matter how large the number is before applying it. This creates a repeating pattern because the values that fract() returns for the pixel coordinates of 0.2 , 1.2, 2.2 are the same.
+So you break the range of uv (0 to 1) into smaller sections, repeatedly, based on the value of x.
+
+
+
+mod() - modulo
+
+## Clamping & Limiting
+### clamp()
+With the `clamp()` function we can restrain a value into a desired range.
+
+```
+clamp(val,min,max)
+clamp(2.0,0.0,1.0) = 1.0 
+clamp(-0.5,0.0,1.0) = 0.0
+clamp(0.5,0.0,1.0) = 0.5 
+clamp(uv.x,0.0,0.2) = 0.2 for all uv.x values > 0.2
+```
+<iframe src="https://thebookofshaders.com/glossary/?search=clamp" allow="fullscreen" allowfullscreen="" style="height:100%;width:100%; aspect-ratio: 16 / 9; "></iframe>
+
+
+Using `clamp()` to our pixelcoords creates a `hold las pixel value` effect.
+
+
+clamp() - constrain value to range
+min(), max()
+floor(), ceil()
+
+sign() - returns -1, 0, or 1
+
+## Vector Functions

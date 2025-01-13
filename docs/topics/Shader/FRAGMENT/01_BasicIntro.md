@@ -6,7 +6,7 @@ tags:
 ---
 # Basic Intro
 
-Fragment shader is code that get's executed for every single pixel of the canvas we draw on.
+Fragment shader is code that get's executed for every single pixel of the canvas we draw on. It determines how each pixel should be colored.
 The output of a shader is a color in rgba values from 0.0 to 1.0. *So we assign to every pixel on the canvas a rgb color value between 0.0 and 1.0.*
 
 The code must behave differently depending on the position of the currently processed pixel on the canvas . 

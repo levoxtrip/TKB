@@ -2,34 +2,6 @@
 
 List of newly created Markdown files in the last week from the docs folder:
 
-## Basic Intro
-![](https://levoxtrip.github.io/TKB/topics/Shader/FRAGMENT/img/VertexFragmentShader.png)
-
-
-
-**[topics/Shader/FRAGMENT/01_BasicIntro/](https://levoxtrip.github.io/TKB/topics/Shader/FRAGMENT/01_BasicIntro/)**
-
-## GLSL Language
-![]()
-
-
-
-**[topics/Shader/FRAGMENT/02_GLSLlanguage/](https://levoxtrip.github.io/TKB/topics/Shader/FRAGMENT/02_GLSLlanguage/)**
-
-## Algorithmic Drawing
-![]()
-
-
-
-**[topics/Shader/FRAGMENT/03_AlgorithmicDrawing/](https://levoxtrip.github.io/TKB/topics/Shader/FRAGMENT/03_AlgorithmicDrawing/)**
-
-## Own reflections
-![]()
-
-
-
-**[topics/Shader/FRAGMENT/ownReflections/](https://levoxtrip.github.io/TKB/topics/Shader/FRAGMENT/ownReflections/)**
-
 ## Convert 2D Image into 3D Shape
 ![](https://levoxtrip.github.io/TKB/topics/TouchDesigner/SOPS/img/2DImageInto3DShape.png)
 

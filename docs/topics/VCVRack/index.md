@@ -4,7 +4,14 @@ comments: true
 # VCV Rack
 
 # Latest added
-[Rhythm](Rhythm.md)
+
+[Rhythm](./basics/Chorus.md)
+
+[Recurring Beat Pattern](./techniques/RecurringBeatPattern.md)
+
+[Eugene Rare Breeds](./modules/EugeneRareBreeds.md)
+
+[Rhythm](./basics/Rhythm.md)
 
 [Window doesn't show](windowDoesntShow.md)
 

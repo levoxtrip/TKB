@@ -130,8 +130,23 @@ clamp(uv.x,0.0,0.2) = 0.2 for all uv.x values > 0.2
 
 Using `clamp()` to our pixelcoords creates a `hold las pixel value` effect.
 
+### min()
+The `min(thresh,value)` compares similar to `step()` a theshold value and the input value. 
+`If value < thresh -> return value`
+`If value > threh -> return thresh`
+The value gets limitted at the thresh value. So we can use the `min()` to garanty that certain values never go over a desired threshold value.
 
-clamp() - constrain value to range
+<iframe src="https://thebookofshaders.com/glossary/?search=min" allow="fullscreen" allowfullscreen="" style="height:100%;width:100%; aspect-ratio: 16 / 9; "></iframe>
+
+### max()
+The `max(thresh,value)` is the opposite of the `min()` function.
+`If value < thresh -> return threshold`
+`If value > thresh -> return value`
+With `max()` we assure that values never get lower then our threshold value
+
+<iframe src="https://thebookofshaders.com/glossary/?search=max" allow="fullscreen" allowfullscreen="" style="width:100%; aspect-ratio: 16 / 9; "></iframe>
+
+
 min(), max()
 floor(), ceil()
 

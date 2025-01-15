@@ -6,6 +6,8 @@ comments: true
 Welcome in SOPs Land!
 
 ## Last added
+[Cut Parts Shape with ClipSOP](CutPartsShapewithClipSOP.md)
+
 [Distribute Shapes Along Path with SweepSOP](DistributeShapesAlongPathSweepSOP.md)
 
 [Convert 2D Image Intro 3D Shape](Convert2DImage3Dshape.md)

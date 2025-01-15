@@ -19,7 +19,7 @@ when I insert values like the pixelposition==.
 ## Trigonomic Functions(Oscillation & Periodicity)
 To animate graphics it's a good start to use the trigonimic functions Sine `sin()` and Cosine `cos()`.
 
-<iframe src="https://thebookofshaders.com/05/sincos.gif" allow="fullscreen" allowfullscreen="" style="height:100%;width:100%; aspect-ratio: 16 / 9; "></iframe>
+<iframe src="https://thebookofshaders.com/05/sincos.gif"></iframe>
 
 If you insert the the uv.x values into the sin function you get a gradient from left to right.
 <iframe height="300" style="width: 100%;" scrolling="no" title="Simple Sin(uvx)" src="https://codepen.io/levoxtrip/embed/YPKeYKE?default-tab=html%2Cresult&editable=true" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
@@ -146,8 +146,12 @@ With `max()` we assure that values never get lower then our threshold value
 
 <iframe src="https://thebookofshaders.com/glossary/?search=max" allow="fullscreen" allowfullscreen="" style="width:100%; aspect-ratio: 16 / 9; "></iframe>
 
+### floor()
+The `floor(value)` function rounds up to the next integer value if the value is smaller/equal to `value`
 
-min(), max()
+
+
+
 floor(), ceil()
 
 sign() - returns -1, 0, or 1

@@ -5,7 +5,7 @@ comments: true
 
 # Latest added
 
-[Rhythm](./basics/Chorus.md)
+[Chorus](./basics/Chorus.md)
 
 [Recurring Beat Pattern](./techniques/RecurringBeatPattern.md)
 

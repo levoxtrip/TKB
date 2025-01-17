@@ -198,7 +198,8 @@ if a = 1.0 -> color2
 ```
 
 ## Gradient
-To draw a gradient between two colors we can use `mix()` functions and map the colors on the pixel position on the screen.
+To draw a gradient between two colors we can use `mix()` functions and map the colors depending on an 
+interpolation value. For the interpolation value can for example use the pixel position on the screen.
 `mix(color1,color2,st.x)`
 
 <iframe height="300" style="width: 100%;" scrolling="no" title="Mixing Colors Gradient" src="https://codepen.io/levoxtrip/embed/ZYzRzQW?default-tab=html%2Cresult&editable=true" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
@@ -210,4 +211,34 @@ To draw a gradient between two colors we can use `mix()` functions and map the c
 ==By manipulation the uv we can define show the colors are distributed==
 `float uvs = abs(sin(u_time))`
 
-We also can
+We also can assing a vec3 for the interpolation value and manipulate the single channels. 
+```
+vec3 pct = vec3(st.x);
+pcr.r = smoothstep(0.1,0.9,st.x);
+pcr.g = smoothstep(sin(st.x)*2.0);
+pcr.b = pow(st.x,0.5);
+
+color = mix(color1,color2,pcr);
+```
+
+# Inspiration Easing Functions
+<iframe src="https://github.com/glslify/glsl-easings" allow="fullscreen" allowfullscreen="" style="width:100%; aspect-ratio: 16 / 9; "></iframe>
+
+<iframe src="https://thebookofshaders.com/edit.php#06/easing.frag" allow="fullscreen" allowfullscreen="" style="width:100%; aspect-ratio: 16 / 9; "></iframe>
+
+<iframe src="https://iquilezles.org/articles/palettes/" allow="fullscreen" allowfullscreen="" style="width:100%; aspect-ratio: 16 / 9; "></iframe>
+
+<iframe src="http://dev.thi.ng/gradients/" allow="fullscreen" allowfullscreen="" style="width:100%; aspect-ratio: 16 / 9; "></iframe>
+
+# Shaping Functions
+By combining `step()` and `smoostep()` with other mathematical functions we can draw shapes.
+
+## Circle
+To define a circle we need a `center` and a `radius`. Then we define the distance
+between the `center` and the `radius`. If the `distance` is bigger than the radius then
+the function should return 0. If the distance is smaller then it should return 1.
+
+We can calculate the distance with the `length()`function.
+
+
+

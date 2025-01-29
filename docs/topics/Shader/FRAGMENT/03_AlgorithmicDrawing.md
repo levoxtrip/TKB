@@ -235,10 +235,30 @@ By combining `step()` and `smoostep()` with other mathematical functions we can 
 
 ## Circle
 To define a circle we need a `center` and a `radius`. Then we define the distance
-between the `center` and the `radius`. If the `distance` is bigger than the radius then
-the function should return 0. If the distance is smaller then it should return 1.
+between the `center` of the circle and the position of the pixel. If the `distance` is bigger than the radius then the pixel is outside of the circle and the function should return 0. If the distance is smaller then the pixel is inside the circle and the function should return 1.
 
-We can calculate the distance with the `length()`function.
+We can calculate the distance with the `float distance = length(uv)` function. It calculates the length of the pixel vector from it's origin.
+
+A *vector* doesn't represent a position in space but how you get from pos1 to pos2. 
+
+![Vector](../img/Vector.png)
+
+
+This visualises the distance of the pixel to the center of the canvas.
+
+<iframe height="300" style="width: 100%;" scrolling="no" title="Drawing Circle" src="https://codepen.io/levoxtrip/embed/GgKBKNB?default-tab=html%2Cresult&editable=true" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/levoxtrip/pen/GgKBKNB">
+  Drawing Circle</a> by levoxtrip (<a href="https://codepen.io/levoxtrip">@levoxtrip</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+
+We now use a `step()` function to define if the distance of the pixelposition is bigger than the raidus or smaller. 
+
+`if pixelPostition < radius -> inside return 1.0`
+`if pixelPosition > raidus -> outside return 0.0`
+
+`float circle = step(radius,distance);`
 
 
 

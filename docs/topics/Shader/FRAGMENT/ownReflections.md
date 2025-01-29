@@ -17,3 +17,8 @@ vec2 uv = gl_FragCoord.xy/u_resolution;
 uv -= vec2(0.5);
 uv = abs(uv)
 ```
+
+## Invert colors
+If you want to invert the colors that you have you can substract your color/value from 1.0
+`float invertValue = 1.0 - value`
+`vec3 invColor = vec3(1.0) - color`

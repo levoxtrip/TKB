@@ -125,3 +125,42 @@ Nodes with multiple outputs have two output options to start branches on the rig
 ![Aggregate](./Nodes/Aggregate.md)
 
 ![Webhook](./Nodes/Webhook.md)
+
+## Execution Logs
+We can access the history of all our workflows executions
+
+## Error handling
+When the workflow fails there will be a *Error Workflow* executed.
+It can be configured per workflow in the settings tab. It informs you that your workflow failed.
+
+Anothe way to trigger the error workflow is with the *Stop and Error* Node.
+
+The error workflow is created with the *Error Trigger* Node. It contains information about the error:
+- workflow name & id
+- execution ID
+- Name of node with the error
+- Link to execution history.
+
+It is recommended to notify via Slack, Gmail, Whatsapps/Telegram to send message to these tools when you have an error.
+
+Makes sense for example to do error handling on inputs that come in to the workflow. Like checking if the email is actually valid that came from a webhook.
+
+## Debugging
+When a workflow fails it can be for multiple reasons:
+- Node not configured correctly
+- Service not available
+- Wrong data format
+- Missing data
+
+Sometimes a workflow can not fail but also not be successful.
+
+### Debug in editor
+Easiest way to debug is the *Debug in editor* feature. It lets you pin data from an execution history into  the editor. So it lets you edit the workflow using the data that caused an error.
+
+Once the workflow is fixed we can use the *retry* feature. 
+
+## Edit output
+You can manually edit the output of specific node. This can be used for testing you workflow.
+
+## Workflow Version Hisotry
+Access all the historical versions of a given workflow.

@@ -248,3 +248,114 @@ For optimisation there is `WeakMap()` and `WeakSet()` that contain properties th
 
 ## Non blocking event loop
 
+Normally when you run your code in a script it gets executed synchronously line by line.
+The next line can't start before the previous line finished.
+
+With an event loop we can write asynchronous code in javascript which runs in a serparate thread pool while the rest of the application continues to execute. It allows multi task
+
+We can writer async code with a `promise()`
+
+```JS
+const promise = new Promise(
+    (resolve, reject) => {
+        // Do something async here
+
+        if(sucess){
+            resolve('success');
+        } else {
+            reject('failure')
+            //To raise an error 
+        }
+    }
+)
+```
+
+A promise is a wrapper for a value that is unknow right know but that will resolve to a value in the future. For example a call to a 3rd party api that resolves to some data.
+
+The consumer of the promise can use methods `.then()` and `.catch()` to handle this outfcomes
+
+```JS
+promise
+.then(success => {
+    console.log('yay!',success);
+})
+.catch(err =>{
+    console.log('oh no!',err)
+})
+```
+
+You also can define an `async function` that automatically returns a promise
+```JS
+async function asyncFun(){
+    //waits till the promise is resolved
+    const result = await promise;
+}
+// To implement error handling you want to wrap it in a try catch block
+
+async function asyncFun(){
+    try{
+        const result = await promise;
+    } catch(error) {
+
+    }
+}
+```
+
+To keep bigger code more easy to read we can use modules which is code in an extra file for parts of the code.
+
+By default all the code in a file is private just to that file.
+In order to share code with other files we can make the code *default export* by assigning `export default function name`.
+
+Then we can import it in another file with
+`import functionFun from './help.js';`
+
+we also can export and import variables 
+`export const hallo = 344;`
+`import {hallo} from '.help.js';`
+
+
+## Node package manager
+To use code from other developers we can use *npm* javascript package manager
+We can install packages with `npm install`. It downloads the code it in the `node_modules` folder. It also provides a `package.json` file that list out all the dependencies that you use in your project.
+
+## Browser
+
+
+The browser is based on *document object model (DOM)* where the UI is based on a tree of html elements.
+
+A browser provides an api to interact with these elements with `window.document`.
+The `document` allows us to grab an individual html element using the `.querySelector('.button')`
+it takes a css selecter as an argument and will find the html elements that has the same classname, id or tag name. It returns an instance of the element class.
+
+We can grab multiple elements at the same time with `.querySelectorAll('.button')`
+
+We also can listen to events that happen to the element. For example when a btn is clicked, we can assign a function that gets called when the button gets clicked.
+
+```JS
+btn.addEventListener('click', () => {
+    console.log('clicked')
+}
+```
+
+## Front-end frameworks
+Many developers use front-end frameworks that produce declerative code where the UI is a function of its input data /states.
+
+These frameworks encapsulate JS, HTML,CSS into components. Inside a components the data is reactive. It can be bound from js directly to html
+
+## Bundle
+Module bundler
+
+## Network waterfall
+
+## Dynamic imports 
+Only import bundle when it is needed
+
+## Run Javascript on a server
+With node.js we can run javascript on a server.
+with `node` command we can execute javascript 
+
+##
+Electron node.js with the browser to create app
+react native to build whole apps
+
+typescripts

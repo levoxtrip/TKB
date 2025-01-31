@@ -9,7 +9,12 @@ tags:
 
 JavaScript(JS) got invented to make websites interactive.
 
-JavaScript is a scripting language - you can execute it on the fly e.g. in your browser console.
+JavaScript is a programming language - you can execute it on the fly e.g. in your browser console.
+
+In the relation to HTML,CSS and JS we can say:
+- HTML is the content - NOUN
+- CSS is the adjectives - How is something? - ADJECTIVE
+- JS - dynamic and interactive elements - VERB
 
 JS is interpreted line by line.
 
@@ -22,6 +27,9 @@ You can write directly inside the script tag or you reference an external file
 
 ## Print out statements
 `console.log('hi momi')`
+
+## Show Alert Popup in browser
+`alert('string text')`
 
 ## Defining variables
 There are several different ways to define variables

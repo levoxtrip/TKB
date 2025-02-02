@@ -21,31 +21,102 @@ JS is interpreted line by line.
 V8 is engine under the hood that let's run JS extremely fast.
 
 To run JS on a webpage you need an html document with a `<script>...</script>` Tag to run your JS inside.
-
+The advantage is that you don't have to load a seperate file. But it makes sense to seperate the website content from the javascript functionality
 You can write directly inside the script tag or you reference an external file
 `<script src = "app.js"></script>`
+We usually reference the script at the end of the html file.
 
 ## Print out statements
-`console.log('hi momi')`
+If you want to show information in the console you can use
+`console.log('hi momi')` 
+To print multiple information you can seperate it by a comma
+`console.log(var1,var2,'Hallo')`
 
 ## Show Alert Popup in browser
 `alert('string text')`
 
+# Variables
+A value is a piece of data - the smallest piece of information in our programm.
+
+A variable is like a box that contains objects. By assigning a value to a variable we define what the *box* contains.
 ## Defining variables
-There are several different ways to define variables
+There are several different ways to define/declare variables
 `let luckyNumer = 23;`
 `let luckyNumber;` <- undefined value (default value)
+
+We use `let` for variables, that can change later.
 
 JS is a dynamically typed language so no type assignment to variable is necessary.
 
 To define an emtpy value
 `let luckyNum = null;`
 
-Another common way to define a variable is with `const`. `const` variable can't reassigned later.
-`const name = 'jeff';`
+To define a variable that will not change in the future we use `const`.
+`const` variable can't reassigned later. 
+`const birthYear = 1992;`
 
-The third way is to use `var` but these just should used if you really know why.
+Because it can't be changed later we also can't declare empty constant variables.
 
+So as a rule of thumb always declare your variables as `const` unless you are 100% your variable is gonna change later then use `let`
+
+The third way is to use `var` but these just should be ignored or used if you really know why.
+Under the surface `let` and `var` are really different although they look like the same.
+
+
+## Naming variables
+
+In JS a variable naming conventing is camel case. The first word is small and to seperate the second we start with a capital letter.
+`let firstVariable`
+
+We can't start variable names with a number. 
+`let 3years = 3` wouldn't work.
+
+Variables only can contain letters,numbers,underscore or the dollar sign.
+
+Don't start a variable with a capital letter because we use it for object oriented programming.
+
+Variables written in uppercase are often reserved for constants that never change.
+`let PI = 3.1415;`
+
+Make your variable names descriptive.
+
+`let myFirstJob = 'Programmer'`
+`let currentJob = 'Teacher'`
+
+instead of
+`let job1 = 'Programmer'`
+`let job2 = 'Teacher'`
+
+## Datatypes
+*Number*: Floating point numbers - used for decimals and integers
+`let age = 23;`
+`let weight = 22.23;`
+
+*Strings*: Sequence of characters
+`let firstName = 'Jonas';`
+
+*Bool*: Logical type that can be `true` or `false` - used for making decisions
+`let goodWeather = true`
+
+*Undefined*: Value taken by a variable that haven't been defined yet - "empty value"
+`let children;`
+
+*Null*: Also means empty value but gets used in other circumstances.
+
+*Symbol*: Value that is unique and cannot be changed
+
+*BigInt*: Larger integers than the Number type can hold
+
+JS has dynamic typing which means you don't have to define the data types of the values that get stored. JS automatically stores it for you. 
+In JS the value stores the type not the variable.
+
+To evaluate what datatype some value is we can use `typeof`
+```JS
+let jsIsFun = true
+console.log(typeof jsIsFun)
+```
+
+There is a bug inside of JS when you do `typeof null`. It returns an `object` which is wrong. It should return `null`.
 
 ## Variable scopes
 Global scope - variable is available everywhere.
@@ -67,7 +138,39 @@ function fun (){
 }
 ```
 
-## Functions
+# Comments
+We write comments inside our code with eather single line comments or multi line comments
+```JS
+//This is a simple line comment
+
+/*
+This is 
+a multi
+line 
+comment
+*/
+```
+# Operators
+Operators allow us to transform or combine multiple values.
+
+## Arithmetic operators
+Add - `+`
+Subtract - `-`
+Multiply - `*`
+Devide - `/`
+Exponent - `**` 2 ** 3 means: 2 to the power of 3
+
+We can use the `+` to join strings
+`firstName + " " + lastName`
+
+## Assignment operators
+The most basic assignment operator is the `=` to assign values to a variable.
+
+`x+=10` is a short version of `x = x +10`. The same works with the other basic arithmetic operators `-=, *= , /=,`
+
+If you want to add or subtract just 1 there is another short version `x++` and `x--`
+
+# Functions
 To define a function we use `function name(){...}`
 
 Functions are one of the main building blocks in JS. They work by taking an Input and process the Input and returning it.
@@ -367,3 +470,8 @@ Electron node.js with the browser to create app
 react native to build whole apps
 
 typescripts
+
+
+## Errors
+### Unexpected token 
+You used a wrong variable name.

@@ -231,7 +231,7 @@ color = mix(color1,color2,pcr);
 <iframe src="http://dev.thi.ng/gradients/" allow="fullscreen" allowfullscreen="" style="width:100%; aspect-ratio: 16 / 9; "></iframe>
 
 # Shaping Functions
-By combining `step()` and `smoostep()` with other mathematical functions we can draw shapes.
+By combining `step()` and `smoothstep()` with other mathematical functions we can draw shapes.
 
 ## Circle
 To define a circle we need a `center` and a `radius`. Then we define the distance

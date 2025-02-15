@@ -196,10 +196,6 @@ Can hold multiple components and views, providing a scroll container for them.
 We can use it for a large list of items or large amount content in general so users 
 can easily explore all content.
 
-
-
-
-
 ```JS
 import {View, ScrollView, Text, StyleSheet} from 'react-native';
 

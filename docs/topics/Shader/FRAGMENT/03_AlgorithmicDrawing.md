@@ -234,15 +234,13 @@ color = mix(color1,color2,pcr);
 By combining `step()` and `smoothstep()` with other mathematical functions we can draw shapes.
 
 ## Circle
-To define a circle we need a `center` and a `radius`. Then we define the distance
-between the `center` of the circle and the position of the pixel. If the `distance` is bigger than the radius then the pixel is outside of the circle and the function should return 0. If the distance is smaller then the pixel is inside the circle and the function should return 1.
+To define a circle we need a `center` and a `radius`. Then we define the distance between the `center` of the circle and the position of the pixel. If the `distance` is bigger than the radius then the pixel is outside of the circle and the function should return 0. If the distance is smaller then the pixel is inside the circle and the function should return 1.
 
 We can calculate the distance with the `float distance = length(uv)` function. It calculates the length of the pixel vector from it's origin.
 
 A *vector* doesn't represent a position in space but how you get from pos1 to pos2. 
 
 ![Vector](../img/Vector.png)
-
 
 This visualises the distance of the pixel to the center of the canvas.
 
@@ -255,10 +253,114 @@ This visualises the distance of the pixel to the center of the canvas.
 
 We now use a `step()` function to define if the distance of the pixelposition is bigger than the raidus or smaller. 
 
-`if pixelPostition < radius -> inside return 1.0`
-`if pixelPosition > raidus -> outside return 0.0`
+`if pixelPositionDistance < radius -> inside return 1.0`
+`if pixelPositionDistance > radius -> outside return 0.0`
 
-`float circle = step(radius,distance);`
+`float circle = step(distance,radius);`
+
+So as a function we have:
+```
+float circle(vec2 uv, float rad, vec2 center){
+  vec2 pos = uv-center;
+  float dist = length(pos);
+  float color = step(dist,rad);
+  return color;
+}
+```
+To be able to calculate how far the currently calculted pixel is away from the circle center we first have to subtract the center position from the current pixel position. This gives us the relative distance from the current pixel to the center.
+
+![Subtracting Pixelpos minus center](../img/SubtractingPixelCenter.png)
+
+### Soft Circle
+With `smoothstep` we also can create a circle with softer edges.
+
+```
+foat softCircle(vec2 uv, float r, vec2 center, bool soften){
+  vec2 pos = uv-center;
+  float d = length(pos);
+  float edge = (soften) ? r*0.15 :0.0
+  return smoothstep(r-edge,r+edge,d);
+}
+```
+### Border Circle
+To create a circle with a border and without a filling we test if the pixel lays on the radius plus and minus the width of half the line.
+```
+float borderCircle(vec2 uv, float rad, float lineWidth, vec2 center){
+    vec2 pos = uv-center;
+    float d = length(pos);
+    float hLineWidth = lineWidth/2.0;
+    float c = step(rad-hLineWidth,d)-step(rad+hLineWidth,d);
+    return c;
+    
+}
+```
+So we test if the distance of the pixel is bigger than `radius-halfLineWidth` and smaller than `radius+halfLineWidth`.
+![Test Border Circle](../img/TestBorderCircle.png)
+
+
+#### Smooth border Circle
+
+```
+float circle(vec2 pt, float r, vec2 center, float lineWidth,bool soften){
+    vec2 pos = pt -center;
+    float d = length(pos);
+    float edge = (soften) ? r*0.05 : 0.00;
+    float hlw = lineWidth*0.5;
+    float sh = smoothstep(r-hlw-edge,r-hlw,d)
+			    - smoothstep(r+hlw,r+hlw+edge,d); 
+    
+    return sh;
+}
+```
+
+## Square
+To draw a square we want to test if a pixel lies inside the outer edges of the rectangle or not.
+
+First we subtract the center coord from the current uv coords. The resulting pos coords. This gives us values where all values to the left and below the center are negative, while all values to the right and above the center are positive.
+A positive value for `pos.x` means taht the point is to the right of the center and negative value to the left.
+
+At the end we test with `step` whether the pixel is inside or outside the rectangle.
+
+<iframe height="300" style="width: 100%;" scrolling="no" title="drawing Rectangle" src="https://codepen.io/levoxtrip/embed/NPWWwRo?default-tab=html%2Cresult&editable=true" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/levoxtrip/pen/NPWWwRo">
+  drawing Rectangle</a> by levoxtrip (<a href="https://codepen.io/levoxtrip">@levoxtrip</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+
+```
+float rect(vec2 uv, vec2 center, vec2 size){
+    vec2 pos = uv-center;
+    vec2 hSize = size*0.5;
+    float hr = step(-hSize.x,pos.x) - step(hSize.x,pos.x);
+    float vr = step(-hSize.y,pos.y) - step(hSize.y,pos.y);
+    return vr*hr;
+}
+```
+
+# Distancefields
+We can think of distance fields like a height map - at every pixel we are calculating *How far are we(the pixel that currently gets calculated) from something*.
+
+In distance fields, for every pixel(`st/uv`) on the canvas we calculate how far that pixel is from one or more reference poitns or shapes.
+
+Then we use the distance value to decide what to draw.
+```glsl
+//Calculate the distance from current pixel to point (0.5,0.5)
+float d = distance(st,vec2(0.5,0.5));
+//Draw a circle by checking if distance is less than 0.3
+float circle = step(d,0.3) // white if d<0.3, black otherwise
+```
+
+By combining different distance functions we can create intresting graphics.
+`s = distance(st,vec2(0.4))+distance(st,vec2(0.6));`
+Here we are adding two distances together. So when the points are  close to each other the addition of the the distance of the two points is gonna be a small value so they both gonna be darker.
+If the points are further away you get higher values and the pixel color brighter.
+
+`s = distance(st,0.4)*distance(st,0.6);`
+Multiplying distances creates a different effect. Areas that are close to either point will result in a small value while areas far from both will have larger values. This create intersection pattern.
 
 
 
+`s = max(distance(st,0.4)*distance(st,0.6));`
+pct = min(distance(st,0.4) + distance(st,0.6));
+pct = pow(distance(st,0.4) + distance(st,0.6));

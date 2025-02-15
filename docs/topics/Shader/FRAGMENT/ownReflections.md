@@ -18,7 +18,15 @@ uv -= vec2(0.5);
 uv = abs(uv)
 ```
 
-## Invert colors
+## Invert colors/values
 If you want to invert the colors that you have you can substract your color/value from 1.0
 `float invertValue = 1.0 - value`
 `vec3 invColor = vec3(1.0) - color`
+
+If you want to test if a value is smaller than a threshold value you can subtract the value from 1.0
+```
+val = step(0.2,0.5) returns 1.0 -> true
+1.0 - val = 0 -> false
+
+val2 = step(0.8,0.5) = 0 -> false
+1.0 - val = 1 -> true

@@ -6,6 +6,8 @@ comments: true
 Here I'm gonna collect some fun and interesting techniques
 
 # Latest Added
+[Corner Pinning with StonerCOMP](./Mapping/CornerPinningInterface.md)
+
 [Set Custom FrameRate](SetCustomFrameRateProcess.md)
 
 [Change the Seed with Clock](ChangeSeedWithClock.md)

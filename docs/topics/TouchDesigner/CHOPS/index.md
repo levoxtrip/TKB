@@ -7,6 +7,8 @@ Welcome in CHOP Land!
 
 ## Last added
 
+[Tipps and Tricks](TippsTricks.md)
+
 [Creating Stepped Noise](CreatingSteppedNoise.md)
 
 [Combining Channels in MathCHOP](CombiningChannelsMathCHOP.md)

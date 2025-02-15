@@ -15,6 +15,7 @@ Modular synthesis uses a signal *modulator* to change different aspects of anoth
 
 Good question to ask is: which principle of modulation is used in this step?
 
+
 # Basic terminology
 
 ## Modulation
@@ -25,6 +26,12 @@ Some types of modulation are:
 - phase modulation
 - ring modulation
 - pulse with modulation
+
+## Voltage span
+All Eurorack/VCVrack modules work with Voltage in a maximum value span of 10 Volt.
+- -5V to 5V
+- 0 to 10V
+- 0 to 1V
 
 ## Amplitude
 Level/strength of an audio or control voltage(CV) signal.
@@ -44,7 +51,9 @@ The *clock* signal is a steady stream of triggers/pulses which are used to synch
 To create a clock signal there are a lot of clock modules available.
 
 ## Trigger
-Short burst signal of voltage.
+Short burst signal of voltage that goes `HIGH` and directly goes back to `LOW` state.
+
+Triggers get used for example for envelopes that control percussive sounds which lack sustain phase.
 
 ## Gate
 Voltage signal that is used to control the duration of an event. Unlike *triggers* gates are longer, sustained signals that remain high for the duration of the event - could be a note being played.
@@ -56,13 +65,13 @@ A *Low Frequency Oscillator* generates a low frequency waveform that is typicall
 ![Output waves of LFO](../img/WavesLFO.png)
 
 ## VCO
-*Voltage Controlled Oscillator* generate audio-frequency signal that can create wide range of sounds.
+*Voltage Controlled Oscillator* generate audio-frequency signal that can create wide range of sounds. It creates a continously running tone. To shape a single sound we can create a [substractive synthesizer voice](#substractive-synthesizer-voice)
 
 ## Bipolar
 A control voltage signal that can have positive and negative values. For example a LFO signal with its center at 0V and its peaks and trophs at 5. and -5V.
 
 ## Unipolar
-Control voltage signal that is only positive. Usally in between 0 and max 10V.
+Control voltage signal that is only positive. Usually in between 0 and max 10V.
 
 ![Bipolar and Unipolar Signals](../img/UniBiPolarSignal.png)
 
@@ -92,3 +101,19 @@ The typical filter are:
 - high-pass
 
 We use filter for emphasis or reduction of certain frequencies in a sound/signal.
+
+
+# Substractive Synthesizer Voice
+To create a substractive synth voice patch we substract with modules parts of the source signal. For example we can use `Envelope` or `Filter` modules to modulate the output signal of a `VCO`.
+
+The first thing you want to substract from a continuous sound is volume information with a `VCA` to control the amplitude and an `ADSR` envelope([Envelope Generator](#envelope-generator)) to control the shape of the signal that controls the amplitude.
+
+In the VCA we have to plug in a *control voltage* signal that shapes our volume.
+
+The ADSR need to be triggered so the Envelope gets executed. For ADSR we use a gate signal.
+
+![ADSR Module with its stages](../img/BasicSubstractingPatch.png)
+
+With filter modules we can further manipulate our signal. For that we can use a [VCF](#vcf) with a lowpass or highpass filter. Often filter have their own envelopes to control the cutoff.
+
+

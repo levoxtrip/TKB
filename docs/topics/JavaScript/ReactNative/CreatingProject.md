@@ -4,7 +4,7 @@ tags:
     - Javascript
     - ReactNative
 ---
-# Creating a project
+# Creating a project with Expo
 1. Create an expo project
 `npx create-expo-app ./`
 or 
@@ -103,21 +103,26 @@ const RootLayout = () => {
 }
 export default RootLayout
 ```
+
+if you want to wrap it with other components like header or footer you can write
+```JS
+...
+const RootLayout = () => {
+    return(
+        <>
+        <Text>header</Text>
+        <Slot/>
+        <Text>Footer</Text>
+        </>
+    )
+}
+```
 And we don't need the styles anymore.
 
-The `<Slot>` renders the current child router.
+The `<Slot>` renders the current child route.
 
-When we also want to render header and footer we need to wrap it
-```JS
+Another way to do navigation is to use a `Stack` of different screens. There you add all the screens via `<Stack.Screen name="screenname"options=.../>`
 
-<>
-<Text>Header</Text>
-<Slot/>
-<Text>Footer</Text>
-</>
-```
-
-Another way to do navigation is to use a `Stack` of different screens. There you add all the sites 
 ```JS
 ...
 import{Stack} from 'expo-router'
@@ -131,6 +136,30 @@ const RootLayout = {} => {
     )
 }
 ```
+So now if you want to create a new route you have to create a new file `filename.jsx` inside `app`  folder for the route create the `rnfes`, build your structure and then link it to the index stack.
+
+To navigate to the new screen we need a `Link` component from `expo-router` in the `index.js`
+```JS
+import {Link} from 'expo-router'
+...
+export default function App(){
+    return(
+        ...
+
+        <Link href="/profile" style ={{color:'blue'}}> Go to profile</Link>
+    )
+}
+```
+
+## Styling application
+To style your application you can use a framework like *NativeWind*. 
+
+![NativeWind](NativeWind.md)
+
+
+
+
+
 
 ## Adding images
 You can put the images in the `assets` directory in the project folder
@@ -255,3 +284,35 @@ options={{
 ```
 ## Themed Text
 Themed text contains already the colorscheme
+
+
+## Import fonts
+If you want to use your own fonts in your project you have to use a special hook to load your fonts. For that we use `useFonts`.
+```JS
+...
+import {useFonts} from 'expo-font'
+```
+Once imported we have to load the fonts in in the Layout using the `useFont` hook. We pass in an object of all the fonts we want to use
+```JS
+import {useFonts} from 'expo-font'
+...
+
+const [fontsLoaded,error] useFonts({
+    "Fontname": require("../assets/fonts/linktofont.ttf")
+})
+```
+# Constants folder
+You can create a constants folder to save the links to certain assets and assign them to constant names so it is easier to import them later 
+```JS
+import bookmark from '../assets/icons/name.png' 
+...
+
+export default {
+    bookmark
+}
+```
+
+# Perform an action while the page is loading
+`useEffect` is a hook from react that is used to perform side effects in application. Side effects are things that happen as a consequences as something else. Something happens in our application, something gets triggered and as a side effect we have something else that happens.
+Side effects are mostly gonna be a result of a state change. 
+We can use an `useEffect` to execute behaviour white the page is loading.

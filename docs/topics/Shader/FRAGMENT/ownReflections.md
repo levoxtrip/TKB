@@ -30,3 +30,9 @@ val = step(0.2,0.5) returns 1.0 -> true
 
 val2 = step(0.8,0.5) = 0 -> false
 1.0 - val = 1 -> true
+```
+## Coloring
+To color you can for example calculate the distance field or the shaper and then just multiply it with a color `vec3` or use `mix(color1,color2, shape)`
+
+## Abs Function
+Using abs on coordinates creates symmetry around axes when we moved the canvas coord system to the center.

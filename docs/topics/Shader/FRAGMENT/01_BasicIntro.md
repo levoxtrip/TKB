@@ -22,7 +22,7 @@ With `gl_FragColor` the shader definies the final color value of the pixel that 
 # Thinking process for shaders
 Position-Based Thinking:
 
-Every shader starts by figuring out "where am I?" using the pixel coordinates
+Every shader starts by figuring out "where am I?" using the pixel coordinates.
 We normalize these coordinates to make them easier to work with
 All our shapes are defined relative to these coordinates
 
@@ -32,7 +32,6 @@ Most shapes are created by calculating the distance from the current pixel to so
 Circle: Check distance from center point
 Rectangle: Check distance from edges
 Complex shapes: Combine multiple distance calculations
-
 
 Color-Based Thinking:
 
@@ -56,7 +55,6 @@ Position-Based Questions:
 What are its raw coordinates?
 Is it in the top half or bottom half?
 Is it left or right of center?
-
 
 "What coordinate system makes most sense for what I'm drawing?"
 
@@ -118,8 +116,6 @@ Is it multiple circles?
 Is it a combination of basic shapes?
 Can I use boolean operations (AND, OR, NOT) with shapes?
 
-
-
 Debugging Questions:
 
 "Why isn't this pixel the color I expect?"
@@ -134,8 +130,6 @@ Are my numbers in the range I expect?
 Can I show the raw distance value as a color?
 What happens if I multiply/divide my values by 10?
 What if I display different components in different color channels?
-
-
 
 # Coordinates of the pixel
 `gl_FragCoord` is the GLSL variable that provides the coordinates of the pixel currently being processed by the shader.

@@ -6,8 +6,11 @@ comments: true
 Welcome in the land of artists!
 
 ## Last added
-[Afro](AfroBasaldella.md)
-
+[Afro Basaldella](AfroBasaldella.md)
+[Natalia Goncharova](./NataliaGoncharova.md)
+[Franz Kline](FranzKline.md)
+[Mikhail Larionov](./MikhailLarionov.md)
+[Roberto Matta](./RobertoMatta.md)
 
 
 ## Suggestions

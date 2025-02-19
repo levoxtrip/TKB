@@ -528,7 +528,69 @@ function giveMeClosure(){
 
 JS functions can only return one thing.
 
-### Get Value from prompt
+## Arrays
+*Arrays* are a datastructure where we can collect different variables.
+`const names = ['leon','ro','il'];`
+another way is
+`const years = new Array(1990,1991,1992);`
+
+Arrays can hold any datatype that we want. We can add expressions into arrays and we can even put whole other arrays into an array.
+Another possibility is to put function calls inside an array declaration.
+`const ages = [calcAge(years[0]),calcAge(years[1]),calcAge(years[2]),calcAge(years[3])]`
+
+To pick an element from an array we use square brackets `[]`
+`const firstFriend = names[0];`.
+
+To get the amount of elements in an array we use `.length`
+`const len = name.length;`
+
+To get the last element of your array.
+`const lastElement = names[names.length-1];`
+
+We can put any expression that we want inside of the square brackets to pick the element we want.
+
+To change the data inside an array at a specific position.
+`names[2] = 'Ju';`
+
+Even though we defined an array as `const` we still can change its elements. But we can't exchange it with a whole new array.
+
+### Array operations
+#### Add Element to the end of the array
+With `.push()` we can add an element to the end of the array.
+`friends.push('me')`
+
+`.push()` returns the length of the new array.
+`const newLength = names.push('name')`
+
+
+### Add Element to the beginning of array
+The `.unshift()` method allows us to put an element to the beginning of an array.
+
+`names.unshift('Heinz')`
+As `.push()` the `.unshift()` method returns the length of the new array.
+
+### Remove last element of an array
+To remove the last element of an array we use the `.pop()` methods
+`names.pop()`
+
+The `.pop()` method returns the removed element from the array.
+
+### Remove first element from array
+With `.shift()` we can remove the first element from an array.
+`names.shift()`
+The `.shift()` method returns the removed element from the array.
+
+### Get position of element in array
+To find out which position a certain element in the array has we can use `.indexOf('variableName')`
+`names.indexOf('me')`
+If the element is not in the array the function returns `-1`
+
+A function from new JS version is `.includes('variableName')`. 
+It returns a boolean if the element is in the array.
+
+
+
+## Get Value from prompt
 We can use the `prompt()` function to ask the user to input a value.
 `const favNumber = prompt("What is your favorite number")`
 It returns a string.

@@ -248,3 +248,48 @@ In React Native we don't have a Button Component we have `TouchableOpacity` Comp
     <Text style={styles.closeButtonTxt}> Close</Text>
   </TouchableOpacity>
 ```
+
+# Reverse Geolocation
+In this example we use this
+[Nominatim](https://nominatim.org/release-docs/develop/api/Reverse/)
+
+We can use the url from that side
+``const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${36.806389}&lon=${10.181667}` ``
+and the implement the lat and long into it.
+
+So first we have to fetch the url with a `useEffect` hook.
+```JS
+//We need a new locationdata state
+const [locationData,setLocationData] = useState<any>(null)
+...
+
+useEffect(()=> {
+  fetch(url)
+  .then(response => response.json())
+  .then(data => setLocationData(data))
+  .catch(error => console.error('Error fetching reverse data',error))
+  console.log(locationData)
+},[])
+
+
+```
+
+Then we can assign the values from the response to the text in the modal.
+With the `?` we avoid that we get an error when locationData is null.
+```JS
+...
+
+<Modal>
+  <Text> locationData?.address.city</Text>
+  <Text> locationData?.address.country</Text>
+</Modal>
+```
+## Routing in Expo
+If you haven't already installed it you can install it with
+`npm expo install expo-router`
+
+
+
+
+## Calculate the Route to a location
+The *Directions API* from Mapbox allows you to create Routes to locations.

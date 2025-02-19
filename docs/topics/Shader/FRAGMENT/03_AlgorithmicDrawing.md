@@ -338,10 +338,10 @@ float rect(vec2 uv, vec2 center, vec2 size){
 }
 ```
 
-# Distancefields
+# Distance fields
 We can think of distance fields like a height map - at every pixel we are calculating *How far are we(the pixel that currently gets calculated) from something*.
 
-In distance fields, for every pixel(`st/uv`) on the canvas we calculate how far that pixel is from one or more reference poitns or shapes.
+In distance fields, for every pixel(`st/uv`) on the canvas we calculate how far that pixel is from one or more reference points or shapes.
 
 Then we use the distance value to decide what to draw.
 ```glsl
@@ -352,15 +352,40 @@ float circle = step(d,0.3) // white if d<0.3, black otherwise
 ```
 
 By combining different distance functions we can create intresting graphics.
-`s = distance(st,vec2(0.4))+distance(st,vec2(0.6));`
-Here we are adding two distances together. So when the points are  close to each other the addition of the the distance of the two points is gonna be a small value so they both gonna be darker.
-If the points are further away you get higher values and the pixel color brighter.
 
-`s = distance(st,0.4)*distance(st,0.6);`
+
+`s = distance(st,vec2(0.4))+distance(st,vec2(0.6));`
+So here we first calculate the distance from point (0.4,0.4) to all the pixels on the canvas and the distance from point(0.6,0.6) to all the pixels. We then add together the values from the single distance fields to a new pixel field.
+So when the points are  close to each other the addition of the distance of the two points is gonna be a small value so they both gonna be darker. Because the distance to the pixel around the reference points are low and the points are close to each other so their addition creates a low value.
+If the points are further away you get higher values and the pixel colors are brighter because the distance from one reference point to the other is bigger so the addition of these are also bigger.
+
+`s = distance(st,vec2(0.4))*distance(st,vec2(0.6));`
 Multiplying distances creates a different effect. Areas that are close to either point will result in a small value while areas far from both will have larger values. This create intersection pattern.
 
+`s = max(distance(st,vec2(0.4),distance(st,0.6));`
+Here the `max()` function takes the larger value of the two distances. The result of the operation is a new distance field that represents the *intersection/union* of the two original distance fields because the maximum distance at any point will be the distance to the closest surface of either object.
+![DistanceField1](../img/maxTwoDistance.png)
+![DistanceField2](../img/maxTwoDistance2.png)
+![Max Combination of both](../img/maxTwoDistance3.png)
 
+`s = min(distance(st,vec2(0.4)),distance(st,vec2(0.6)));`
+Here the `min()`function takes the smallest distance from both distances which leads to the union of the two shapes.
 
-`s = max(distance(st,0.4)*distance(st,0.6));`
-pct = min(distance(st,0.4) + distance(st,0.6));
-pct = pow(distance(st,0.4) + distance(st,0.6));
+`pct = pow(distance(st,vec2(0.4)),distance(st,vec2(0.6)));`
+
+For optimising the performance we also can create circular distance fields with the `dot()` function. The `dot()` function calculates the skalarproduct.
+`float pt = dot(st,st)*4.0`
+
+With distance fields we can draw almost every shape we want. 
+We start by scaling the value range of the x and y coordinates to the range of -1 and 1
+`st = st*2.-1.`.
+This moves the base of the coordinate system from the lower left corner to the center of the canvas.
+
+After that we can create a distance field with the `length()` function to calculate the distance of the pixel to the center of the canvas.
+
+So if we for example do 
+`d = length(st-0.3)` we move the base of the coord system by (0.3,0.3) or in other words we calculate the distance from every pixel on the screen to the position(0.3,0.3). This creats the dark circle around the position (0.3,0.3).
+![Distance Field](../img/DField0_3.png)
+
+By enclosing the current pixel position `st` with `abs()` we create a mirroring effect. Because we move the 
+

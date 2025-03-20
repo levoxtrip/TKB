@@ -288,8 +288,81 @@ With the `?` we avoid that we get an error when locationData is null.
 If you haven't already installed it you can install it with
 `npm expo install expo-router`
 
+## Get the Users current location in expo
+To get the users current location we need to import the expo library `expo-location`.
+`npx expo install expo-location`
 
+We then create a function to get request the permissions. 
+
+```JS
+async function getPermissionLocation(){
+  let {status} = await Location.requestForegroundPermissionsAsync();
+
+  if(status !== 'granted'){
+    setErrorMsg('Permission to access location was denied')
+  }
+
+}
+
+useEffect(() => {
+  getPermissionLocation();
+})
+```
+
+Next we fetch the *initial location* of the user 
+```JS
+...
+const [location,setLocation] = useState<any>(
+  {
+    coords:{
+      latitude:36.806,
+      longitude:10.181667
+    }
+  }
+)
+...
+async function getInitialLocation(){
+  let initialLocation = await Location.getCurrentPositionAsync({});
+  setLocation(initialLocation)
+}
+...
+useEffect(()=>{
+  ...
+  getPermissionLocation();
+  getInitialLocation();
+})
+```
+At the end to get a continuously the current user position we create a *subscription* to watch the position of the user.
+
+```JS
+const[locationSubscription,setLocationSubscription] = useState<any>(null);
+async function setPositionSubscription(){
+  const subscription = await Location.watchPositionAsync(
+    {
+      accuracy:Location.Accuracy.BestForNavigation,//Highest accuracy which is suitable for navigation
+      timeInterval:1000,//Update every second
+      distanceInterval:10,//or when moved by 10 meteers
+    },
+    (newLocation) => {
+      setLocation(newLocation)
+    }
+  );
+  setLocationSubscription(subscription);
+}
+...
+
+
+useEffect(()=>{
+  ...
+  setLocationSubscription();
+},[])
+```
+
+Add a cleanup when the view is left
 
 
 ## Calculate the Route to a location
+We need to install `npm i @turf/helpers`
+
+
 The *Directions API* from Mapbox allows you to create Routes to locations.

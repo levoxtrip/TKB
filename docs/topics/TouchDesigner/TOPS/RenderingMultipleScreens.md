@@ -6,7 +6,7 @@ tags:
 ---
 
 # Rendering Multiple screens
-When you have multiple screens to render first setup your grafics card and then do the setup in TouchDesigner.
+When you have multiple screens to render first setup your graphics card and then do the setup in TouchDesigner.
 
 It is recommended that all the screens have the same resolution and the same Hz.
 
@@ -18,5 +18,3 @@ In `RenderTOP` we can use different render modes:
 `Fish Eye` - 180°
 
 `UV Unwrap` - To render Texture for 3D Objects
-
-

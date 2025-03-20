@@ -1,11 +1,21 @@
 ---
 comments: true
---- 
+---
+
 # SOPs
 
 Welcome in SOPs Land!
 
 ## Last added
+
+[Cut Polygon with ClipSOP](CutPolygonSOPWithClip.md)
+
+[Particles Move Back to Source](ParticlesMoveBackToSource.md)
+
+[DisplaceGridWithPatternCHOP](DisplaceGridWithPatternCHOP.md)
+
+[Spread Copies Evenly Around 360° in CopySOP](SpreadCopiesEvenlyAround360CopySOP.md)
+
 [Cut Parts Shape with ClipSOP](CutPartsShapewithClipSOP.md)
 
 [Distribute Shapes Along Path with SweepSOP](DistributeShapesAlongPathSweepSOP.md)
@@ -42,6 +52,6 @@ Welcome in SOPs Land!
 
 [Displace Grid By MagnetSOOP](DisplaceGridMagnetSOP.md)
 
-
 ## Suggestions
+
 Got a topic or technique you'd love to see me dive into? Drop your suggestions below, and let's create something amazing together

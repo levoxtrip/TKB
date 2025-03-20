@@ -1,11 +1,16 @@
 ---
 comments: true
---- 
+---
+
 # CHOPs
 
 Welcome in CHOP Land!
 
 ## Last added
+
+[Animate through Pattern](AnimatePatternCHOP.md)
+
+[Only Effect Certain Channels in MathCHOP](OnlyEffectCertainChannelsMath.md)
 
 [Tipps and Tricks](TippsTricks.md)
 
@@ -48,4 +53,5 @@ Welcome in CHOP Land!
 [Animate through graph of datapoints ](AnimateThroughDataPoints.md)
 
 ## Suggestions
-Got a topic or technique you'd love to see me dive into? Drop your suggestions below, and let's create something amazing together   
+
+Got a topic or technique you'd love to see me dive into? Drop your suggestions below, and let's create something amazing together

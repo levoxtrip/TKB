@@ -1147,9 +1147,7 @@ The changes get applied as `Inline Styles` so the css files doesn't get changed 
 It looks like `div class="message" style="width:30rem">text</div>`
 The `Inline Styles` overwrite the properties of css file.
 
-This is definitely new!!!
-
-And this.
+This is new to me!!!!
 
 # Math
 

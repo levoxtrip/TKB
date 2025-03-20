@@ -61,3 +61,44 @@ we have to move the shape from its center to 0.0, execute the rotation, and then
   GLSL-RotatingShapes</a> by levoxtrip (<a href="https://codepen.io/levoxtrip">@levoxtrip</a>)
   on <a href="https://codepen.io">CodePen</a>.
 </iframe>
+
+To change the anchor of the rotation we would have to change the
+center value by manipulating the `pos` inside the shape function.
+
+```
+vec2 pos = pt-center
+pos -= vec2(radius,0);//this is gonna be the new center of the shape
+```
+
+# Scaling Shapes
+
+As for Rotation we also need a 2D Matrix for scaling our canvas.
+![2D Scaling Matrix Calc](../img/2DScalingMatrixCalc.png)
+
+```glsl
+mat2 scaleEqual2D(float scale){
+  return mat2(scale.x,0,0,scale.y);
+}
+mat2 scaleIndiv2D(vec2 scale){
+  return mat2(scale.x,0.0,0.0,scale.y);
+}
+
+[scale.x  0]
+[0  scale.y]
+
+void main(){
+  ...
+
+uv-= vec2(0.5)
+uv *= scaleIndiv2D(vec2(0.2,0.5));
+uv+= vec2(0.5);
+}
+
+```
+
+If the scale value is bigger than 1.0 the shape gets smaller because the
+value range of the canvas gets bigger and the area in which the pixel are inside the shapes gets smaller.
+
+![Scaling Values Canvas](../img/ScalingCanvasValues.png)
+
+==If we combine rotation and scaling matrixes the order of transformation plays an important role==

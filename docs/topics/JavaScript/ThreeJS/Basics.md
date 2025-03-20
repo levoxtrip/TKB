@@ -769,6 +769,78 @@ loader.load("src/assets/hand.glb",(gltf)=> {
 })
 ```
 
+## Particles
+
+With particles we can do dust, rain, snow, stars etc.
+Each particle is one plane build out of two triangles which is always facing the camera.
+
+### Geometry
+
+For the `Geometry` in Particles we use `BufferGeometry` which exists for all the standard mesh geometries like `SphereBufferGeometry` etc. `BufferGeometry` is more performant so it is better to use for Particles.
+For every vertex on the `BufferGeometry` we gonna get one particle.
+
+`const particleBaseShape = new THREE.SphereBufferMaterial(radius,widthSubdivision,heightSubdivision)`
+
+### Material
+
+For the `Material` we can use the `PointsMaterial` which is optimized for particles and has also specific properties like
+`size` and `sizeAttenuation`for particles.
+`size` control the size of all particles
+`sizeAttenuation` - should particles that are farther away be smaller than closer ones.
+
+To change the color of the particle you can use the `color` property. We need to use the `THREE.Color` class for that after we created already the material.
+`pointsMaterial.color = new THREE.Color('#ff88cc')`
+
+Similar to the other materials we also can load and assign a Texture to the particles.
+`pointsMaterial.transparent = true`
+
+If you only want to keep the alpha values of the texture you can use the `.alphaMap`
+`pointsMaterial.alphaMap = partTexture`
+
+If you want to have the whole texture assign it to `.map`
+
+The `color` property will affect the `Texture`.
+
+#### Improving order of displaying particles
+
+WebGL is drawing in the same order how the particles got created and it doesn't know which particle is front of the other.This can cause some render artifacts. We can use different ways to improve this.
+
+##### Alpha Test
+
+//!!!! AGAIN
+
+The alpha test is a threshold value that determines if a pixel gets rendered based on the transparency of the pixel.
+With Alpha testing WEBGL knows when to render a particle and not based on the transparency(alpha value) of a pixel.
+
+Every pixel in a texture has an alpha value between 0(completely transparent) and 1 (completely opaque)
+The alphaTest sets a minimum threshold so every pixel under the threshold will not be
+By default the value is set to 0 meaning the pixel will be rendered. If we use a value like 0.001 the pixel will not be rendered when its alpha value is 0.
+
+You can find some particle textures [here](https://www.kenney.nl/assets/particle-pack);
+
+Instead of creating an instance of `Mesh` we use `Points` instance.
+`const particles = new THREE.Points(particleGeo,particleMat)`
+
+### Custom Geometry
+
+To create our own geometry we start with a `BufferGeometry`, set the positions in an `Float32Array` and then assign
+the values to the `position` attribute of the `BufferGeometry`
+
+```JS
+const partGeo = new THREE.BufferGeometry();
+
+const count = 500;
+const positions = new Float32Array(count*3);
+
+for(let i = 0; i< count;i++){
+  positions[i] = (Math.random()-0.5) * 10;
+}
+
+partGeo.setAttribute('position',new THREE.BufferAttribute(positions,3));
+
+
+```
+
 # Fog
 
 To create fog around the center

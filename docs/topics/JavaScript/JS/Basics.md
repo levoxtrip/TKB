@@ -1134,6 +1134,19 @@ btn2.addEventListener('dblclick',function () {
 })
 ```
 
+## Manipulate CSS styles
+
+To manipulate the css style we have to access the html element and then the `style` property.
+Whenever we manipulate a style we have to specify a `string`. We can't write a number.
+
+`document.querySelector(body).style.backgroundColor = '#60b347'`
+
+`document.querySelector(.message).style.width = '30rem'`
+
+The changes get applied as `Inline Styles` so the css files doesn't get changed or manipulated
+It looks like `div class="message" style="width:30rem">text</div>`
+The `Inline Styles` overwrite the properties of css file.
+
 # Math
 
 ## Cut of decimal part of number

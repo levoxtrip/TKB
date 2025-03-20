@@ -1,0 +1,54 @@
+name: Markdown Change Log
+
+on:
+  push:
+    branches:
+      - main # Adjust to your main branch if different
+
+jobs:
+  create-log:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install pyyaml markdown
+
+      - name: Get modified and new Markdown files in docs/topics (excluding index.md)
+        id: get_changed_files
+        run: |
+          changed_files=$(git diff --name-only HEAD^ HEAD -- docs/topics/*.md | grep -v "index.md" | sort | uniq)
+
+          echo "Files changed: $changed_files"
+
+          # Replace newlines with spaces and escape quotes
+          escaped_files=$(echo "$changed_files" | tr '\n' ' ' | sed 's/\"/\\"/g')
+
+          # If no changed files are found, set the variable to 'none'
+          if [ -z "$escaped_files" ]; then
+            escaped_files="none"
+          fi
+
+          # Set the environment variable for the next step
+          echo "CHANGED_MARKDOWN_FILES=\"$escaped_files\"" >> $GITHUB_ENV
+
+      - name: Run log creation script
+        run: python createLog.py
+
+      - name: Commit and Push Log File
+        run: |
+          git config --local user.email "levoxtrip@gmail.com"
+          git config --local user.name "levoxtrip"
+          git add log.md
+          git commit -m "Change log update - $(date -u)" || echo "No changes to commit"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

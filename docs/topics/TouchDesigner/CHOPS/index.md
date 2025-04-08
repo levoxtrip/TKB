@@ -8,6 +8,8 @@ Welcome in CHOP Land!
 
 ## Last added
 
+[Replicate Sample At End and Beginning](ReplicateSampleAtEndBegginng.md)
+
 [Animate through Pattern](AnimatePatternCHOP.md)
 
 [Only Effect Certain Channels in MathCHOP](OnlyEffectCertainChannelsMath.md)

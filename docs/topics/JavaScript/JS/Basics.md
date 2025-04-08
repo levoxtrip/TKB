@@ -615,6 +615,31 @@ We couldn't do that with _function expressions_.
 
 It is personal preference to decide which way you use your functions.
 
+In JS functions are also a value. That means we can do \*Method borrowing - copying a method from another object
+
+```JS
+const jonas = {
+    name:"jonas",
+    calcAge: function () {
+        console.log("calculate")
+    }
+}
+jonas.calcAge()
+
+const matilda = {
+    year:1992
+}
+matilda.calcAge = jonas.calcAge
+matilda.calcAge()
+```
+
+Another way is to save a function in it's own variable
+
+```JS
+const f = jonas.calcAge
+f()
+```
+
 ### Anonymous functions
 
 An _Arrow function_ is a shorter version to write a function expression.
@@ -662,10 +687,10 @@ function higherOrder(fun) {
 }
 ```
 
-Functions can also be nested to create _closure_, that incapsulates data and logic from the rest of the programm.
+Functions can also be nested to create _closure_, that incapsulates data and logic from the rest of the program.
 
 Normally when you call a function that has a variable with a primitive value `let a = 10;` it is stalled on the _call stack_ which is the browsers short term memory.
-When you call a closure the inner function can still acccess variables in the outer function and even after the initival function call. That happens because JS automatically stores the data in the outer function and the heap memory, which persists after the function call.
+When you call a closure the inner function can still acccess variables in the outer function and even after the initial function call. That happens because JS automatically stores the data in the outer function and the heap memory, which persists after the function call.
 
 ```JS
 function giveMeClosure(){
@@ -679,6 +704,8 @@ function giveMeClosure(){
 ```
 
 JS functions can only return one thing.
+
+### Regular functions vs. Arrow functions
 
 # Arrays
 
@@ -785,6 +812,11 @@ for(let i = 0; i<array.Length;i++){
 }
 ```
 
+### Empty an array
+
+With `.splice` we replace the content of the array with nothing.
+`array.splice(0,array.length)`
+
 ## Get Value from prompt
 
 We can use the `prompt()` function to ask the user to input a value.
@@ -812,6 +844,8 @@ const person = {
     }
 }
 ```
+
+Read more about `this` [here](#this-keyword)
 
 You can manually bind a function to some other objects using `.bind()` method.
 
@@ -1097,12 +1131,17 @@ The DOM methods and properties are part of the WEB APIs that browser implement.
 
 The `document` allows us to grab an individual html element using the `.querySelector()`
 it takes a css selector as an argument and will find the html elements that has the same classname`.className`, id `#idName` or tag name. It returns an instance of the element class.
-
-We can grab multiple elements at the same time with `.querySelectorAll('.button')`
+If there are multiple instances with the same className `querySelector()` will pick the first the first element.
+To grab multiple elements at the same time with `.querySelectorAll('.button')`
 
 ## Select and manipulate elements
 
+We can select an element by it's class
 `document.querySelector(.message).textContent = 'new Text'`
+
+or select it by an elements unique id
+`document.querySelector(#id).textContent = ...`
+`document.getElementById('id').textContent = ...`
 
 ### Get and Set values Input field
 
@@ -1121,6 +1160,8 @@ Setting value of input field.
 When we want our javascript to react to something that happens in the dom we need to listen to the
 event that happen to the element. For example when a btn is clicked, we can assign a function that gets called when the button gets clicked.
 
+Every time an event happens JS creates an event object which allows us to get information about the specific event.
+
 ```JS
 const btn = document.getSelector(.btn);
 const btn2 = document.getSelector(.btn2);
@@ -1133,6 +1174,26 @@ btn2.addEventListener('dblclick',function () {
     console.log("hallo")
 })
 ```
+
+## Handling KeyPressed Events
+
+The keypress event is a global event. For global events we usually listen to the whole document
+
+```JS
+document.addEventListener('keydown',handleEscKey)
+
+const handleEscKey = (e)=> {
+    if(e.key === "Escape"){
+        console.log(`${e.key} pressed`)
+    }
+}
+
+```
+
+There are three key events
+`keydown` - when we put down the key
+`keypress`- fired while we have finger on the keyboard
+`keyup` - when we lift our finger up from the keyboard
 
 ## Manipulate CSS styles
 
@@ -1148,6 +1209,26 @@ It looks like `div class="message" style="width:30rem">text</div>`
 The `Inline Styles` overwrite the properties of css file.
 
 Why is that new info
+
+## Manipulate classes
+
+To check if an element contains a class we can use
+`if(elemnt.classList.contains('hidden'))`
+
+We can use JS to `remove` classes from an html element. For example we can have a modal which has the class
+
+```CSS
+.hidden{
+    display:none;
+}
+```
+
+We then call `myElement.classList.remove('hidden')` and the class is removed and the element is shown on the screen.
+
+To add a class we can call `modal.classList.add('hidden')`
+
+We also can use `myElement.classList.toggle('hidden')` this will add a class if it's not there and remove a class when
+it already exists
 
 # Math
 
@@ -1296,3 +1377,353 @@ Bundler can do even more. You can use a bundler to create a local server, manage
 # Webpack
 
 Webpack is most popular bundler.
+
+# JS behind the scenes
+
+Every software need to use some hardware resources like cpu and memory to run.
+In Low-level languages like c you have to manually manage these resources.
+In high level languages we don't have to manage the resources. They have abstractions that take care for us.
+
+Garbage Collection takes memory management away from the developer. Its an algorithm that automatically removes
+old unused objects from the computer memory. Like a cleaning guy that cleans up for us.
+
+JS is an interpreted/just-in-time-compiled language.
+A computers processor only understands 0 and 1 - which is called as machine code.
+We write human readable javascript code which is an abstraction from machine code. And this code needs to be translated
+into machine code by the compiler/interpreter. This happens inside the javascript engine.
+
+Javascript is a multi-paradigm language. A paradigm is an approach of structuring code.
+Three paradigms are:
+_Procedural programming:_
+Organising code in a linear way with some functions in between.
+
+_Object-oriented programming(OOP):_
+In JS OOP is a prototype based object oriented approach: almost everything in JS is an object except primitives like numbers,string etc. Arrays are objects for example.
+We create arrays from an array blueprint - which is like a template - and this is called `Prototype` - `Array.prototype.push` for the `.push()` method.
+The prototype contains all the methods.
+The array in our code then inherits all the methods from the blueprint.
+
+_Functional programming(FP):_
+
+Many languages are only procedural,oop or functional, but javascript does all of it. That makes it super flexible.
+
+JS is a language with `first-class` functions, _functions that are treated as variables_.
+We can pass into other functions and return functions from functions.
+
+Javascript is a `dynamic-typed` language - we don't assign datatypes to variables. They only become known when the engine executes the code.
+Also the type of variables can easily be changed.
+If you want to use JS with types you can use `Typescript`
+
+Concurrency model is how the engine handles multiple tasks that are happening at the same time.
+JS runs in one single thread - it only can do one thing at a time.
+In computing a thread is a set of instructions executed in the cpu. Where the code is executed in the processor.
+
+To avoid that long task are blocking the single thread we create an event loop. The event loop executes these tasks in the `background` and puts them back in the main thread once they are finished.
+
+## Javascript Engine and Runtime
+
+A Javascript engine is a program that executes JS code. Every browser has its own javascript engine but the most well known is googles v8 engine which powers chrome and node.js.
+
+Any JS engine contains a `call stack` and a `heap`.
+A `call stack` is where our code gets executed - using execution context
+A `Heap` is a unstructured memory pool which stores all the objects that our application needs.
+
+How is the code compiled to machine code?
+There are two ways how code gets converted into machine code
+
+### Compilation
+
+The entire code is converted into machine code at once - written to a binary file that can be executed by a computer.
+Two steps:
+Source code -> COMPILATION = machine code -> EXECUTION = program running
+
+### Interpretation
+
+Interpreter runs through source code and executes it line by line.
+Source code -> EXECUTION line by line = program running
+
+The source code gets converted into machine code right before execution - not ahead of time.
+
+Modern JS now uses a mix of interpretation and compilation - _Just-in-time compilation_
+Compiles the entire code in machine code once and executes it right away.
+
+### JS Engine example
+
+![JS Engine](./img/JSEngine.png)
+As JS code enters the engine the first step is to `Parse`/read the code.
+During the `Parsing` the code is parsed into a data structure called abstract syntax tree - AST.
+Every line of code that is meaningful to the engine gets spit up in pieces and then saving
+all the pieces into the tree in a structured way. It also checks if there are syntax errors.
+
+Next step is the compilation which takes the generated AST and compiles it into machine code.
+This machine code gets executed right away. The execution happens in the `Call Stack`.
+
+Modern JS engines have optimisation strategies where they first create unoptimised version of machine code
+so it can start executing as fast as possible. Then in the background code is optimised and recompiled in the background multiple times.
+
+### JS Runtime
+
+Browsers are JS Runtime.
+A JS runtime is like a big box which includes all the things that we need to use JS.
+At the heart is always the JS Engine.
+In order to work properly the engine needs access to apis like `DOM`, `Timers`,`FetchAPI`. WebAPIs are functionalities provided to the engine but not part of JS language. JS get's access to theses apis over the gloabel `window` object.
+
+![alt text](./img/JSRuntime.png)
+
+A typical JS runtime also contains a `Callback queue` which is a data structure that contains all the callback functions.
+We attach eventHandler functions to DOM elements to react to certain events. These event handler functions are called `Callback functions`.
+As the event happens, e.g. `click`, the callback function will be called - the callback function is put in the callback queue. When the call stack is empty the callback function is passed into the call stack so it can be executed. This is caused by the event loop - it takes callback functions from the callback queue and puts them into the call stack so they can be executed.
+
+### How is JS code executed
+
+When the compilation is finished a `global execution context` is created for the top level code - code that is not inside a function. So only the code outside of functions is executed because you only want to execute the functions when they are called.
+
+A `global execution context`is an environment where JS is executed. It stores all the necessary information for the execution like variables or arguments passed into a function.
+
+In any JS project there is only one `global execution context`.
+
+Once the top level code is processed functions get executed as well. For each function call one execution context is created - containing all the necessary information to run the function.
+All these execution contexts make up the call stack.
+
+Inside a execution context is:
+
+- Variable environment: `let`, `const` and `var` declarations
+  - Functions
+  - `arguments` object
+- Scope chain
+- `this` keyword
+
+Arrow functions don't have `arguments` object nor `this` keyword.
+
+![alt text](./img/ExecutionContext.png)
+
+The `Call Stack` is where the execution contexts get stacked on top of each other in order to keep track of where we are in the program execution.
+So the execution context that is on the top of the stack gets executed. When it's finished it gets removed from the stack and the next execution context gets processed.
+
+If the program is completely finished also the `global execution context` is popped out of the call stack.
+
+### Scope and Scope chain
+
+Scoping defines how the variables are organized and accessed in our program.
+"Where do they live and where can we access a variable"
+
+In JS we have `Lexical scoping` - scoping is controlled by `placement` of functions and blocks in the code.
+A function inside another function has access to the variables of its parent function.
+
+```JS
+
+function func1(){
+    func2()//Has access to the variables of func1
+}
+```
+
+`Scope` environment in which a certain variables and functions is declared: `global`, `function`and `block` scope.
+
+`global` - Outside of any function or block; variables are accessible _everywhere_
+`function` - Each function creates a scope in which its variables are accessible - also called `local` scope - local life in the functions and are not accessible outside of the function
+`block` - from ES6 blocks also create a scope. So for example variables created in an if block have there own scope in the if block. Same for for block etc. This applies only to `let` and `const` variables. `var` would be accessible in the function or global scope.
+
+From ES6 all functions are also `block` scoped - so only accessible inside that block
+
+`Scope of variable` region of code where variable can be _accessed_
+
+Every scope has access to all variable from all outer scopes. You can see that `second()` has access to the variables of the `first()` function and the `global` scope.
+
+```JS
+const myName = "Leo";
+
+function first() {
+    const age = 30;
+
+    if(age>=30){
+        const decade = 3;
+        var millenial = true;
+    }
+    function second(){
+        const job = "worker";
+        console.log(`${myName} is a ${age}-old ${job}`)
+    }
+    second()
+}
+first()
+```
+
+So a function looks in itself if it can find the variable, if not it looks up in the next outer scope.
+This is called _variable lookup in scope chain_. One `scope` can only look up in the scope chain not down.
+
+![Scope Chain](./img/ScopeChain.png)
+
+### Hoisting
+
+Makes some types of variables accessible before they are declared in the code.
+Behind the scenes - before the execution the code is scanned for variable declarations - for each variable found, a new property is created in the variable environment object.
+
+It doesn't work the same for all variable types.
+![HoistingOverview](./img/HoistingOverview.png)
+
+`function` declarations are hoisted and the initial value is the actual function - we can use function declarations before they are actually declared - because they are stored in the variable environment object before the code starts executing.
+
+`var` variables also are hoisted but we don't get the declared value we get the initial value `undefined`. One of the reason why we almost never use `var`
+
+`let` and `const` are not hoisted - they are set to `<uninitialized>` no value at all - not even undefined. These variables are placed in the `TDZ` [temporal dead zone](#temporal-dead-zone).
+
+`function expressions and arrows` depend on if using `var` `let/const`
+
+```JS
+
+console.log(addDecl(2,3));// -> Works
+console.log(addExpr(2,3));// -> Doesn't Work
+console.log(addArrow(2,3));// -> Doesn't Work -> AddArrow function is undefined(2,3)
+
+function addDecl(a,b) {
+    return a+b;
+}
+
+const addExpr = function(a,b) {
+    return a+b;
+}
+
+var addArrow = (a,b) => a+b;
+```
+
+#### Temporal dead zone
+
+![alt text](./img/TemporalDeadZone.png)
+The `const job = 'teacher'` will only be accessible from the line it is defined because
+the lines before lies the _Temporal Dead Zone_ of that `job` variable - so we can't use it there. The region where the variable is defined but can't be used anyway - as if the variable doesn't even exist.
+
+In the first `console.log()` with the `job` variable we get an
+`ReferenceError: Cannot access 'job' before initialization` error.
+
+The `TDZ` got invented to catch errors like accessing variables before declaration.
+It also allows `const` variables to not be reassigned.
+
+Hosting got invented to make it possible to use functions before there actual declarations.
+
+### this keyword
+
+`this` keyword is special variable that is create for every execution context / every function.
+`this` keyword will always take the value of the _owner_ of the function in which the `this` is used - it points to the owner of the function.
+
+The value of `this` is depends on how the function is called - _NOT_ static.
+`this` is only assigned when the function is called.
+
+`Method` - `this` -> Points to Object that is calling the method
+
+```JS
+const jonas = {
+    name: 'Jonas',
+    year: 1889,
+    calcAge:function () {
+        return 2037 - this.year;
+    }
+}
+jonas.calcAge()
+```
+
+Here `this.` points to `jonas`
+
+_Global scope_
+
+```JS
+//global scope
+console.log(this)
+//returns the window object
+```
+
+`Simple function call` - `this`-> undefinied(in strict mode) Otherwise points to `window`
+
+```JS
+const calculate = function(a,b){
+    console.log(this)
+}
+calculate(1,2)
+//Return undefined
+```
+
+`Arrow functions` - `this` -> `this` of the function that surrounds the arrow function
+
+```JS
+const calculate = (a,b) => {
+    console.log(this)
+}
+calculate(1,2)
+// returns the window because it is the surrounding "function"/scope of the arrow function
+```
+
+`Event listener` - `this` -> DOM element that the handler is attached to
+
+`this` doesn't point to the _function itself_ nor the _variable environment_
+
+Never user an arrow function as a method in an object
+```JS
+//Dont do this!!!!
+const hans = {
+    ...
+    greet: ()=> {
+
+    }
+}
+// Use a normal function
+const hans = {
+    ...
+    greet: function() {
+        concole.log(this)
+    }
+}
+```
+
+### Arguments Keyword
+Regular Javascript functions have an arguments keyword which store all the passed arguments. 
+It is also possible to pass more arguments than specified into a function. But you can't use it in arrow functions.
+```JS
+const addExpr = function(a,b) {
+    console.log(arguments);
+}
+
+addExpr(2,5,40,45)
+//-> agrumentsArray[2,5,40,45]
+```
+
+### Memory Management: Primitives and Objects
+Memory management is how JS allocates space in memory to create variables and later frees up the memory.
+Every value in the program goes through a memory lifecycle.
+
+In the lifecycle:
+- When a variable gets created a peace of memory gets allocated
+- Then whenever the variable or its value is used the memory gets used.
+- When the variable is not used anymore the memory is released.
+
+For different types of values memory is allocated in different places in the JS Engine.
+
+Values are ether primitive types or objects in JS.
+
+Objects get stored in the `Heap` of the JS Engine and primitive values get stored in `Call Stack`.
+
+Object Variables in the call stack don't hold the objects themselves but references to the objects in the heap
+References to objects are also stored in the `Call Stack`
+![Object Reference](./img/ObjectReference.png)
+
+When we copy a variable that contains a reference to an object then we only copy the reference to the object.
+But we have to be aware that if we change a value in the copied variable it will also change the value in the original object because we overwrite the reference and both elements have the same reference.
+![Changing Object Reference](./img/ChangingObjectReference.png)
+
+So to properly copy on object and not copying the reference we need to use the spread operator `...`
+```JS
+//Shallow copy
+const object = {
+    name:"franz",
+    age:20
+}
+
+const objectCopy = {...object}
+```
+But be aware this only creates a `shallow` copy. It copies the `primitives` but if the object would contain another object/ a object reference it wouldn't really make a unique copy of the object reference.
+
+To create a *Deep copy/clone* for example when we want to manipulate a big object in our code and make sure that the original data isn't affected by these changes.
+```JS
+//Deep copy/clone
+const objectClone = structuredClone(object);
+```
+
+### Memory Management: Garbage Collection

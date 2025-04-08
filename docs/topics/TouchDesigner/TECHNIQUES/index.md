@@ -8,6 +8,10 @@ Here I'm gonna collect some fun and interesting techniques
 
 # Latest Added
 
+[Show Operator in UI](ShowOperatorInUI.md)
+
+[Animate Over Timeline](AnimteOverTimelineLength.md)
+
 [Mapping](./Mapping/Mapping.md)
 
 [Corner Pinning with StonerCOMP](./Mapping/CornerPinningInterface.md)

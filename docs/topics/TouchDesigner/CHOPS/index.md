@@ -7,6 +7,13 @@ comments: true
 Welcome in CHOP Land!
 
 ## Last added
+[Create Infinite Looping Noise Channel With SOP](InfiniteLoopingNoiseChannel.md)
+
+[Define Looping Behavior of Channel at Boundaries](DefineLoopingBehaviourCHOP.md)
+
+[Flip Channels Path](FlipChannelPath.md)
+
+[Reduce amount channels but keep shape](ReduceNumChannelsButKeepShape.md)
 
 [Replicate Sample At End and Beginning](ReplicateSampleAtEndBegginng.md)
 

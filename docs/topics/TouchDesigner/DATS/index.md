@@ -9,6 +9,7 @@ comments: true
 Welcome in DATs Land!
 
 ## Last added
+[Select Table Data By Value](SelectTableDataByValue.md)
 
 [Replace Specific Data in Table with MergeDAT](ReplaceSpecificDataTableMerge.md)
 

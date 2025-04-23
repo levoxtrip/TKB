@@ -7,6 +7,7 @@ comments: true
 Welcome in SOPs Land!
 
 ## Last added
+[Improve Performance Instancing](ImprovePerformanceInstancing.md)
 
 [Cut Polygon with ClipSOP](CutPolygonSOPWithClip.md)
 

@@ -7,6 +7,7 @@ comments: true
 Here I'm gonna collect some fun and interesting techniques
 
 # Latest Added
+[Automatically chain selected nodes](AutoChainNotes.md)
 
 [Show Operator in UI](ShowOperatorInUI.md)
 

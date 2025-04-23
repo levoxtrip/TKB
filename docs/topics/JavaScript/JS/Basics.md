@@ -460,6 +460,132 @@ if(hasDriversLicence && hasGoodVision){
 }
 ```
 
+### Properties of logical operators
+But the logical operators doesn't necessary need to return *boolean* values
+`console.log(3||'Jonas') -> 3`
+
+They can use and return any data type.
+
+Logic operators do also `short-circuiting` or *short-circuit-evaluation*. It returns the first value that is a *truthy* value.
+
+*Truthy values* - all Values except `false,0,-0,0n,"",null,undefinied,NaN,document.all`
+
+#### OR operator
+The OR operator returns the first truthy value of all the operants or the last value if all other values are *falsy*.
+So we can use the *OR* operator to set default values.
+
+```JS
+3 || 'Jonas' -> 3
+'' || 'Jonas' -> Jonas
+true || 0 -> true
+undefined || null -> null //because undefined not truthy it automatically returns the other value
+false || undefined || null || 'Hallo' -> 'Hallo'
+```
+
+So this allows us to short-circuit the assigning of default values if a value doesn't exist
+```JS
+//instead of 
+const guest = concert.guests ? concert.guests : 20;
+// we can 
+//if concert.guests undefined it sets 20 as default. If not undefined it sets concert.guests
+const guest = concert.guests || 20;
+```
+The only problem is when `concert.guests` exists but is `0`. Then it sets 20 although concert.guests is defined as 0.
+
+#### Nullish Coalescing Operator
+*Nullish Coalescing* works with the idea of *nullish* values which are only `null` and `undefined`
+For that case we need to use *Nullish Coalescing Operator* `??`
+```JS
+concert.guests = 0;
+const guest = concert.guests ?? 10;
+guest -> 0
+```
+
+
+#### AND operator
+
+The *AND* operator works the exact opposite way to the *OR* operator. It returns the first *falsy* value or the last value if all of them are *truthy*.
+
+```JS
+//When first value is falsy -> return that value
+// Because && is only true when both values are true -> so if the first value is false already we don't need to look at the second and we return the first value
+0 && 'Jonas' -> 0
+//when first value is truthy -> return the second value
+7 && 'Jonas' -> 'Jonas'
+//this returns the first falsy value
+'hello' && '23' && null && 'Jonas' -> null
+```
+So we can use the *AND* operator to execute code if the first value is true.
+
+```JS
+//instead of
+if(concert.band){
+    concert.start()
+}
+// you can do
+concert.start && concert.start()
+```
+
+
+
+
+
+
+
+
+
+#### Logical Assignment Operators
+JS has *Logical Assignment Operators* which makes the assignment event faster
+
+`||=` assigns a value to a variable if the current variable is *falsy*
+
+```JS
+const house1 = {
+    street:"street1",
+    doors: 1
+}
+const house2 = {
+    street:"street2",
+    windows:10
+}
+
+house1.doors ||= 2; -> house1.doors = 1
+house2.doors ||= 2; -> house2.doors = 2
+```
+Again this doesn't work when the value is actually defined as `0`
+
+For this we can use the *nullish* operator `??`
+```JS
+const house1 = {
+    street:"street1",
+    doors: 0
+}
+const house2 = {
+    street:"street2",
+    windows:10
+}
+house1.doors ??= 10; -> house1.doors = 0;
+house2.doors ??= 10; -> house2.doors = 10;
+```
+
+There is als the `&&=` assignment.
+This allows us to replace a value when there is actually a value.
+
+```JS
+const house1 = {
+    street:"street1",
+    doors: 1
+}
+const house2 = {
+    street:"street2",
+    windows:10
+}
+
+house1.windows &&= 23 -> house2.windows = undefined
+house2.windows &&= 23 -> house2.windows = 23
+```
+
+
 ## Loops
 
 Loops allow to execute repetitive tasks.
@@ -705,7 +831,25 @@ function giveMeClosure(){
 
 JS functions can only return one thing.
 
-### Regular functions vs. Arrow functions
+### Rest Pattern in Funktions
+We can use the *Rest* pattern to unpack an undefined amount auf parameters into a function
+```JS
+const add = function(...parameters){
+    let sum = 0;
+    for(let i = 0;i<parameters.length;i++){
+        sum += parameters[i];
+    }
+    console.log(sum);
+}
+
+add(2,4)
+add(3,2,3)
+add(3,4,5,6,6)
+
+const x = [2,68,93]
+add(...x);
+
+```
 
 # Arrays
 
@@ -734,9 +878,10 @@ To change the data inside an array at a specific position.
 
 Even though we defined an array as `const` we still can change its elements. But we can't exchange it with a whole new array.
 
-### Array operations
 
-#### Add Element to the end of the array
+## Array operations
+
+### Add Element to the end of the array
 
 With `.push()` we can add an element to the end of the array.
 `friends.push('me')`
@@ -817,6 +962,100 @@ for(let i = 0; i<array.Length;i++){
 With `.splice` we replace the content of the array with nothing.
 `array.splice(0,array.length)`
 
+### Unpack all array elements
+```JS
+const arr = [7,8,9]
+const badArray = [5,6,arr[0],arr[1], arr[2]]
+
+const goodWay = [5,6,...arr];e
+```
+So the *spread* operator takes each element out of an array and adds them as a single element into another array.
+
+### Expand existing array
+```JS
+const oldMenu = ["pizza","pasta","dumplings"]
+const newMenu = [...oldMenu,"Choco"]//this creates a new array
+```
+
+To useful application for using the *spread operator* are creating shallow copies of an array
+```JS
+const menu = ["pizza","pasta","dumplings"]
+const copiedMenu = [...menu]
+```
+
+
+and merge multiple arrays together into a new one
+```JS
+const menu1 = ["Dumplings","noddles with water"]
+const menu2 = ["pizza","burger"]
+const menu3 = ["IceCream","Tiramisu"]
+const allDishes = [...menu1,...menu2,...menu3]
+```
+
+The *spread operator* works on all iterables: arrays, strings,maps,sets. But NOT objects.
+
+
+### Rest pattern - Collect unspecified elements in assignment
+The *rest pattern* allows us to pack elements, that aren't specifically assigned, into an array.
+Always use the *rest pattern* as the last element.
+
+```JS
+const [a,b,...others] = [1,2,3,4,5]
+console.log(a) -> 1
+console.log(b) -> 2
+console.log(others) -> 3,4,5
+```
+
+## Input multiple values into array via prompt
+```JS
+const inputs = [prompt("Input 1?"),prompt("Input 2?"),prompt("input3")]
+```
+
+## Array Destructuring
+to destructure an array we can use `[]` to assign elements
+```JS
+const arr = [2,3,4]
+const [x,y,z] = arr
+```
+
+Only taking the first and the last element
+```JS
+const arr = [2,3,4]
+const[x,,z] = arr
+```
+
+This makes also switching the order easier
+```JS
+[main,secondary] = [secondary,main]
+```
+
+With destructuring we can have a function returning an array and then directly destruct the result into different values
+```JS
+...
+const restaurant = {
+order: function(starterIndex,mainIndex){
+    return [this.starterMenu[starterIndex],this.mainMenu[mainIndex]];
+}
+}
+//Destructuring the returned array
+const[starter,main] = restaurant.order(2,0)
+```
+To destructure a nested array
+```JS
+const nested = [4,5,[6,3]]
+const [i,,[j,k]] = nested;
+//i = 4
+//j = 6
+//k = 3
+```
+
+Sometimes it is useful to set *default values*  when we destructure arrays. For example when we get data from an api
+```JS
+const [a=1,b=2,c=3] = [8,9]
+a = 8
+b = 9
+c = 3
+```
 ## Get Value from prompt
 
 We can use the `prompt()` function to ask the user to input a value.
@@ -955,6 +1194,104 @@ const human = {
 }
 ```
 
+### Destructure Objects
+To destructure objects we use `{}`
+```JS
+const object = {
+    name:"me",
+    location:"world"
+}
+
+const {name,location} = object
+console.log(name,location)
+```
+
+To change the *variable names* from the *property names* we
+```JS
+
+const {name:newName,location:newLocationName} = object;
+console.log(newName,newLocationName)
+```
+
+To set default values for a property that may not exist in the object. If it exists the default values get's overwritten.
+```JS
+// sets menu to empty 
+const {name,location,menu = []} = object;
+console.log(name,location,menu)
+```
+
+#### Mutating variables while destructuring objects
+In order to mutate the variables `a,b` while destructuring our object we need to put it inside `()` to make it work.
+```JS
+let a = 111;
+let b = 999;
+const obj = {a:23,b:7,c:14};
+({a,b} = obj);
+console.log(a,b);
+```
+
+#### destructure nested objects
+
+```JS
+const object = {
+    feed: {left:43,
+        right:44
+    }
+}
+
+const {feed:{left:l,right:r}} = object;
+console.log(l,r)
+```
+
+this allows to use destructuring inside functions for example
+```JS
+const order = {
+    food:"pizza",
+    time:14
+}
+
+
+function orderSomething({food = "none" ,time = 0}){
+    console.log(`Order received: ${food} at ${time}`);
+}
+
+orderSomething(order);
+```
+
+### Spread operation on objects
+```JS
+const object1 = {
+    name:"rolfo",
+    location:"Berlin"
+}
+
+const object2 = {...object1, weather:"good"}
+```
+
+### Shallow copy of object
+```JS
+const object2 = {...object1}
+```
+
+### Rest operations on objects - Collect unspecified elements in assignment
+The *rest pattern* allows us to pack elements, that aren't specifically assigned, into an object.
+Always use the *rest pattern* as the last element.
+
+```JS
+const object = {
+    a:0,
+    b:2,
+    c:4,
+    d:6,
+    f:8
+}
+
+const {myA,myB,...others} = object
+console.log(myA) -> 0
+console.log(myB) -> 2
+console.log(others) -> {c:4,d:6,f:8}
+```
+
 # OOP
 
 JavaScript supports object oriented programming with the `class` keyword.
@@ -1039,7 +1376,7 @@ const dict = new Map([
 JS is _garbage collected_ which means it will automatically deallocate objects from memory when they are no longer referenced in the code.
 
 With Maps and Sets all your properties will always be referenced.
-For optimisation there is `WeakMap()` and `WeakSet()` that contain properties that can garbage collected and the memory reduced.
+For optimization there is `WeakMap()` and `WeakSet()` that contain properties that can garbage collected and the memory reduced.
 
 # Non blocking event loop
 
@@ -1339,7 +1676,7 @@ You used a wrong variable name.
 
 How to solve problems in coding:
 
-- stay calm and slow down - dont jump at a problem without a plan
+- stay calm and slow down - don't jump at a problem without a plan
 - take a logical and rational approach
 - Framework:
 
@@ -1377,6 +1714,9 @@ Bundler can do even more. You can use a bundler to create a local server, manage
 # Webpack
 
 Webpack is most popular bundler.
+
+
+
 
 # JS behind the scenes
 
@@ -1727,3 +2067,26 @@ const objectClone = structuredClone(object);
 ```
 
 ### Memory Management: Garbage Collection
+*Call stack*
+Variable environment is simply deleted when execution context pops off stack
+![EC Pops](./img/ECPops.png)
+
+*Heap*
+In order to clean up old unused objects from the heap JS uses `Garbage Collection`. The JS Engine runs `Garbage Collection` automatically whenever it thinks it is necessary. The developer can't instruct to do it.
+
+*Mark-and-sweep-Alogrithm*
+1. Mark all objects that are *reachable* from a root/starting point like global and other execution context as "alive".
+If objects can be reached object is considered alive.
+2. Sweep - Delete all un-marked objects and reclaim memory for future allocations.
+![Sweep](./img/Sweep.png)
+When  the getTasks() finishes execution and the execution context pops of the stack, the garbage collection deletes the objects from getTasks() because they aren't reachable any more.
+
+Any globally defined object will never be garbage collected because the `Global EC` exists whe whole lifetime of the program.
+
+*Memory Leaks*
+When an object that is no longer needed by the program is incorrectly still actively reachable by the garbage collection from one of the roots. So the object is marked as alive and not deleted.
+Forgetting to throw away stuff that you don't use anymore.
+
+Often old and undesired reference happen from event listener and timers. If a timer creates an object this object will always be reachable unless the developer deletes the timer when not needed anymore.
+Same for event listeners.
+Also avoid declare large objects as global objects because they will never be garbage collected

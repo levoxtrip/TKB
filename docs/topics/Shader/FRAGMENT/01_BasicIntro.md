@@ -14,7 +14,7 @@ For that the shader receives the position/coordinate of the respective pixel as 
 
 Every single pixel gets processed independently from the others. There is no before or after it is always just the current pixel the needs to calculated now.
 
-With `gl_FragColor` the shader definies the final color value of the pixel that gets returned from the shader.
+With `gl_FragColor` the shader defines the final color value of the pixel that gets returned from the shader.
 `gl_FragColor` is `vec4` - a Vector that contains 4 values - `vec4(r,g,b,a)`
 
 ![VertexFragmentShader](../img/VertexFragmentShader.png)

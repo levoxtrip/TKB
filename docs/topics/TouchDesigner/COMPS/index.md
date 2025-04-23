@@ -1,15 +1,18 @@
 ---
 comments: true
-
+ - TD/COMP
 ---
-
-
 
 # COMPs
 
 Welcome in COMPs Land!
 
 ## Last added
+[Show Visuals as Background in Container](SetBackgroundContainer.md)
+
+[Container Vs Base](ContainerVsBase.md)
+
+[Node Flags](NodeFlags.md)
 
 [Floating Window](FloatingWindow.md)
 

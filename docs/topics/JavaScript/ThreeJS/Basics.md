@@ -1064,7 +1064,7 @@ Deactivating the `depthWrite` often can fix your problems.
 
 #### Blending
 
-To create a nice effect when your praticles overlap we can use `Blending`.
+To create a nice effect when your particles overlap we can use `Blending`.
 `particlesMaterial.depthWrite = false`
 `particlesMaterial.blending = THREE.AdditiveBlending`
 
@@ -1231,6 +1231,9 @@ With the `target` property we can change where it is looking.
 
 To smooth the animation of the `OrbitControls` we can use `.enableDamping` property and set it to `true`
 `controls.enableDamping = true`
+`controls.dampingFactor = 0.03;`
+To let the orbit controls automatically rotate we can set
+`controls.autoRotate = true;`
 
 ## Map controls
 
@@ -1423,6 +1426,17 @@ If not necessary try to avoid _DoubleSide_ because it raises the number of trian
 Materials react by default to fog. We can change that with
 `material.fog = false`
 
+## Changing all materials of scene or object
+
+```JS
+scene.traverse((child) => {
+  if(child instanceof THREE.Mesh && child.material instanceof THREE.MeshStandardMaterial){
+    child.material.envMap = environmentMap;
+    ...
+
+  }
+})
+```
 ## Wireframe Material
 
 We set a property inside the Material `wireframe: true`
@@ -2043,6 +2057,12 @@ const displacementMap = textureLoader.load(`src/assets/img/height.png`)
 displacementMap.wrapS = displacementMap.wrapT = THREE.RepeatWrapping;
 ```
 
+
+
+
+## Blending Materials
+We can blend the materials of the different objects when we set 
+`blending:THREE.AdditiveBlending` for the materials.
 # Scene
 
 The `scene` object has `.children` property which allows us to access the children of the scene and more importantly
@@ -2141,6 +2161,8 @@ We also can set the target of the directional light with the `target` property
 
 The `HemisphereLight` is similar to the `AmbientLight` but it emits a different color from the ground than from the sky.
 `const hemLight = new THREE.HemisphereLight('colorSky','colorGround',intensity)`
+
+You also can add `flatShading:true` as a parameter.
 
 ## RectAreaLight
 
@@ -3548,18 +3570,691 @@ export default class Experience {
 ...
 const experience = new Experience(document.getSelector('canvas'))
 ```
+If you have only one experience and you want to access the window object you can write
 
+```JS
+export default class Experience {
+  constructor(canvas){
+    this.canvas = canvas;
+    //CAREFUL WITH MULTIPLE EXPERIENCES THIS OVERWRITES THEM
+    window.experience = this//This gives us the window object
+  }
+}
+```
+
+It always can make sense to have some *Util* classes saved that you can use in different projects.
+```JS
+export default class Sizes {
+  constructor(){
+    this.width = window.innerWidth;
+    this.height=window.innerHeight;
+    this.pixelRatio = Math.min(window.devicePixelRatio,2);
+  
+  window.addEventListener("resize",()=>{
+    this.width = window.innerWidth;
+    this.height = window.innerHeight;
+    this.pixelRatio = Math.min(window.devicePixelRatio,2);
+  })
+  
+  }
+
+
+}
+...
+import Sizes from './Utils/Sizes.js'
+export default class Experience {
+  constructor(canvas){
+    this.sizes = new Sizes();
+    console.log(this.sizes.width)
+    console.log(this.sizes.height)
+    console.log(this.sizes.pixelRatio)
+  }
+}
+```
+### Event Emitter
+To enable the class to emit events it needs to inherit from a `EventEmitter` class.
+```JS
+// This class lets you create and manage custom events.
+// You can "listen" to events with `on()`, stop listening with `off()`, and "trigger" events with `trigger()`.
+
+export default class EventEmitter {
+    constructor() {
+        // Create an object to store all the event listeners (callbacks)
+        this.callbacks = {}
+
+        // Add a default "base" namespace to organize events
+        this.callbacks.base = {}
+    }
+
+    /**
+     * Start listening to events.
+     * 
+     * @param _eventNames - The name(s) of the events to listen for (e.g. 'click', 'hover.menu')
+     * @param callback - The function to run when the event is triggered
+     */
+    on(_eventNames, callback) {
+        // Check if event names or callback are missing
+        if (typeof _eventNames === 'undefined' || _eventNames === '') {
+            console.warn('wrong names')
+            return false
+        }
+
+        if (typeof callback === 'undefined') {
+            console.warn('wrong callback')
+            return false
+        }
+
+        // Clean up and split the string of event names into an array
+        const eventNames = this.resolveNames(_eventNames)
+
+        // Go through each event name in the list
+        eventNames.forEach((eventName) => {
+            // Separate the event name and namespace (e.g. 'hover.menu' → value: 'hover', namespace: 'menu')
+            const _eventName = this.resolveName(eventName)
+
+            // If the namespace doesn’t exist yet, create it
+            if (!(this.callbacks[_eventName.namespace] instanceof Object))
+                this.callbacks[_eventName.namespace] = {}
+
+            // If this specific event name doesn’t exist yet, create an empty list to store all the functions that listen to event
+            //If there is no list of callbacks yet for this specific event, create an empty one."
+            if (!(this.callbacks[_eventName.namespace][_eventName.value] instanceof Array))
+                this.callbacks[_eventName.namespace][_eventName.value] = []
+
+            // Add the callback function to this event
+            this.callbacks[_eventName.namespace][_eventName.value].push(callback)
+        })
+
+        // Allow method chaining (e.g. emitter.on(...).on(...))
+        return this
+    }
+
+    /**
+     * Stop listening to one or more events.
+     * 
+     * @param eventNames - One or more event names to remove (e.g. 'click', 'hover.menu', 'menu.')
+     */
+    off(eventNames) {
+        // Check if input is missing
+        if (typeof eventNames === 'undefined' || eventNames === '') {
+            console.warn('wrong name')
+            return false
+        }
+
+        // Clean up and split the string of event names into an array
+        const _eventNames = this.resolveNames(eventNames)
+
+        // Go through each event name
+        _eventNames.forEach((eventName) => {
+            const _eventName = this.resolveName(eventName)
+
+            // If only a namespace was provided (e.g. 'menu.'), remove the entire namespace
+            if (_eventName.namespace !== 'base' && _eventName.value === '') {
+                delete this.callbacks[_eventName.namespace]
+            }
+
+            // Otherwise, remove a specific event in one or all namespaces
+            else {
+                // If no namespace is specified, try to remove the event from every namespace
+                if (_eventName.namespace === 'base') {
+                    for (const namespace in this.callbacks) {
+                        if (
+                            this.callbacks[namespace] instanceof Object &&
+                            this.callbacks[namespace][_eventName.value] instanceof Array
+                        ) {
+                            // Delete this event from the namespace
+                            delete this.callbacks[namespace][_eventName.value]
+
+                            // If the namespace is now empty, delete it too
+                            if (Object.keys(this.callbacks[namespace]).length === 0)
+                                delete this.callbacks[namespace]
+                        }
+                    }
+                }
+
+                // If a specific namespace is given, remove only from that one
+                else if (
+                    this.callbacks[_eventName.namespace] instanceof Object &&
+                    this.callbacks[_eventName.namespace][_eventName.value] instanceof Array
+                ) {
+                    delete this.callbacks[_eventName.namespace][_eventName.value]
+
+                    // Remove namespace if empty
+                    if (Object.keys(this.callbacks[_eventName.namespace]).length === 0)
+                        delete this.callbacks[_eventName.namespace]
+                }
+            }
+        })
+
+        return this
+    }
+
+    /**
+     * Trigger (fire) an event so that all the functions listening to it will run.
+     * 
+     * @param _eventName - The name of the event to trigger
+     * @param _args - Optional array of arguments to pass to the callback functions
+     */
+    trigger(_eventName, _args) {
+        // Check if name is missing
+        if (typeof _eventName === 'undefined' || _eventName === '') {
+            console.warn('wrong name')
+            return false
+        }
+
+        let finalResult = null
+        let result = null
+
+        // Make sure _args is an array, or use an empty array if none provided
+        const args = !(_args instanceof Array) ? [] : _args
+
+        // Clean and resolve the event name
+        let name = this.resolveNames(_eventName)
+        name = this.resolveName(name[0]) // Only take the first resolved name
+
+        // If no specific namespace is given
+        if (name.namespace === 'base') {
+            // Look for the event in every namespace
+            for (const namespace in this.callbacks) {
+                if (
+                    this.callbacks[namespace] instanceof Object &&
+                    this.callbacks[namespace][name.value] instanceof Array
+                ) {
+                    // Call every function attached to this event
+                    this.callbacks[namespace][name.value].forEach(function(callback) {
+                        result = callback.apply(this, args)
+
+                        // Store the first result returned
+                        if (typeof finalResult === 'undefined') {
+                            finalResult = result
+                        }
+                    })
+                }
+            }
+        }
+
+        // If a specific namespace is given
+        else if (this.callbacks[name.namespace] instanceof Object) {
+            if (name.value === '') {
+                console.warn('wrong name')
+                return this
+            }
+
+            // Call every function attached to this event in the given namespace
+            this.callbacks[name.namespace][name.value].forEach(function(callback) {
+                result = callback.apply(this, args)
+
+                // Store the first result
+                if (typeof finalResult === 'undefined')
+                    finalResult = result
+            })
+        }
+
+        return finalResult
+    }
+
+    /**
+     * Helper function that cleans and splits event name strings.
+     * 
+     * Example: 'click, move.menu' → ['click', 'move.menu']
+     */
+    resolveNames(_eventNames) {
+        let names = _eventNames
+
+        // Remove weird characters except letters, numbers, commas, slashes, and dots
+        names = names.replace(/[^a-zA-Z0-9 ,/.]/g, '')
+
+        // Convert commas and slashes to spaces
+        names = names.replace(/[,/]+/g, ' ')
+
+        // Split by space into an array
+        names = names.split(' ')
+
+        return names
+    }
+
+    /**
+     * Helper function that splits a name like 'move.menu' into:
+     * {
+     *   original: 'move.menu',
+     *   value: 'move',
+     *   namespace: 'menu'
+     * }
+     */
+    resolveName(name) {
+        const newName = {}
+        const parts = name.split('.')
+
+        newName.original = name
+        newName.value = parts[0] // The event name (e.g. 'move')
+        newName.namespace = 'base' // Default to 'base' if no namespace is given
+
+        // If there's a namespace, use it
+        if (parts.length > 1 && parts[1] !== '') {
+            newName.namespace = parts[1]
+        }
+
+        return newName
+    }
+}
+```
+
+Now we can let the `Sizes` class inherit from the Event
+
+```JS
+import EventEmitter from '/EventEmitter.js'
+export default class Sizes extends EventEmitter
+{
+  constructor(){
+    super()
+
+    window.addEventListener('resize',()=> {
+      //we trigger from inside the Sizes class
+      this.trigger('resize')
+    })
+  }
+}
+import Sizes from '/Utils/Sizes.js'
+export default class Experience {
+  constructor(canvas){
+    window.experience = this;
+
+    this.canvas = canvas
+
+    this.sizes = new Sizes()
+
+    //Listen to the event from outside
+    this.sizes.on('resize',()=>{
+      this.resize()
+    })
+  }
+
+
+  resize(){
+    console.log("Window resize happended")
+  }
+}
+```
+
+### Time
+A `Time` class can be useful to store values like `currentTime`,`deltaTime`
+
+```JS
+import EventEmitter from '/EventEmitter.js'
+
+export default class Time extends EventEmitter
+{
+  constructor(){
+    super()
+    this.start = Date.now() // Starttime of experience
+    this.current = this.start // currenttimestand that changes each frame
+    this.elapsed = 0 // how much time was spent since start of experience
+    this.delta = 16 // how much time was spent since preivous frame - 16 is close to how many milliseconds there ibetween two frames at 60fps
+  //To avoid delta = 0 on first frame we call window.requestAnimation here
+  window.requestAnimationFrame(()=> {
+    this.tick()
+  })
+  }
+
+  tick(){
+    const currentTime = Date.now()
+    this.delta = currenTime - this.current
+    this.current = currentTime;
+    this.elapsed = this.current - this.start
+
+
+    this.trigger('tick')
+    console.log('tick')
+    window.requestAnimationFrame(()=>{
+      this.tick()
+    })
+  }
+ 
+}
+```
+```JS
+...
+import Time from '/Utils/Time.js'
+
+export default class Experience{
+  constructor(canvas){
+    ...
+    this.time.on('tick',()=>{
+      this.update()
+    })
+  }
+
+  update(){
+
+  }
+}
+```
+
+### Import Three.js with Camera,etc
+To handle the camera seprately we can create its own class for it
+
+```JS
+export default class Camera{
+  constructor(){
+
+  }
+}
+```
+
+```JS
+import * as THREE from 'three'
+...
+export default class Experience{
+  constructor(canvas){
+    //...
+    this.sizes = new Sizes()
+    this.time = new Time()
+    this.scene = new THREE.Scene()
+    this.camera = new Camera()
+  }
+}
+```
+In the `Camera` class we need to access properties from other classes like `Sizes` and maybe `Time`. 
+Ways to access values and properties from the `Experience` class from the camera
+- (1) Global variable
+- (2) Sending parameters
+- (3) using singleton
+
+(1) 
+With `window.experience = this` we add the experience as a global object to the window which makes `experience` accessible everywhere in the code.
+
+```JS
+export default class Camera
+{
+  constructor(){
+    this.experience = window.experience
+
+    console.log(this.experience)
+  }
+}
+```
+This can make sense to use if you are 100% sure to use just one experience.
+(2)
+To pass the experience as a parameter
+```JS
+export default class Experience{
+  constructor(canvas){
+    ...
+    //this == experience instance
+    this.camera = new Camera(this)
+    ...
+}
+}
+export default class Camera
+{
+  constructor(experience){
+    this.experience = experience
+  }
+}
+```
+(3)
+A singleton is a coding design pattern that assures that you only have `one` instance of something. And everytime we create a new instance of the same thing it references to the first created instance.
+```JS
+let instance = null
+
+export default class Experience 
+{
+  constructor(canvas){
+    if(instance){
+      //if instance already contains something leave the function 
+      return instance
+    }
+    //if instance is still null assign this instance experience to instance
+    instance = this
+  }
+
+
+  resize(){
+    this.camera.resize()
+  }
+}
+export default class Camera
+{
+  constructor(){
+    this.experience = new Experience()
+    // from the experience class we get the sizes
+    this.sizes = this.experience.sizes
+    this.scene = this.experience.scene
+    this.canvas = this.experience.canvas
+
+    this.setCamInstance()
+    this.setOrbitInstance()
+  }
+  setCamInstance(){
+    this.camInstance = new THREE.PerspectiveCamera(35,this.sizes.width/this.sizes.height, 0.1,100)
+    this.camInstance.position.set(3,4,5)
+    this.scene.add(this.camInstance)
+  }
+  setOrbitInstance(){
+    this.controls = new OrbitControls(this.camInstance,this.canvas)
+    this.controls.enableDamping = true;
+  }
+
+  resize(){
+    this.camInstance.aspect = this.sizes.width/this.sizes.height
+    this.instance.updateProjectionMatrix()
+  }
+}
+```
+
+Similar to the camera we can create a class for the renderer
+```JS
+import * as THREE from 'three'
+export default class Renderer {
+  constructor(){
+    this.experience = new Experience();
+    this.canvas = this.experience.canvas;
+    this.sizes = this.experience.sizes;
+    this.szene = this.experience.scene;
+    this.camera= this.experience.camera;
+    this.setRendererInstance()
+  }
+
+  setRendererInstance(){
+    this.instance = new THREE.WebGLRenderer({
+      canvas:this.canvas,
+      antialias:true
+    })
+    this.instance.toneMapping = THREE.CineonToneMapping
+    this.instance.toneMappingExposure = 1.75
+    this.instance.shadowMap.enabled = true
+    this.instance.shadowMap.type = THREE.PCFSoftShadowMap;
+    this.instance.setSize(this.sizes.width, this.sizes.height);
+    this.instance.setPixelRation(this.sizes.pixelRatio);
+
+  }
+  resize(){
+    this.instance.setSize(this.sizes.width,this.sizes.height);
+    this.instance.setPixelRatio(this.sizes.pixelRatio);
+  }
+  update(){
+    this.instance.render(this.scene,this.camera.camInstance);
+  }
+}
+
+import Renderer from '/Renderer.js'
+export default class Experience{
+  constructor(canvas){
+    ...
+    this.renderer = new Renderer()
+  }
+
+  resize(){
+    this.renderer.resize();
+    this.camera.resize();
+  }
+
+  update(){
+    this.camera.update()
+    this.renderer.update()
+  }
+}
+```
+
+And collect then all elements in a `World` class
+
+```JS
+export default class World{
+  constructor(){
+    this.experience = new Experience();
+    this.scene = this.experience.scene;
+  }
+}
+```
+
+For the world class we then can create classes like `Environment` with contain the lights, environmentmaps etc.
+
+What can make the code more structured is also a `ResourceLoader` class dedicated to loading the models
+```JS
+import EventEmitter from '/EventEmitter.js'
+import * as THREE from 'three'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
+export default class ResourceLoader extends EventEmitter {
+  constructor(sources){
+    super()
+    this.sources = sources
+
+    this.items = {}
+    this.toLoad = this.sources.length;
+    this.loaded = 0;
+    this.setLoaders();
+    this.startLoading();
+  }
+  setLoaders(){
+    this.loaders = {}
+    this.loaders.gltfLoader = new GLTFLoader();
+    this.loaders.textureLoader = new THREE.TextureLoader();
+    this.loaders.cubeTextureLoader = new THREE.CubeTextureLoader();
+  }
+
+  startLoader(){
+    for(const src of this.sources){
+      if(src.type === 'gltfModel'){
+        this.loaders.gltfLoader.load(src.path,(file)=>{
+          console.log(file,src);
+          this.sourceLoaded(src,file);
+        })
+      } else if(src.type=== 'texture'){
+        this.loaders.textureLoader.load(
+          src.path,(file)=>{
+            console.log(file,src);
+            this.sourceLoaded(src,file);
+          }
+        )
+      } else if(src.type==='cubeTexture'){
+          this.loaders.cubeTextureLoader.load(
+            src.path,(file)=>{
+              console.log(file,src);
+              this.sourceLoaded(src,file);
+            }
+          )
+      }
+    }
+  }
+
+  sourceLoaded(src,file){
+    items[src.name] = file;
+    this.loaded++;
+    if(this.loaded === this.toLoad){
+      this.trigger('allItemsLoaded')
+    }
+  }
+}
+
+```
+For that we add an extra file where we store the sources and its paths as an array of objets
+```JS
+//sources.js
+export default [
+  {
+    name:'asset1',
+    type:'cubeTexture',
+    path:[
+      'text/px.jpg',
+      'text/nx.jpg',
+      ...
+    ]
+  }
+]
+```
+
+We then can listen to the `allItemsLoaded` event an execute further code
+```JS
+export default class World{
+  ...
+  //wait till resources are loaded
+  this.resources.on('allItemsLoaded'), () => {
+    this.environment = new Environment()
+  }
+}
+```
+
+It also can be useful to create a own class for the `DebugUI`
+```JS
+import GUI from 'lil-gui'
+export default class Debug{
+  constructor(){
+    // this allows to only show the debug ui if acces the webisite with #debug at the end
+    //we check if debug is present with window.location.hash
+    this.active = window.location.hash === '#debug'
+
+    if(this.active){
+      this.ui = new GUI
+    }
+  }
+}
+```
+
+It is also important that when the Three.js experience is not used any more or some objects get distroyed that need to properly clean up.
+```JS
+export default class Experience{
+  ...
+
+  destroy(){
+    //sizes and till still gonna listen to the native JS events so we need to handle to stop listen to them as well 
+    this.sizes.off('resize')
+    this.time.off('tick')
+
+    this.scene.traverse((child) => {
+      if(child instanceof THREE.Mesh){
+        child.geometry.dispose();
+        //Loop through material properties
+        for(const key in child.material){
+          const value = child.material[key]
+
+          if(value && typeof value.dispose === 'function')
+          {
+            value.dispose()
+          }
+        }
+      }
+    })
+    this.camera.instance.dispose()
+    this.renderer.instance.dispose()
+    if(this.debug.active){
+      this.debug.ui.destroy()
+    }
+
+  }
+}
+```
 
 
 
 # Own hacks
 
 ## Tile effect
-
+This often makes sense for big floor materials
 ```JS
 const tex = textureLoader.load(...)
 tex.repeat.set(2,2)
 tex.wrapS = tex.wrapT = THREE.MirroredRepeatWrapping
+//tex.wrapS = tex.wrapT = THREE.RepeatWrapping
 ```
 
 # Interesting Tools

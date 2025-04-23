@@ -4,24 +4,29 @@ comments: true
 # TouchDesigner
 
 ## Topics
+[TOPs](./TOPS/index.md)
+`TOPs` are 2D texture operators 
+
+[SOPs](./SOPS/index.md)
+`SOPs` are 3D surface operators - they need to be converted into rendered pixels with `RenderTOP`
 
 [CHOPs](./CHOPS/index.md)
+`CHOPs` are channel operators like audio data
 
 [COMPs](./COMPS/index.md)
+`COMPs` contain other operators and nodes
 
 [DATs](./DATS/index.md)
+`DATs` handle Table Data or Python Code
 
 [MATs](./MATS/index.md)
+`MATs` are materials for 3D objects
 
 [Quick Tips](./QUICK/index.md)
 
 [Scripting](./SCRIPTING/index.md)
 
-[SOPs](./SOPS/index.md)
-
 [Techniques](./TECHNIQUES/index.md)
-
-[TOPs](./TOPS/index.md)
 
 [Texture Gallery](./TEXTURE_GALLERY/index.md)
 

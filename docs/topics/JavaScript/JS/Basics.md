@@ -923,6 +923,38 @@ If the element is not in the array the function returns `-1`
 A function from new JS version is `.includes('variableName')`.
 It returns a boolean if the element is in the array.
 
+### Loop through array
+So instead of using a `for` loop we also can use `for(const item of arrayName)`. This is meant to give you the current element. 
+```JS
+const menu = ["food1","Food2","food"]
+
+for(const item of menu) console.log(item)
+```
+The `for of` loop also allows to use `break` and `continue`
+
+If you still want the `index` but want to use the `for of` loop
+```JS
+for(const item of menu.entries()){
+    console.log(item);
+    
+}
+/*
+[0, "food1"],
+[1, "Food2"],
+[2, "food"],
+*/
+```
+`.entries()` creates an array of arrays with each child array having the elements of `index` and the `item`.
+
+With further destructuring
+```JS
+for(const [i,el] of arrayName.entries()){
+    console.log(`${i}:${el}`)
+}
+```
+
+
+
 ### Merge two arrays
 
 Wie can use the `.concat()` function to merge two arrays.
@@ -1292,6 +1324,103 @@ console.log(myB) -> 2
 console.log(others) -> {c:4,d:6,f:8}
 ```
 
+### Enhanced Object Literals
+
+With *Enhanced Object Literals* we don't need to reassing objects from outside an object with the variable name. We just implement it as an element.
+```JS
+
+const openingHours = {
+    mon: {
+        open:0,
+        close:24
+    },
+    tue: {
+        open:0,
+        close:24
+    }
+}
+
+
+const restaurant = {
+    name:'my restaurant',
+    openingHours
+    //dont need openingHours = openingHours
+}
+```
+
+Also methods doesn't need to be declared with function
+
+```JS
+
+const restaurant = {
+    ...
+    order(starterIndex,mainIndex){
+        return [this.starterMenu[starterIndex]]
+    }
+    ...
+}
+```
+
+Another enhancement is that we can compute the variable names inside the object
+```JS
+const weekdays = ['mon','tue']
+
+const openingHours = {
+    [weekdays[0]]: {
+        open:0,
+        close:24
+    },
+    [`day-${2+4}`]:{
+        open:2,
+        close:20
+    }
+}
+```
+
+
+### Optional Chaining
+With *optional chaining* `?.` if a certain property does not exist `undefined` will be returned.
+
+`console.log(restaurant.openingHours.mon?.open)`
+
+We also can check for multiple properties
+
+`console.log(restaurant.openingHours?.mon?.open)`
+
+```JS
+const weekdays = ['mon','tue','wed','thu','fri','sat','son']
+const openingHours = {
+    [weekdays[0]]:
+    {
+        open:0,
+        closed:23
+    },
+    [weekdays[1]]:
+    {
+        open:0,
+        closed:23
+    },
+    [weekdays[1]]:
+    {
+        open:0,
+        closed:23
+    },
+}
+
+for(const day of weekdays){
+    const open = openingHours[day]?.open ?? 'closed';
+    console.log(`On ${day}, we open at ${open}`);
+}
+```
+
+This also works for *methods*
+`restaurant.oder?.(0,3) ?? 'Method does not exist'`
+
+And on arrays to check if an array is empty
+```JS
+const users = [{name:"me",email:"Hallo world"}];
+console.log(users[0]?.name ?? "User array is empty")
+```
 # OOP
 
 JavaScript supports object oriented programming with the `class` keyword.

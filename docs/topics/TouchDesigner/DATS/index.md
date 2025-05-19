@@ -9,6 +9,8 @@ comments: true
 Welcome in DATs Land!
 
 ## Last added
+[Convert Text into Table Data](ConvertTextToTable.md)
+
 [Select Table Data By Value](SelectTableDataByValue.md)
 
 [Replace Specific Data in Table with MergeDAT](ReplaceSpecificDataTableMerge.md)

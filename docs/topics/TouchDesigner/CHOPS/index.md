@@ -7,6 +7,8 @@ comments: true
 Welcome in CHOP Land!
 
 ## Last added
+[Toggle Value Via Keyboard](ToggleValueViaKeyboard.md)
+
 [Create Infinite Looping Noise Channel With SOP](InfiniteLoopingNoiseChannel.md)
 
 [Define Looping Behavior of Channel at Boundaries](DefineLoopingBehaviourCHOP.md)

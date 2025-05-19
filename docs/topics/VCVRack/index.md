@@ -3,6 +3,9 @@ comments: true
 --- 
 # VCV Rack
 
+
+[Basics](./basics/Basics.md)
+
 # Latest added
 
 [Chorus](./basics/Chorus.md)

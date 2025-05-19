@@ -5,6 +5,10 @@ Welcome to TKB – a growing collection of tools, tips, and tutorials designed t
 
 For full documentation visit [TouchDesigner](./topics/TouchDesigner/TouchDesigner.md).
 
+For full documentation visit [VVVV](./topics/vvvv/index.md).
+
+For full documentation visit [Three.js](./topics/JavaScript/ThreeJS/index.md).
+
 For full documentation visit [Python](./topics/Python/index.md).
 
 For full documentation visit [VCVRack](./topics/VCVRack/index.md).

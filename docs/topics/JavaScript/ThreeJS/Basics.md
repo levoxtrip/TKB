@@ -1,7 +1,7 @@
 ---
 comments: true
 tags:
-  - Three.JS
+  - Three.js
   - Javascript
 ---
 

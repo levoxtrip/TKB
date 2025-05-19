@@ -8,6 +8,8 @@ comments: true
 Welcome in COMPs Land!
 
 ## Last added
+[Set Widget as Child of Container](SetWidgetAsChildrenContainer.md)
+
 [Show Visuals as Background in Container](SetBackgroundContainer.md)
 
 [Container Vs Base](ContainerVsBase.md)

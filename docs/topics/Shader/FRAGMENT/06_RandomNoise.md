@@ -158,6 +158,83 @@ void main(){
 
 
 https://thebookofshaders.com/edit.php#10/ikeda-03.frag
+
+```glsl
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+uniform vec2 u_resolution; 
+uniform vec2 u_mouse;  
+uniform float u_time;  
+
+float random (in float x) {
+    return fract(sin(x)*1e4);  // 1e4 is 10000
+}
+
+float random (in vec2 st) {
+    return fract(sin(dot(st.xy, vec2(12.9898,78.233)))* 43758.5453123);
+}
+
+// This function creates the visual pattern
+float pattern(vec2 st, vec2 v, float threshold) {
+    // Add the velocity to the position and round down to create grid cells
+    vec2 p = floor(st+v);
+    
+    // Generate pattern using random numbers and a threshold
+    // The 100.+ is an arbitrary offset to avoid patterns at origin
+    // The tiny multiplier .000001 creates subtle variations
+    // The random(p.x)*0.5 adds horizontal variation
+    return step(threshold, random(100.+p*.000001)+random(p.x)*0.5 );
+}
+
+void main() {
+    vec2 st = gl_FragCoord.xy/u_resolution.xy;
+    st.x *= u_resolution.x/u_resolution.y;
+    
+    vec2 grid = vec2(100.0,50.);
+    st *= grid;
+
+    vec2 ipos = floor(st);  // Which grid cell we're in
+    vec2 fpos = fract(st);  // Position within the cell (0.0-1.0)
+       
+    // Create base velocity that increases with time
+    // max(grid.x,grid.y) makes sure it scales with grid size
+    vec2 vel = vec2(u_time*2.*max(grid.x,grid.y)); 
+    
+    // Modify velocity based on row (y position):
+    // - vec2(-1.,0.0) makes it move horizontally left
+    // - random(1.0+ipos.y) gives each row a different random speed
+    vel *= vec2(-1.,0.0) * random(1.0+ipos.y);
+       
+    // Create a slight horizontal offset for color channels (chromatic aberration)
+    vec2 offset = vec2(0.1,0.);
+    
+    // Start with black color
+    vec3 color = vec3(0.);
+    
+    // Calculate each color channel with different offsets
+    // The mouse x-position affects the threshold (density of points)
+    color.r = pattern(st+offset, vel, 0.5+u_mouse.x/u_resolution.x);  // Red (shifted right)
+    color.g = pattern(st, vel, 0.5+u_mouse.x/u_resolution.x);         // Green (centered)
+    color.b = pattern(st-offset, vel, 0.5+u_mouse.x/u_resolution.x);  // Blue (shifted left)
+    
+    // Create margins between rows (when y position < 0.1 in cell, make it black)
+    color *= step(0.1, fpos.y);
+
+    gl_FragColor = vec4(1.0-color, 1.0);
+}
+```
+
+<iframe height="300" style="width: 100%;" scrolling="no" title="RandomSerie - ikeda" src="https://codepen.io/levoxtrip/embed/zxxaaVK?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/levoxtrip/pen/zxxaaVK">
+  RandomSerie - ikeda</a> by levoxtrip (<a href="https://codepen.io/levoxtrip">@levoxtrip</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+
+
+
 https://thebookofshaders.com/edit.php#10/ikeda-04.frag
 
 # Noise

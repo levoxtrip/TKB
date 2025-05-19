@@ -12,18 +12,27 @@ We output our final composition with the `Renderer` node. It takes a layer input
 
 # 2D Primitives
 Skia provides some basic *2D primitives* to draw
-- Rectangle
-- RoundRectangle
-- Circle
-- Polygon
-- Spiral
-- DrawImage
-- Segment
+- `Rectangle`
+- `RoundRectangle`
+- `Circle`
+- `Polygon` - allows to draw shapes from a multi point input - good to draw a data line with polygon
+- `Spiral`
+- `DrawImage`
+- `Segment`
 
 
 
 ## Segment
 `Segment` node is versatile node that for example allow to draw half circles and more.
+
+## ConnectAll Points by Line
+We can use `ConnectAll` node to get the *from* and *to* values from the line that connect two points. These we then can plug into a `Line` node to actually draw the line.
+![Connect all points skia](./img/ConnectAllPointsSKia.png)
+
+## Draw shape from spread of points
+We can use `Polygon` Node to draw a shape of points from the spread.
+
+![Random Polygon Shape](./img/ShapeFromRandomPoints.png)
 
 # Data types
 - *Layer* - Layer to be rendered
@@ -36,12 +45,30 @@ The *SkiaPaint* property defines how a 2D primitive gets drawn
 With `Stroke` we draw an outline and with `Fill` we can fill the primitive.
 
 # Transform
-With the `TransformSRT(Skia)` node we can apply *Rotation,Scale,Translation* transformation.
+With the `TransformSRT(Skia)` node we can apply *Rotation,Scale,Translation* transformation. It applies the transformations relative to the center of the object.
+If we want to transform relative to an *anchor point* different from the center we can use `TransformSRT(Center)`.
+
+## Chaining transformations
+
+We also have each individual transformation as a node available 
+`Translate`
+`Rotate`
+`Scale`
+We can chain them and then input them into a `Transform` node.
+
+![Separated transformations ](./img/TransformSeperately.png)
+A different order results in different transformations.
+
+
 
 # Group
 To join multiple layers we use the `Group` node to bring them together. First input is the layer most in the back.
 
 With `CTRL +/-` we can create more or less inputs in to the node.
+
+## Group spread of elements
+After a Loop we get a spread of layers. With a `Group(Spectral)` node we can convert the spread into a single layer.
+
 
 # Blend modes
 We can set `SetBlendMode` node between the *primitive* and *Paint* nodes to define how layers get blended.

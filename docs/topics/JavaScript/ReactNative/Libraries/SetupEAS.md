@@ -21,3 +21,6 @@ npx expo install expo-dev-client
 eas build --platform ios --profile development
 
 npx expo start
+
+# Preview Build on device
+eas build --profile preview --platform ios

@@ -13,6 +13,7 @@ Here I'm gonna collect some fun and interesting techniques
 [Collection](Collections.md)
 [Skia](Skia.md)
 [Stride](Stride.md)
+[StrideFX](StrideFX.md)
 [Channel Data](ChannelData.md)
 [Storing Data](StoringData.md)
 [Runtime Data](Runtime.md)

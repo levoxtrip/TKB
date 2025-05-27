@@ -1,3 +1,9 @@
+---
+title: "GLSL Sketches"
+date: 25-02-13
+description: "GLSL sketches library"
+---
+
 # GLSL Sketches 25
 
 # 25-05-07 - 034

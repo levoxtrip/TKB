@@ -32,7 +32,7 @@ plugins:
   - search
   - blog
   - tags:
-      tags_file: tags.md
+      # tags_file: tags.md
 
 extra_css:
   - stylesheets/extra.css

@@ -11,6 +11,7 @@ Stride contains primitives, shaders, lights and more. We output our stride compo
 
 ## Shortcuts
 Reset camera in `RenderWindow` - `R`
+Show helper in Scene - `F4`
 
 # Transformations
 For basic information about transformations [see here](Skia.md#transform).

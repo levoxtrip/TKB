@@ -25,6 +25,9 @@ With a `Queue` and binding its *Insert* input with a mouse click we can store th
 
 ![Calculate delta mouse movement](./img/CalculateDeltaMouseMovement.png)
 
+### Calculate distance mouse position between frames
+![alt text](./img/CalculateDistanceMousePos.png)
+
 ### Detect if mouse is in circle in skia
 ![alt text](./img/DetectMouseCircleSKia.png)
 

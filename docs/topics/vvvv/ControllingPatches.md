@@ -57,7 +57,26 @@ So if a condition is met, it takes what is coming in and does the operation on i
 To toggle between two values we simply set a `Toggle` node as the *index* input of a `switch` node and then plug two values into the `switch` 
 
 # Logital primitives
-`OR,AND,NOT,XOR`
+
+`NOT` inverts a boolean value.
+true -> false
+false -> true
+
+`AND` only returns true when all values are true. This get used to make sure that two states or events are met at the same time. For example checking if mouse is clicked AND mouse cursor is over a specific element.
+
+`AND(Spectral)` returns true when all values in the sequence are true.
+
+`OR` returns true when at least on of the inputs is a true value.
+This can be useful when we want to bundle triggers from different parts of the sketch to trigger a specific logic.
+
+`OR(Spectral)` returns true when just one of the values in a sequence is true.
+
+`XOR` returns false when both values ether true or false and returns true when just one of the values is true.
+
+`NOR` only returns true when none of the values are true.
+
+`NAND` for NOT AND returns only true when both values are NOT true.
+
 
 # Register off to on and on to off behavior
 If we want to register if a boolean value went from *off to on* or from *on to off* we can use a `TogEdge`. If the input goes from *off to on* output 1 `UpEdge* gets triggered. 

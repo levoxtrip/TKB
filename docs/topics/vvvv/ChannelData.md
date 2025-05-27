@@ -37,13 +37,15 @@ If you want to calculate the *distance* of for example two Vector2 values you ca
 ## Smooth interpolation between random values
 ![Smooth Transition BetweenRandom Values](./img/SmoothTransitionBetweenRandomValues.png)
 
-## Smother Values with Filter
+## Filter Data
+
+### Smother Values with Filter
 The `Filter` node allows us to create smoother values.
 
-## OneEuroFilter
+### OneEuroFilter
 A good filter is `OneEuroFilter`
 
-## Filter Values
+### Filter Values
 We can use a `Pow` To filter the values.
 
 ## Count
@@ -73,8 +75,47 @@ The `FrameDelay` allows to give the input a delay of one frame.
 ![alt text](./img/ConvertOneRangeIntoAnother.png)
 The `Map(Range)` nodes allows us to convert from one range into another.
 
+`Map(Change)` doesn't limit or adapt values when the input reaches a certain minimum or maximum. 
+For that we can use `MapClamp`,`MapMirror` and `MapWrap` nodes.
 ### Define range by center and width
 The `Range(Join Center Width)` allows us to *create a range* by a *center* and *width* values.
 
 ## Evaluate value difference between frames
 The `FrameDifference` node allows us to see how much the data has changed between this and the last frame.
+
+## Range
+VL has nodes to keep values in a specific range.
+
+`Mirror` - If values are bigger or smaller than the minimum and maximum, the value continues in the inverse direction.
+
+`Wrap` - If values are bigger or smaller than the minimum and maximum, the value continues at the opposite edge.
+
+`Clamp` - If values are bigger or smaller than the minimum and maximum, the node holds their value.
+
+We can use these nodes to define how the values should behave when an input device is outside of *minimum* and *maximum* of a range.
+
+## Smooth transition between two inputs
+The `Lerp` node allows us to create a smooth transition between the two inputs of the node. The *skalar* input defines the position of the transition between the two inputs.
+
+
+## Working with Angles
+
+### 2D Vector from angle and radius
+To move an element on a circumference we can transform *radius* and *angle* values into a two dimensional vector to position the object. For that we can use the `FromPolar` node.
+
+![From Polar to Vector 2](./img/FromPolarToVector2.png)
+
+### 2D Vector to angle and radius
+The other way around we can convert a 2D vector into an *angle* and *radius* value with the `ToPolar` node. The angle lies between the 2D vector and the x-axis.
+
+![Angle and Radius From Vector2](./img/AngleRadiusFromPosition2D.png)
+
+Similar to `ToPolar`, there is also the `Angle` node, which also takes a *Vector2* as input but returns just the angle without the radius.
+
+To calculate the angle between two points that not lie on the x-axis we can use `AngleBetween`.
+
+
+### Calculate angle between two vector
+`Slope` node allows us to calculate which angle lies between two points in 2D or 3D space.
+
+`Slope(3D)` returns also the *length* of the vector between the two points in 3D space.

@@ -21,6 +21,11 @@ To control the transition from one value to another with a `Lerp` node and set t
 
 ![Lerp between values](./img/LerpBetweenValues.png)
 
+## Smooth Animation to value, hold value and then animate back
+We can convert a *Bang* trigger into a smooth value that gets hold for a specific time by connecting it to a `MonoFlop` and then add a `Damper` to it.
+
+![Smooth Animation to Value](./img/SmoothAnimationToValue.png)
+
 ## On input move object to new position
 ![OnInputMoveObjectToNewPosition](./img/OnInputMoveObjectToNewPosition.png)
 

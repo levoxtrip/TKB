@@ -25,6 +25,8 @@ Skia provides some basic *2D primitives* to draw
 ## Segment
 `Segment` node is versatile node that for example allow to draw half circles and more.
 
+![alt text](./img/DrawHalfCircles.png)
+
 ## ConnectAll Points by Line
 We can use `ConnectAll` node to get the *from* and *to* values from the line that connect two points. These we then can plug into a `Line` node to actually draw the line.
 ![Connect all points skia](./img/ConnectAllPointsSKia.png)

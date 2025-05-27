@@ -1,6 +1,6 @@
 ---
 title: "GLSL Sketches"
-date: 25-02-13
+date: 2025-02-13
 description: "GLSL sketches library"
 ---
 

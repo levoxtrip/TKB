@@ -1,6 +1,6 @@
 ---
 title: "Three.js Sketches"
-date: 25-04-14
+date: 2025-04-14
 description: "Three.js sketches library"
 ---
 

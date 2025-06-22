@@ -1,4 +1,5 @@
-site_name: MySearchOfLostTime
+site_name: TKB
+site_url: https://github.com/levoxtrip/TKB
 theme:
   name: material
   custom_dir: overrides

@@ -19,7 +19,7 @@ Rotate the view - `ctrl + l mouse`
 Move the view - `ctrl + r mouse`
 Home view - `h`
 
-In the window you select points on the virtual model which will match with real physical model..
+In the window you select points on the virtual model which will match with real physical model.
 Then you use the output view and move them according to the real model.
 
 ## Kantan Mapper

@@ -36,3 +36,5 @@ For 3D and *Stride* VVVV has the `SphereContainsPoint` node which we can use wit
 
 ## Sphere contains sphere
 Similar to `SphereContainsPoint` VVVV has `SphereContainsSphere`.
+
+

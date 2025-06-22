@@ -41,6 +41,8 @@ A simplex noise is a type of gradient noise algorithm designed to be more effici
 
 In comparison to `Random` the values of `SimplexNoise` are related to the values next to them.
 
+
+
 ## Voronoi and Delaunay
 To use voronoi value patterns we can import the `VL.2D.Voronoi` package with `nuget install VL.2D.Voronoi -pre`
 
@@ -60,3 +62,6 @@ The `Wanderer` nodes create a smooth transition movement. It has many settings t
 *Direction Deviation* defines the *angle deviation* per step.
 0 -> straight walk
 1 -> nervous jittery walk
+
+## Integrator
+Similar to `Stopwatch` node where the value increases over time we can use `Integrator` node and set the *offset* value to define by what amount the value increases every frame

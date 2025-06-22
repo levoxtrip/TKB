@@ -16,6 +16,8 @@ Get name of operator - `op('myName').name`
 
 Get number of operator - `op('name1').digit`
 
+Get index of parent - `me.parent().digits`
+
 ## OPs
 
 Count Inputs of Operators - `len(op('switch1').inputs)`

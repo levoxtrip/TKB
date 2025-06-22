@@ -33,3 +33,6 @@ comments: true
 `VL.PDFReader`
 `VL.Nvidia.CUDA`
 `VL.Ollama`
+`VL.IO.PLY` - Load PLY files into vvvv `nuget install VL.IO.PLY -pre`
+
+`VL.2D.CurveFitting` - Create 2D paths

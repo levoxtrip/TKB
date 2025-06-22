@@ -85,6 +85,10 @@ Stride has multiple lights:
 - SkyboxLight
 - PointLight
 
+We also can add multiple light source with a `Group` node.
+![GroupingLights](./img/GroupingLights.png)
+
+
 ## SkyboxLight
 Allows you to add your own cubemap as the *light* source.
 
@@ -111,6 +115,9 @@ We can use `FullScreenQuadRenderer` to show a texture or image full screen in th
 ![FullScreen Quad Renderer](./img/FullScreenQuadRenderer.png)
 
 
+## Render Mesh in Wireframe
+Stride has a `Wireframe` node that allows to render a `MeshRenderer` with a wireframe material. It is a *advanced* node.
+
 
 # PostFX
 We can apply `PostFX` by plugging the node into the `SceneWindow` PostFX input.
@@ -130,6 +137,11 @@ We can apply grain by plugging `FilmGrain` in to a `Cons(Collection.Spread)` and
 
 ## LightStreak
 Shining effect along bright areas direction.
+
+## LocalReflection
+If you have for example a metal material for your shape and you want that the other objects in the scene get properly reflected on the material
+we can use `LocalReflection` PostFX node. It can affect your performance.
+
 # Shortcuts
 Reset view - `long press r`
 
@@ -181,12 +193,42 @@ In Stride we have to convert a `VideoIn` or `VideoPlayer` with a `VideoSourceToT
 # Mixing Skia and Stride
 `SkiaTexture` transforms skia drawing into a texture. This allows us to use it for 3D objects material or apply texture effects to it.
 
+![Skia To Stride With RenderEntity](./img/SkiaToStrideRenderEntity.png)
+A performant way to show Skia in stride is to use `SkiaRenderer` and input it into a `RenderEntity`. This we then can add to the `RootScene` of Stride.
+
+
 
 # Convert Vector3 to Vector2
 `XY` Node lets you quickly pick first to values of `Vector3` and outputs `Vector2` data type.
 
 
-## Shaders
+# Load Model into stride
+With the `FileModel`we can load fbx obj files into stride.
+If you don't see the model you probably need to adapt the import scale size in the node
+
+To preview the model in the scene we can use `ModelEntity`
+
+![Assigning Textures Model](./img/AssigningTexturesModel.png)
+
+To assign the textures to our model we need a combination of `FileTexture`, `FileTextureGrayScale` and `FileTextureNormalMap`
+
+# Get data from Mesh
+To get the data like positions of vertex, uvs, normals etc we can first pick the mesh we want from our model with `GetMeshes` and then split the data with `MeshSplit`. 
+
+ ![Get Mesh Data](./img/GetMeshData.png)
+
+# GPU Instancing
+To do GPU Instancing in Stride we need a spread of position data and feed it into a `InstancingSpreadComponent`. This we can transform into *Component* value with `FromValue(Spread)` and feed it for example into a `Box` as component.
+
+![Basic GPU Instancing](./img/GPUInstancing.png)
+
+We also can convert the position data into color values with `Vector3(Split)`, feed it into a `RGBA` node and then collect the color data in `ColorPerInstance`
+
+
+# Background
+If you want to create for example a gradient background for your Stride scene you can add a `Background(Stride.Models)` node to your `RootScene`. You then can add `Gradient` node from Stride.TextureFX as a *Texture* input into the `Background`.
+
+# Shaders
 
 # Further infos
 A whole tutorial is [here](https://vimeo.com/467434033)

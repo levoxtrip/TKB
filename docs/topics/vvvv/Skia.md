@@ -36,6 +36,16 @@ We can use `Polygon` Node to draw a shape of points from the spread.
 
 ![Random Polygon Shape](./img/ShapeFromRandomPoints.png)
 
+## Draw a path from spread
+If we want to draw a path from a spread we can path the spread values into a `AddPoly(Path)` node and then connect it with a `DrawPath` node. Check the *Close* input to set if the path should be closed or not.
+
+![DrawAPathFromSpread](./img/DrawAPathFromSpread.png)
+
+## Move object along a path
+The `SamplePath` node samples the path and allows us to move an object along a path. It also gives aus the *tangent* at the current position on the path which we can use to rotate the object along the path.
+
+![Move Object Along Path Skia](./img/MoveObjectAlongPathSKia.png)
+
 # Data types
 - *Layer* - Layer to be rendered
 - *SkiaPaint* - change the look
@@ -49,6 +59,11 @@ With `Stroke` we draw an outline and with `Fill` we can fill the primitive.
 # Transform
 With the `TransformSRT(Skia)` node we can apply *Rotation,Scale,Translation* transformation. It applies the transformations relative to the center of the object.
 If we want to transform relative to an *anchor point* different from the center we can use `TransformSRT(Center)`.
+
+## Rotate Shapes on circle
+If we want to position shapes on a circular shape and then rotate each element towards the center we can use `CircleSpread` and then use the *position* and convert it into a rotation with an `Angle` node.
+
+![Rotate Towards Center](./img/RotateTowardsCenter.png)
 
 ## Chaining transformations
 
@@ -126,6 +141,9 @@ To draw a drop shadow we can add `Image Filter` with `DropShadow` node to the pr
 For shiny effects we add a `SetShader` and a `Radial Gradient`node. To make the it only apply the bright colors we can set a `SetBlendMode`
 
 ![SetShinyShadder](./img/SetShinyShadder.png)
+
+# Camera
+In Skia we also have a `Camera` node which allows us to navigate through the Skia Window but it also allows us to set a fixed view position with its parameters.
 
 # Show Performance meter
 With `F2` we can show the performance of our sketch

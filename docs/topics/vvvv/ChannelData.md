@@ -33,6 +33,10 @@ The `abs` node allows us to map negative values to the *absolute* of the value.
 If you want to calculate the *distance* of for example two Vector2 values you can use a `Distance` node.
 ![Calculate Distance Points](./img/CalculateDistancePoints.png)
 
+## Calculate Distance Between Points with ConnectAll
+The `ConnectAll` node allows us to connect all points in 2D or 3D space that have a distance to each other lower than a threshold.
+
+![Connect all Points](./img/ConnectAllPoints.png)
 
 ## Smooth interpolation between random values
 ![Smooth Transition BetweenRandom Values](./img/SmoothTransitionBetweenRandomValues.png)
@@ -40,13 +44,28 @@ If you want to calculate the *distance* of for example two Vector2 values you ca
 ## Filter Data
 
 ### Smother Values with Filter
-The `Filter` node allows us to create smoother values.
+The `Filter` node allows us to create smoother values. It comes with different transition modes and easing functions to define the change to the new value.
+![Filter Node Transitions](./img/FilterNodeTransitions.png)
+
+The `Filter` node is an adaptive node so we can use it for *colors,vectors and more.*
 
 ### OneEuroFilter
 A good filter is `OneEuroFilter`
 
 ### Filter Values
 We can use a `Pow` To filter the values.
+
+### Tween float value
+The `Tween` node interpolates a float to the selected transition behavior. 
+When we combine a `Lerp` with a `Tween` we can introduce easing into lerping between two values.
+
+![Tween And Lerp](./img/TweenLerp.png)
+
+### ADSR
+With the `ADSR` node we can create an *envelope generator* to control the transition of a 0 to 1 float value. 
+*Envelope generators* have four phases *Attack,Decay,Sustain and Release* to define the progression of the value.
+
+![ADSR Envelope](./img/ADSREnvelope.png)
 
 ## Count
 VVVV has multiple counter to count a value up and down. They are different in the way how they behave if the *Minimum* and *Maximum* values got reached.
@@ -98,6 +117,12 @@ We can use these nodes to define how the values should behave when an input devi
 The `Lerp` node allows us to create a smooth transition between the two inputs of the node. The *skalar* input defines the position of the transition between the two inputs.
 
 
+
+## Quantize - Convert smooth value into stepped values
+The `Quantize` node allows us to convert an input value into a stepped output value. So for example the smooth `LFO` node that creates values from 0.0 to 1.0 get quantized into a 0.0 -> 0.2 -> 0.4 -> 0.6 -> 0.8 -> 1.0
+![Quantize Values](./img/QuantizeValues.png)
+
+
 ## Working with Angles
 
 ### 2D Vector from angle and radius
@@ -119,3 +144,15 @@ To calculate the angle between two points that not lie on the x-axis we can use 
 `Slope` node allows us to calculate which angle lies between two points in 2D or 3D space.
 
 `Slope(3D)` returns also the *length* of the vector between the two points in 3D space.
+
+## Attractor
+The `Attractor` node recalculates the position of a point in 2D/3D depending on the position of another point. 
+This allows us to simulate attraction between points similar to magnetic behavior.
+
+
+
+## Convert Vector2 to Int2
+To convert *Vector2* data type into *Int2* we can use the `Int2(Create Vector2)`
+
+## Send and Receive Data
+With `Send(Global)` and `Receive(Global)` you can send data inside a patch. So we *send* in the current frame and in the next frame we *receive it* 

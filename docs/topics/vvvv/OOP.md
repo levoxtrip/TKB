@@ -24,6 +24,9 @@ When you create your own data type you are using *Reference Types*. *Value Types
 Every data type is not just a *VL.object* but also an `IVL.object`. We can check of the identity of that object with the advanced node `Identity(IVLObject)`
 
 
+# Shortcuts
+`shift+ctrl+k` - Create all getter and setter operations in Data type
+
 ## Process Node
 When we create our own `Node` in the *Node browser* we generate a so called `Process Node`.
 The `Process Node` is taking care of *creating* and *updating* the *thing*. It is incapsulating a living thing with a state.

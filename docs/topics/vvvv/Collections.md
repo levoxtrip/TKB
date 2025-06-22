@@ -125,6 +125,11 @@ Storing our spreads in to `Pads` allow us to manipulate it's data over the runti
 ![alt text](./img/DeconstructSpreadIntoValues.png)
 
 
+### Resample Spread Values
+We can resample a spread and make the transition between the values of the initial collection smoother. We can apply this if we for example want to create smoother path between points.[How to draw path from spread](Skia.md#draw-a-path-from-spread)
+
+With `ResampleBSpline` we can define how many Resample steps we want.
+
 
 ## Dictionaries
 

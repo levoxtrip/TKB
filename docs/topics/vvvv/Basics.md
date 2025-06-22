@@ -5,6 +5,8 @@ tags:
 ---
 # Basics
 
+On the top left corner we have the quad menu.
+
 # Navigation
 Move view in sketch - `middle mouse`
 Move node -`left mouse`
@@ -16,9 +18,11 @@ Nodebrowser - `dble left click`
 Pop-up menu - `right click`
 Create frame around nodes - `alt` + select nodes
 Show tree view of program - `ctrl j`
+Show Inspector - `ctrl + i`
 
 ## Nodes
 Insert node - `dbl click wire`
+Mode node - `shift+arrowkeys`
 Delete a wire - `middle click` or `left click` wire and `delete`
 To align multiple nodes vertically - mark multiple lines + `ctrl + L`
 Align node to horizontally - `alt + L` 
@@ -30,6 +34,8 @@ Make multiple connections from one output - `middle click` output and `middle cl
 Alternative to `middle` click is `alt+l-click`
 Exchange already connected node with new - `dbl click`node - reset category on the bottom right.
 Insert node in between other nodes. - `dbl click line`
+Scroll Spread IO Box - `ctrl + wheel`
+
 ### Create Own Node
 To create own node we write the name of the node in the *nodebrowser* and then `node`.
 

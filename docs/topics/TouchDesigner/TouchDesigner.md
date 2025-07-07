@@ -10,6 +10,9 @@ comments: true
 [SOPs](./SOPS/index.md)
 `SOPs` are 3D surface operators - they need to be converted into rendered pixels with `RenderTOP`
 
+[POPs](./POPS/index.md)
+`POPs` are point operators that get processed by your GPU.
+
 [CHOPs](./CHOPS/index.md)
 `CHOPs` are channel operators like audio data
 

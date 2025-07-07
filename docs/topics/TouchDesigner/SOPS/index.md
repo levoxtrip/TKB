@@ -7,6 +7,10 @@ comments: true
 Welcome in SOPs Land!
 
 ## Last added
+[Create Point For Particle System](CreatePointForParticleSystem.md)
+
+[Distriburte Points At Random Position On Surface Or Volume](DistributePointsAtRandomPosition.md)
+
 [Improve Performance Instancing](ImprovePerformanceInstancing.md)
 
 [Cut Polygon with ClipSOP](CutPolygonSOPWithClip.md)

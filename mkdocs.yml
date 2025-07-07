@@ -65,7 +65,7 @@ markdown_extensions:
       emoji_generator: !!python/name:materialx.emoji.to_svg
 
 copyright: |
- &copy; 2024 <a href="https://github.com/levoxtrip" target="_blank" rel="noopener"> Leon Volbers</a>
+ &copy; 2025 <a href="https://github.com/levoxtrip" target="_blank" rel="noopener"> Leon Volbers</a>
  <br> 
  <a href = "https://www.patreon.com/c/techknowledgebase/membership?view_as=patron" style="font-size: 20px" font-color:"FFFFFF"> Support this project on Patreon</a>
   <br>

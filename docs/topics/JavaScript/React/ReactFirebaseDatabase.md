@@ -19,7 +19,7 @@ For Firebase
 ## Connect React to Firebase
 Create new Firebase Project
 
-Register an App in firebase for web </>
+Register an App in firebase for web
 
 Go to realtime database and setup the database - creating the database.
 
@@ -62,7 +62,7 @@ Don't forget to add
 Create a Write Component `Write.ts`
 
 ```JS
-import app from `../firebaseConfig`
+import app from '../firebaseConfig'
 import React, {useState} from 'react'
 import {getDatabase,ref,set,push} from "firebase/database"
 

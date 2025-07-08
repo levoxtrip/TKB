@@ -2,13 +2,10 @@
 comments: true
 ---
 
-# Javascript
-
+# React
+[React Basics](basics.md)
+[React](React.md)
 # Latest added
-
-[Javascript Basics](./JS/Basics.md)
-[ThreeJS Basics](./ThreeJS/index.md)
-[React](./React/index.md)
 
 ## Suggestions
 

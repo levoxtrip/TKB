@@ -10,7 +10,7 @@ Welcome in the land of artists!
 [Natalia Goncharova](NataliaGoncharova.md)
 [Franz Kline](FranzKline.md)
 [Mikhail Larionov](MikhailLarionov.md)
-[Roberto Matta](RobertoMatta.md)
+[Roberto Matta](RobertoMatt.md)
 
 
 ## Suggestions

@@ -20,3 +20,5 @@ For full documentation visit [Unity](./topics/Unity/index.md).
 For full documentation visit [Terminal](./topics/Terminal/index.md).
 
 For full documentation visit [Shader](./topics/Shader/index.md).
+
+For full documentation visit [Sensors](./topics/Sensors/index.md).

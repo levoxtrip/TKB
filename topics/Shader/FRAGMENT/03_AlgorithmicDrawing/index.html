@@ -1,0 +1,1684 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://github.com/levoxtrip/TKB/topics/Shader/FRAGMENT/03_AlgorithmicDrawing/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+  <title>TKB</title>
+
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Algorithmic Drawing - TKB" />
+<meta property="og:image" content="https://github.com/levoxtrip/TKB/assets/images/social/topics/Shader/FRAGMENT/03_AlgorithmicDrawing.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content="https://github.com/levoxtrip/TKB/topics/Shader/FRAGMENT/03_AlgorithmicDrawing/" />
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:title" content="Algorithmic Drawing - TKB" />
+<meta property="twitter:image" content="https://github.com/levoxtrip/TKB/assets/images/social/topics/Shader/FRAGMENT/03_AlgorithmicDrawing.png" />
+</head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#algorithmic-drawing" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+<p style="color:white;">If you would like to receive a weekly update of all new added content feel free to subscribe here</p>
+<iframe src="https://embeds.beehiiv.com/0ab65b8f-52f8-42da-b9bd-369d93cfa498?slim=true" data-test-id="beehiiv-embed" height="52" frameborder="0" scrolling="no" style="margin: 0; border-radius: 0px !important; background-color: transparent;"></iframe>
+
+
+
+          </div>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="TKB" class="md-header__button md-logo" aria-label="TKB" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            TKB
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Algorithmic Drawing
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="purple"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="lime"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../blog/" class="md-tabs__link">
+          
+  
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="TKB" class="md-nav__button md-logo" aria-label="TKB" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    TKB
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Blog
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Archive
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Archive
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/archive/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2025
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Categories
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Categories
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/category/art/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ART
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/category/glsl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GLSL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/category/general/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    General
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/category/mediapipe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MediaPipe
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/category/newentries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NewEntries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/category/python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PYTHON
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/category/programming/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Programming
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/category/td/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/category/tia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TIA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/category/tic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TIC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/category/til/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TIL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/category/terminal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Terminal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/category/unity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/category/vcvrack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VCVRack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/category/vvvv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VVVV
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../blog/category/ffmpeq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ffmpeq
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:glsl" class="md-tag">GLSL</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:math" class="md-tag">Math</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:shaderfragment" class="md-tag">Shader/Fragment</a>
+      
+    
+  </nav>
+
+
+
+<h1 id="algorithmic-drawing">Algorithmic Drawing</h1>
+<p>To draw intresting and complex graphics in GLSL it is <em>It is important to understand one-dimensional mathematical functions and especially their graph on the x-axis</em> in order to be able to work better with them later.
+<mark>Learn and explain the behavior of mathematical functions.</mark>
+The behavior of math. functions can be used to draw shapes by changing the colors of the pixels.</p>
+<h1 id="mathematical-functions">Mathematical Functions</h1>
+<p>GLSL provides mathematical functions to set or calculate values in the shader.</p>
+<p>A basic questions to ask yourself when using these functions is: <mark>what shapes does the math. function create
+when I insert values like the pixelposition</mark>.</p>
+<h2 id="trigonomic-functionsoscillation-periodicity">Trigonomic Functions(Oscillation &amp; Periodicity)</h2>
+<p>To animate graphics it's a good start to use the trigonimic functions Sine <code>sin()</code> and Cosine <code>cos()</code>.</p>
+<iframe src="https://thebookofshaders.com/05/sincos.gif" style="height:100%;width:100%"></iframe>
+
+<p>If you insert the the uv.x values into the sin function you get a gradient from left to right.</p>
+<iframe height="300" style="width: 100%;" scrolling="no" title="Simple Sin(uvx)" src="https://codepen.io/levoxtrip/embed/YPKeYKE?default-tab=html%2Cresult&editable=true" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/levoxtrip/pen/YPKeYKE">
+  Simple Sin(uvx)</a> by levoxtrip (<a href="https://codepen.io/levoxtrip">@levoxtrip</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+<p>If you insert uv.y you get a gradient from top to buttom.</p>
+<p>If you multiply the uv.x inside the <code>sin(uv.x*10.)</code> you can change the frequency of the sin function and
+you get multiple peaks of the sin-wave.</p>
+<p>If you multiply the <code>sin(uv)*2.0</code> outside the function you modify the amplitude of the sin function.</p>
+<p>If you add/subtract values to the <code>uv</code> inside the function <code>sin(uv.x+time)</code> you move the graph along the x-axis.</p>
+<p>If you add/subtract values outside the <code>sin(uv.x)+0.5</code> you move the graph along the y-axis.</p>
+<h2 id="basic-math-functions">Basic Math Functions</h2>
+<iframe src="https://thebookofshaders.com/glossary/?search=sin" allow="fullscreen" allowfullscreen="" style="height:100%;width:100%; aspect-ratio: 16 / 9; "></iframe>
+
+<p>With the <code>pow(base,n)</code> function we can calculate the power/exponentiation of a value, where we raise a base number to an exponent: baseⁿ.</p>
+<p>The <code>exp(x)</code> computes <code>e</code> Eulers number raised to the given power eˣ.</p>
+<iframe src="https://thebookofshaders.com/glossary/?search=exp" allow="fullscreen" allowfullscreen="" style="height:100%;width:100%; aspect-ratio: 16 / 9; "></iframe>
+
+<p>The <code>abs(x)</code> returns the absolute value of the input. So if the input value is 0.2 <code>abs(-0.2)</code> the function return 0.2.</p>
+<iframe src="https://thebookofshaders.com/glossary/?search=abs" allow="fullscreen" allowfullscreen="" style="height:100%;width:100%; aspect-ratio: 16 / 9; "></iframe>
+
+<p>Try to insert <code>abs(sin(x))</code>.
+<code>abs()</code> basically mirrors/reflects the values from the y-axis.</p>
+<h2 id="interpolation-transitions">Interpolation &amp; Transitions</h2>
+<h3 id="step">step()</h3>
+<p>The <code>step()</code> function works as a binary threshold. You can use it to test if a value is smaller
+or bigger then a threshold value. It works similar to an <code>if()</code> function.
+<code>step(threshold,valueToTest)</code>
+<code>If value &gt; threshold -&gt; return 1.0</code>
+<code>If value &lt; threshold -&gt; return 0.0</code></p>
+<iframe height="300" style="width: 100%;" scrolling="no" title="step(uv.x)" src="https://codepen.io/levoxtrip/embed/dPbebRg?default-tab=html%2Cresult&editable=true" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/levoxtrip/pen/dPbebRg">
+  step(uv.x)</a> by levoxtrip (<a href="https://codepen.io/levoxtrip">@levoxtrip</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+<p>We use <code>step()</code> to create hard edges between colors for example when we want to mix to colors
+based on a threshold value.</p>
+<h3 id="smoothstep">smoothstep()</h3>
+<p>To create a smoother transition between two values we can use <code>smoothstep()</code>.
+<code>smoothstep(edge1,edge2,value)</code>
+<code>if value &lt;edge1 -&gt; return 0.0</code>
+<code>if value &gt;edge2 -&gt; return 1.0</code>
+<code>if value &gt; edge1 and value &lt; edge2 interpolate between edge1 and edge2 value</code>
+Smoothstep linearly interpolates between the two edge values.</p>
+<p>If we combine two smoothstep functions with each other we can create a smoothline.
+Uncomment the second statement to see that.</p>
+<iframe height="300" style="width: 100%;" scrolling="no" title="smoothstep" src="https://codepen.io/levoxtrip/embed/jENxNYM?default-tab=html%2Cresult&editable=true" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/levoxtrip/pen/jENxNYM">
+  smoothstep</a> by levoxtrip (<a href="https://codepen.io/levoxtrip">@levoxtrip</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+<h3 id="mix">mix()</h3>
+<p>Another function to create a linear interpolation is the <code>mix()</code> function.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>vec3 color1 = vec3(1.0,0.0,0.0);
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>vec3 color2 = vec3(0.0,0.0,1.0);
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>vec3 color = mix(color1,color2,uv.x);
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>for uv.x = 0.0 is the color of the pixel color1
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>for uv.x = 1.0 the color of the pixel color2
+</code></pre></div>
+<h3 id="fract">fract()</h3>
+<p>The GLSL <code>fract()</code> function takes a decimal number as input and returns the decimal part.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>fract(3.3) = 0.3
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>fract(1.5) = 0.5
+</code></pre></div>
+<iframe src="https://thebookofshaders.com/glossary/?search=abs" allow="fullscreen" allowfullscreen="" style="height:100%;width:100%; aspect-ratio: 16 / 9; "></iframe>
+
+<p>So <code>fract()</code> wraps any number that goes above 1 back into the range 0.0 to 1.0 no matter how large the number is before applying it. This creates a repeating pattern because the values that fract() returns for the pixel coordinates of 0.2 , 1.2, 2.2 are the same.
+So you break the range of uv (0 to 1) into smaller sections, repeatedly, based on the value of x.</p>
+<p>mod() - modulo</p>
+<h2 id="clamping-limiting">Clamping &amp; Limiting</h2>
+<h3 id="clamp">clamp()</h3>
+<p>With the <code>clamp()</code> function we can restrain a value into a desired range.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>clamp(val,min,max)
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>clamp(2.0,0.0,1.0) = 1.0
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>clamp(-0.5,0.0,1.0) = 0.0
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>clamp(0.5,0.0,1.0) = 0.5
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>clamp(uv.x,0.0,0.2) = 0.2 for all uv.x values &gt; 0.2
+</code></pre></div>
+<iframe src="https://thebookofshaders.com/glossary/?search=clamp" allow="fullscreen" allowfullscreen="" style="height:100%;width:100%; aspect-ratio: 16 / 9; "></iframe>
+
+<p>Using <code>clamp()</code> to our pixelcoords creates a <code>hold las pixel value</code> effect.</p>
+<h3 id="min">min()</h3>
+<p>The <code>min(thresh,value)</code> compares similar to <code>step()</code> a theshold value and the input value.
+<code>If value &lt; thresh -&gt; return value</code>
+<code>If value &gt; threh -&gt; return thresh</code>
+The value gets limitted at the thresh value. So we can use the <code>min()</code> to garanty that certain values never go over a desired threshold value.</p>
+<iframe src="https://thebookofshaders.com/glossary/?search=min" allow="fullscreen" allowfullscreen="" style="height:100%;width:100%; aspect-ratio: 16 / 9; "></iframe>
+
+<h3 id="max">max()</h3>
+<p>The <code>max(thresh,value)</code> is the opposite of the <code>min()</code> function.
+<code>If value &lt; thresh -&gt; return threshold</code>
+<code>If value &gt; thresh -&gt; return value</code>
+With <code>max()</code> we assure that values never get lower then our threshold value</p>
+<iframe src="https://thebookofshaders.com/glossary/?search=max" allow="fullscreen" allowfullscreen="" style="width:100%; aspect-ratio: 16 / 9; "></iframe>
+
+<h3 id="floor">floor()</h3>
+<p>The <code>floor(value)</code> function rounds up to the next integer value if the value is smaller/equal to <code>value</code></p>
+<iframe src="https://thebookofshaders.com/glossary/?search=floor" allow="fullscreen" allowfullscreen="" style="width:100%; aspect-ratio: 16 / 9; "></iframe>
+
+<iframe height="300" style="width: 100%;" scrolling="no" title="Fract(uv.x*multiple)" src="https://codepen.io/levoxtrip/embed/ZYzogNG?default-tab=html%2Cresult&editable=true" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/levoxtrip/pen/ZYzogNG">
+  Fract(uv.x*multiple)</a> by levoxtrip (<a href="https://codepen.io/levoxtrip">@levoxtrip</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+<h3 id="ceil">ceil()</h3>
+<p>The <code>ceil(value)</code> function rounds up to the next integer value if the value is bigger/equal to <code>value</code></p>
+<iframe src="https://thebookofshaders.com/glossary/?search=ceil" allow="fullscreen" allowfullscreen="" style="width:100%; aspect-ratio: 16 / 9; "></iframe>
+
+<p>sign() - returns -1, 0, or 1</p>
+<h3 id="sign">sign()</h3>
+<p>The <code>sign(value)</code> returns the sign of the <code>value</code>.
+<code>if value &lt; 0 -&gt; return -1</code>
+<code>if value == 0 -&gt; return 0</code>
+<code>if value &gt; 0 -&gt; return 1</code></p>
+<iframe src="https://thebookofshaders.com/glossary/?search=sign" allow="fullscreen" allowfullscreen="" style="width:100%; aspect-ratio: 16 / 9; "></iframe>
+
+<h2 id="vector-functions">Vector Functions</h2>
+<h3 id="length">length()</h3>
+<p>The <code>length(value)</code> takes an input vector and calculate the length of the vector/ the distance between the vector and it's origin.</p>
+<iframe src="https://thebookofshaders.com/glossary/?search=length" allow="fullscreen" allowfullscreen="" style="width:100%; aspect-ratio: 16 / 9; "></iframe>
+
+<iframe src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.Jnq6yCe4W7PqgsH-X-ntIwHaEL%26pid%3DApi&f=1&ipt=ce07450787f75f2d029075752540d88dac418adf6c244a576510986f25ac1ed2&ipo=images"  style="width:100%;height:100%"></iframe>
+
+<h1 id="colors">Colors</h1>
+<p>In GLSL colors get represented in <code>vec3(r,g,b)</code>.</p>
+<p>To mix colors we can use the <code>mix(color1,color2,value)</code> function.
+This function linearly interpolates between the two colors.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>if a = 0.0 -&gt; color1
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>if a = 1.0 -&gt; color2
+</code></pre></div>
+<h2 id="gradient">Gradient</h2>
+<p>To draw a gradient between two colors we can use <code>mix()</code> functions and map the colors depending on an
+interpolation value. For the interpolation value can for example use the pixel position on the screen.
+<code>mix(color1,color2,st.x)</code></p>
+<iframe height="300" style="width: 100%;" scrolling="no" title="Mixing Colors Gradient" src="https://codepen.io/levoxtrip/embed/ZYzRzQW?default-tab=html%2Cresult&editable=true" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/levoxtrip/pen/ZYzRzQW">
+  Mixing Colors Gradient</a> by levoxtrip (<a href="https://codepen.io/levoxtrip">@levoxtrip</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+<p><mark>By manipulation the uv we can define show the colors are distributed</mark>
+<code>float uvs = abs(sin(u_time))</code></p>
+<p>We also can assing a vec3 for the interpolation value and manipulate the single channels.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>vec3 pct = vec3(st.x);
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>pcr.r = smoothstep(0.1,0.9,st.x);
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>pcr.g = smoothstep(sin(st.x)*2.0);
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>pcr.b = pow(st.x,0.5);
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>color = mix(color1,color2,pcr);
+</code></pre></div>
+<h1 id="inspiration-easing-functions">Inspiration Easing Functions</h1>
+<iframe src="https://github.com/glslify/glsl-easings" allow="fullscreen" allowfullscreen="" style="width:100%; aspect-ratio: 16 / 9; "></iframe>
+
+<iframe src="https://thebookofshaders.com/edit.php#06/easing.frag" allow="fullscreen" allowfullscreen="" style="width:100%; aspect-ratio: 16 / 9; "></iframe>
+
+<iframe src="https://iquilezles.org/articles/palettes/" allow="fullscreen" allowfullscreen="" style="width:100%; aspect-ratio: 16 / 9; "></iframe>
+
+<iframe src="http://dev.thi.ng/gradients/" allow="fullscreen" allowfullscreen="" style="width:100%; aspect-ratio: 16 / 9; "></iframe>
+
+<h1 id="shaping-functions">Shaping Functions</h1>
+<p>By combining <code>step()</code> and <code>smoothstep()</code> with other mathematical functions we can draw shapes.</p>
+<h2 id="circle">Circle</h2>
+<p>To define a circle we need a <code>center</code> and a <code>radius</code>. Then we define the distance between the <code>center</code> of the circle and the position of the pixel. If the <code>distance</code> is bigger than the radius then the pixel is outside of the circle and the function should return 0. If the distance is smaller then the pixel is inside the circle and the function should return 1.</p>
+<p>We can calculate the distance with the <code>float distance = length(uv)</code> function. It calculates the length of the pixel vector from it's origin.</p>
+<p>A <em>vector</em> doesn't represent a position in space but how you get from pos1 to pos2.</p>
+<p><img alt="Vector" src="../../img/Vector.png" /></p>
+<p>This visualises the distance of the pixel to the center of the canvas.</p>
+<iframe height="300" style="width: 100%;" scrolling="no" title="Drawing Circle" src="https://codepen.io/levoxtrip/embed/GgKBKNB?default-tab=html%2Cresult&editable=true" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/levoxtrip/pen/GgKBKNB">
+  Drawing Circle</a> by levoxtrip (<a href="https://codepen.io/levoxtrip">@levoxtrip</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+<p>We now use a <code>step()</code> function to define if the distance of the pixelposition is bigger than the raidus or smaller.</p>
+<p><code>if pixelPositionDistance &lt; radius -&gt; inside return 1.0</code>
+<code>if pixelPositionDistance &gt; radius -&gt; outside return 0.0</code></p>
+<p><code>float circle = step(distance,radius);</code></p>
+<p>So as a function we have:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>float circle(vec2 uv, float rad, vec2 center){
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>  vec2 pos = uv-center;
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>  float dist = length(pos);
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>  float color = step(dist,rad);
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>  return color;
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>}
+</code></pre></div>
+<p>To be able to calculate how far the currently calculated pixel is away from the circle center we first have to subtract the center position from the current pixel position. This gives us the relative distance from the current pixel to the center.</p>
+<p><img alt="Subtracting Pixelpos minus center" src="../../img/SubtractingPixelCenter.png" /></p>
+<h3 id="soft-circle">Soft Circle</h3>
+<p>With <code>smoothstep</code> we also can create a circle with softer edges.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>foat softCircle(vec2 uv, float r, vec2 center, bool soften){
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>  vec2 pos = uv-center;
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>  float d = length(pos);
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>  float edge = (soften) ? r*0.15 :0.0
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>  return smoothstep(r-edge,r+edge,d);
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>}
+</code></pre></div>
+<h3 id="border-circle">Border Circle</h3>
+<p>To create a circle with a border and without a filling we test if the pixel lays on the radius plus and minus the width of half the line.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>float borderCircle(vec2 uv, float rad, float lineWidth, vec2 center){
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    vec2 pos = uv-center;
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    float d = length(pos);
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    float hLineWidth = lineWidth/2.0;
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    float c = step(rad-hLineWidth,d)-step(rad+hLineWidth,d);
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    return c;
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>}
+</code></pre></div>
+<p>So we test if the distance of the pixel is bigger than <code>radius-halfLineWidth</code> and smaller than <code>radius+halfLineWidth</code>.
+<img alt="Test Border Circle" src="../../img/TestBorderCircle.png" /></p>
+<h4 id="smooth-border-circle">Smooth border Circle</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>float circle(vec2 pt, float r, vec2 center, float lineWidth,bool soften){
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    vec2 pos = pt -center;
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    float d = length(pos);
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>    float edge = (soften) ? r*0.05 : 0.00;
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>    float hlw = lineWidth*0.5;
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    float sh = smoothstep(r-hlw-edge,r-hlw,d)
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>                - smoothstep(r+hlw,r+hlw+edge,d);
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>    return sh;
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>}
+</code></pre></div>
+<h2 id="square">Square</h2>
+<p>To draw a square we want to test if a pixel lies inside the outer edges of the rectangle or not.</p>
+<p>First we subtract the center coord from the current uv coords. The resulting pos coords. This gives us values where all values to the left and below the center are negative, while all values to the right and above the center are positive.
+A positive value for <code>pos.x</code> means that the point is to the right of the center and negative value to the left.</p>
+<p>At the end we test with <code>step</code> whether the pixel is inside or outside the rectangle.</p>
+<iframe height="300" style="width: 100%;" scrolling="no" title="drawing Rectangle" src="https://codepen.io/levoxtrip/embed/NPWWwRo?default-tab=html%2Cresult&editable=true" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/levoxtrip/pen/NPWWwRo">
+  drawing Rectangle</a> by levoxtrip (<a href="https://codepen.io/levoxtrip">@levoxtrip</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>float rect(vec2 uv, vec2 center, vec2 size){
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>    vec2 pos = uv-center;
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>    vec2 hSize = size*0.5;
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>    float hr = step(-hSize.x,pos.x) - step(hSize.x,pos.x);
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>    float vr = step(-hSize.y,pos.y) - step(hSize.y,pos.y);
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>    return vr*hr;
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>}
+</code></pre></div>
+<h1 id="distance-fields">Distance fields</h1>
+<p>We can think of distance fields like a height map - at every pixel we are calculating <em>How far are we(the pixel that currently gets calculated) from something</em>.</p>
+<p>In distance fields, for every pixel(<code>st/uv</code>) on the canvas we calculate how far that pixel is from one or more reference points or shapes.</p>
+<p>Then we use the distance value to decide what to draw.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1">//Calculate the distance from current pixel to point (0.5,0.5)</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="kt">float</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">distance</span><span class="p">(</span><span class="n">st</span><span class="p">,</span><span class="kt">vec2</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">));</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="c1">//Draw a circle by checking if distance is less than 0.3</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="kt">float</span><span class="w"> </span><span class="n">circle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">step</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="mf">0.3</span><span class="p">)</span><span class="w"> </span><span class="c1">// white if d&lt;0.3, black otherwise</span>
+</code></pre></div>
+<p>By combining different distance functions we can create intresting graphics.</p>
+<p><code>s = distance(st,vec2(0.4))+distance(st,vec2(0.6));</code>
+So here we first calculate the distance from point (0.4,0.4) to all the pixels on the canvas and the distance from point(0.6,0.6) to all the pixels. We then add together the values from the single distance fields to a new pixel field.
+So when the points are close to each other the addition of the distance of the two points is gonna be a small value so they both gonna be darker. Because the distance to the pixel around the reference points are low and the points are close to each other so their addition creates a low value.
+If the points are further away you get higher values and the pixel colors are brighter because the distance from one reference point to the other is bigger so the addition of these are also bigger.</p>
+<p><code>s = distance(st,vec2(0.4))*distance(st,vec2(0.6));</code>
+Multiplying distances creates a different effect. Areas that are close to either point will result in a small value while areas far from both will have larger values. This create intersection pattern.</p>
+<p><code>s = max(distance(st,vec2(0.4),distance(st,0.6));</code>
+Here the <code>max()</code> function takes the larger value of the two distances. The result of the operation is a new distance field that represents the <em>intersection/union</em> of the two original distance fields because the maximum distance at any point will be the distance to the closest surface of either object.
+<img alt="DistanceField1" src="../../img/maxTwoDistance.png" />
+<img alt="DistanceField2" src="../../img/maxTwoDistance2.png" />
+<img alt="Max Combination of both" src="../../img/maxTwoDistance3.png" /></p>
+<p><code>s = min(distance(st,vec2(0.4)),distance(st,vec2(0.6)));</code>
+Here the <code>min()</code>function takes the smallest distance from both distances which leads to the union of the two shapes.</p>
+<p><code>pct = pow(distance(st,vec2(0.4)),distance(st,vec2(0.6)));</code></p>
+<p>For optimising the performance we also can create circular distance fields with the <code>dot()</code> function. The <code>dot()</code> function calculates the skalarproduct.
+<code>float pt = dot(st,st)*4.0</code></p>
+<p>With distance fields we can draw almost every shape we want.
+We start by scaling the value range of the x and y coordinates to the range of -1 and 1
+<code>st = st*2.-1.</code>.
+This moves the base of the coordinate system from the lower left corner to the center of the canvas.</p>
+<p>After that we can create a distance field with the <code>length()</code> function to calculate the distance of the pixel to the center of the canvas.</p>
+<p>So if we for example do
+<code>d = length(st-0.3)</code> we move the base of the coord system by (0.3,0.3) or in other words we calculate the distance from every pixel on the screen to the position(0.3,0.3). This creats the dark circle around the position (0.3,0.3).
+<img alt="Distance Field" src="../../img/DField0_3.png" /></p>
+<p>By enclosing the current pixel position <code>st</code> with <code>abs()</code> we create a mirroring effect. Because we move the</p>
+<h2 id="mirroring-values">Mirroring values</h2>
+<p>By scaling the canvas with <code>st = st*2.-1</code> we changed the pixel coords from 0-1 to -1 to 1 with 0,0 in the center. That means that we have the same <em>absolute</em> values left,right, up, down around the center. That allows us to mirror what we draw in between 0 -&gt; 1 to all 4 quadrants. For that we need to take the absolute value of the pixel coord with the <code>abs()</code> function.</p>
+<iframe height="300" style="width: 100%;" scrolling="no" title="absValueCoords" src="https://codepen.io/levoxtrip/embed/GgRoEBr?default-tab=html%2Cresult&editable=true" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/levoxtrip/pen/GgRoEBr">
+  absValueCoords</a> by levoxtrip (<a href="https://codepen.io/levoxtrip">@levoxtrip</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+<p>If we then want to create a ripple effect we scale up the value range by <code>scale</code> and then we can use <code>fract</code> to set the pixel color to values between 0-1 and not to values bigger than 1.0. <code>fract()</code> only returns the decimal values so we get gradients from 0-1 the amount of <code>scale</code> times.</p>
+<p>By multiplying <code>d</code> with a <code>scale</code> value we scale the values of the pixelcoordinates.</p>
+<p><img alt="ScalingUpCanvas" src="../../img/ScalingCanvas.png" /></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>void main() {
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>  vec2 uv = (gl_FragCoord.xy - (u_resolution.xy * 0.5)) / u_resolution.y;
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>  vec3 color;
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>  //Mirror values pixel coords
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>  uv = abs(uv)-0.2;
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>  float scale = 10.;
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>  //calculate distance
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>  float c = fract(length(uv)*scale);
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>  color = vec3(c);
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>    gl_FragColor = vec4(color, 1.0);
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>}
+</code></pre></div>
+<p><code>min()</code> and <code>max()</code> functions allow us then to define in which areas we want to draw the distance field.
+For example only show the distance field outside the value range 0.0.
+Because we are calculating <code>-0.3</code> the values inside are smaller than 0.0 and get shown as black.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>void main(){
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>  vec2 uv = gl_FragCoordy.xy;
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>  vec3 color;
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>  uv = abs(uv)-0.2;
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>  float scale = 4.0;
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>  float d = length(max(abs(uv)-0.3,0.0));
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>  color = vec3(d);
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>  gl_fragColor = vec4(color,1.0);
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>}
+</code></pre></div>
+<p>Only show the distance field between -0.3 and 0.0.
+<code>d= length(min(abs(uv)-0.3,0.0))</code></p>
+<p>After that we can use <code>step()</code>or <code>smoothstep()</code> to decide how the distance field is gonna be drawn.
+If you want do draw outlines you can multiply/substract two step functions.</p>
+<iframe height="300" style="width: 100%;" scrolling="no" title="Outlined Distancefield" src="https://codepen.io/levoxtrip/embed/pvoEaEY?default-tab=html%2Cresult&editable=true" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/levoxtrip/pen/pvoEaEY">
+  Outlined Distancefield</a> by levoxtrip (<a href="https://codepen.io/levoxtrip">@levoxtrip</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+<h1 id="polar-forms">Polar-forms</h1>
+<p>Another way to draw shapes is to use polar-coordinates instead of cartesian coordinates.
+For that we need to convert the coordinate system by calculating the current pixel color with the radius and the angle of every coordinate/pixel.</p>
+<iframe height="300" style="width: 100%;" scrolling="no" title="Polarshape - Cosine" src="https://codepen.io/levoxtrip/embed/MYWjQEg?default-tab=html%2Cresult&editable=true" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/levoxtrip/pen/MYWjQEg">
+  Polarshape - Cosine</a> by levoxtrip (<a href="https://codepen.io/levoxtrip">@levoxtrip</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+<p>To draw different shapes we use shape-giving functions from above to manipulate the radius of a circle in relation it's angles.</p>
+<p>So with the form giving functions we change the radius of a circle in relation to every angle.</p>
+<p>So the angle gives the direction from the center to the pixel position.</p>
+<p>To visualize it we can fold the coordinate system to a line.
+<img alt="Outline Polar-shape" src="../../img/PolarShape-ToLine.png" />
+<img alt="Shape-polarshape" src="../../img/PolarShape-Coordsystem.png" /></p>
+<p>To draw the shape we test if the distance of the currently calculated pixel at the angle is bigger or smaller than the radius at that position.</p>
+<p>More information for the calculation <a href="https://www.youtube.com/watch?v=xx4JN8x2E24">here</a></p>
+<h2 id="squared-shapes">Squared Shapes</h2>
+<p>As we have seen above the <code>abs()</code> function converts negative numbers into positive. In our case it mirrors the values around the center (0.0,0.0) and we get a symmetric image from the origin because we get for the coordinates left, right,top,bottom, the same color values back.
+<img alt="Mirrored UV values" src="../../img/MirroredUVField.png" /></p>
+<p>With the <code>max()</code> function we can return the bigger value from two input values. This creates squared distance fields. This field returns the value of the distance of the currently calculated pixel to the next point on the next edge of a square.</p>
+<p><img alt="Squared Distance Field" src="../../img/SquaredDistanceField.png" /></p>
+<iframe height="300" style="width: 100%;" scrolling="no" title="Squared Polar Distance field" src="https://codepen.io/levoxtrip/embed/VYwmYqv?default-tab=html%2Cresult&editable=true" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/levoxtrip/pen/VYwmYqv">
+  Squared Polar Distance field</a> by levoxtrip (<a href="https://codepen.io/levoxtrip">@levoxtrip</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+<p>With <code>step(d,0.2)</code> we then can draw a filled rectangle. By subtracting two step functions we also can create a border effect.
+<code>float c = step(d,0.2)-step(d,0.18)</code>
+or
+<code>float c = step(0.5,d)*step(d,0.4)</code></p>
+<h3 id="squared-shape-with-rounded-corners">Squared Shape with rounded corners</h3>
+<p>To draw a square with rounded corners we first mirror the pixel position values with <code>abs()</code> of <code>uv</code>.
+To create the area inside of the square we subtract a value like 0.2 from <code>abs(pos)</code> so all the values inside the square are smaller than 0.0. The area in which the values are 0.0 is therefore increased by the value that is subtracted from abs.</p>
+<p><img alt="Scaled Area" src="../../img/RoundedCorners.png" /></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>//Example calculation
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>for pos = (0.2,0.2)
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>pos.x = 0.2 - 0.2 = 0.0
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>pos.y = 0.2 - 0.2 = 0.0
+</code></pre></div>
+<p>After that we take the <code>max()</code> value of <code>uv</code> and 0.0 and calculate the length of it.</p>
+<h2 id="draw-a-line">Draw a line</h2>
+<p>To draw a line we want to create a calculation that returns 1.0 when the pixel is on the line and 0.0 when the pixel is not.
+The pixel is on the line if the pixel position is between <code>pos-lineWidth</code> and <code>pos+lineWidth</code>.
+To create a smoother line we use a <code>smoothstep()</code> function and add <code>edgeThickness</code></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>float line(float pt1, float pt2, float lineWidth, float edgeThickness){
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>    float hlw = lineWidth*0.5;
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>    return smoothstep(pt1-hlw-eT,pt1-hlw,pt2)-smoothstep(pt1+hlw,pt1+hlw+eT,pt2);
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>    }
+</code></pre></div>
+<p><img alt="Line Concept " src="../../img/DrawLine.png" /></p>
+<h3 id="drawing-a-line-that-rotate-around-the-center">Drawing a line that rotate around the center</h3>
+<p>Again we want to test if the input pixel is laying on the line that is rotating.</p>
+<p>So first we calculate the distance from the input pixel to the center.
+<code>vec2 d = pt-center</code></p>
+<p>Then we calculate the angle.</p>
+<p><code>float theta = u_time*2.0</code> we use <code>u_time</code> so the line rotates. We also can use a specific angle.</p>
+<p>Next we create a second vector <code>p</code> which represents a point on the edge of a circle or the vector that points
+from the center to the edge of a circle.</p>
+<p><code>vec2 p = vec2(cos(theta),-sin(theta))*radius;</code>
+<code>cos(theta)</code> gives us the x component and <code>sin(theta)</code> the y component of a unit vector.
+<img alt="Vector Points to edge" src="../../img/VectorThatPointsToEdge.png" />
+We also use <code>-sin(theta)</code> to adapt the orientation of the coordinate system so the rotation gets reversed. With <code>sin(theta)</code> the vector rotates counter clockwise.
+So <code>p</code> represents the direction of the rotating line.</p>
+<p><a href="https://codepen.io/nik-lever/full/YBBjLo">Example Angle</a>;</p>
+<p><img alt="90degree line from line" src="../../img/LineRotatingPrinciple.png" /></p>
+<p>The next step is to find out if testpoint <code>d</code> is on the line or not. For that we need to find the
+distance from <code>p</code> to <code>d</code>.
+So we want the point on the line that is closest to point <code>d</code> - the point that has the smallest distance to <code>d</code>
+So we need to find the length of the line <code>p</code> to <code>d</code>. For that we want to find the point that is closes to <code>d</code> that is on the line.</p>
+<h2 id="drawing-a-polygone">Drawing a polygone</h2>
+<p>Useful tools to draw a polygone are
+<a href="https://codepen.io/nik-lever/pen/ZPKmmx">Nik lever</a>
+<a href="https://math.tools/calculator/trignometry/atan">Math tools</a></p>
+<p>To draw a polygone we need to:</p>
+<ul>
+<li>Calculate the angle of the currently processed pixel relative to the center of the shape.</li>
+<li>Define to which side the point belongs by defining in which subtriangle the point lies.</li>
+<li>Calculate the distance of the point to the next closes edge.</li>
+<li>Manipulate the distance with (cos)</li>
+<li>Does the currenly processed pixel lies inside the or not.</li>
+</ul>
+<p><img alt="Process drawing a polygon" src="../../img/PolygonDrawing.png" />
+Move point to the center
+<code>pt = pt - center;</code></p>
+<p>Calculate the angle of the current pixel
+<code>float currPixelAngle = atan(pt.y,pt.x);</code></p>
+<p>Calculate angle size of each subtriangle
+<code>float segmentAngle = 2.0 * PI / float(sides)</code>;</p>
+<p><img alt="Polygon Subtriangles" src="../../img/Polygon-Subtriangles.png" />
+<img alt="Polygon Subtriangles2" src="../../img/Polygon-Subtriangles2.png" />
+We devide the polygon into subtriangles and fokus on the single triangle.
+Find the subtriangle in which the currently calculated point lies.</p>
+<p>With <code>currPixelAngle/segmentAngle</code> we try to find the subtriangle. By adding 0.5 and rouding this value down with <code>floor()</code> we create a modulo value.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>130/120 = 1.083
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>1.083 +0.5 = 1.583
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>floor(1.583) = 1
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>if currPixelAngle &lt; segmentAngle -&gt; first subtriangle
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>if currPixelAngle &gt; segmentAngle &amp;&amp; currPixelAngle &lt; 2*segmentAngle -&gt; second subtriangle
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>...
+</code></pre></div>
+<p>So we get the index of the subtriangle.</p>
+<p><code>float baseAngleSegment = floor(0.5 + currPixelAngle/segmentAngle) * segmentAngle;</code></p>
+<p>Manipulate the distance so it's not just a circle but it expands into cornes
+<code>float distance = cos(baseAngle-angle) * length(pt);</code></p>
+<p>Test if currently calculated pixel lies inside or not
+<code>return distance &lt; radius ? 1.0 :0.0</code></p>
+<iframe height="300" style="width: 100%;" scrolling="no" title="Untitled" src="https://codepen.io/levoxtrip/embed/MYWVjam?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/levoxtrip/pen/MYWVjam">
+  Untitled</a> by levoxtrip (<a href="https://codepen.io/levoxtrip">@levoxtrip</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+<h1 id="combine-elements">Combine elements</h1>
+<p>To combine elements we can add the color of an element to the already existing color value that we gonna return at the end.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>vec3 color = vec3(0.0);
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>color += vec3(1.0,0.0,0.3)*rect(...);
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>color += vec3(0.5,0.8,1.0)*rect(...);
+</code></pre></div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+  <h2 id="__comments">Comments</h2>
+  <script src="https://giscus.app/client.js"
+  data-repo="levoxtrip/TKB"
+  data-repo-id="R_kgDOM16hfQ"
+  data-category-id="DIC_kwDOM16hfc4CjS9x"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="top"
+  data-theme="preferred_color_scheme"
+  data-lang="en"
+  data-loading="lazy"
+  crossorigin="anonymous"
+  async>
+  </script>
+
+  <!-- Synchronize Giscus theme with palette -->
+  <script>
+    var giscus = document.querySelector("script[src*=giscus]")
+
+    // Set palette on initial load
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+      var theme = palette.color.scheme === "slate"
+        ? "transparent_dark"
+        : "light"
+
+      // Instruct Giscus to set theme
+      giscus.setAttribute("data-theme", theme) 
+    }
+
+    // Register event handlers after documented loaded
+    document.addEventListener("DOMContentLoaded", function() {
+      var ref = document.querySelector("[data-md-component=palette]")
+      ref.addEventListener("change", function() {
+        var palette = __md_get("__palette")
+        if (palette && typeof palette.color === "object") {
+          var theme = palette.color.scheme === "slate"
+            ? "transparent_dark"
+            : "light"
+
+          // Instruct Giscus to change theme
+          var frame = document.querySelector(".giscus-frame")
+          frame.contentWindow.postMessage(
+            { giscus: { setConfig: { theme } } },
+            "https://giscus.app"
+          )
+        }
+      })
+    })
+  </script>
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2025 <a href="https://github.com/levoxtrip" target="_blank" rel="noopener"> Leon Volbers</a>
+<br> 
+<a href = "https://www.patreon.com/c/techknowledgebase/membership?view_as=patron" style="font-size: 20px" font-color:"FFFFFF"> Support this project on Patreon</a>
+ <br>
+<script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="levoxtrip" data-color="#40DCA5" data-emoji="😍"  data-font="Arial" data-text="Support this project" data-outline-color="#000000" data-font-color="#ffffff" data-coffee-color="#FFDD00" ></script>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "toc.integrate", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>

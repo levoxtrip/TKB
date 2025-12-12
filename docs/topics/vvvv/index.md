@@ -15,7 +15,7 @@ Here I'm gonna collect some fun and interesting techniques
 
 [Collection](Collections.md)
 
-[Fuse](Fuse.md)
+[Fuse Basics](./Fuse/FuseBasics.md)
 
 [Skia](Skia.md)
 

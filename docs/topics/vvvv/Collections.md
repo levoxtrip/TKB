@@ -83,7 +83,6 @@ To extract multiple elements from a *Spread* we can use `Decons` node and expand
 With `SplitFirst` and `SplitLast` we can get the first or last slice in the spread.
 
 
-
 ### Change values in Spread
 To add a value at the end of the spread we can use `Add(Spread)` node.
 

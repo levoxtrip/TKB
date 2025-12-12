@@ -137,8 +137,8 @@ VVVV has notes that can be used for multiple data types. They are called *Adapti
 These nodes expect the data type `T`.
 *Adaptive nodes* need to be connected to `IOBoxes` get get activated.
 
-![alt text](./img/DataTypeForAdaptiveNode.png)
-![alt text](./img/GenericUseAdaptiveNodes.png)
+![Datatype for Adaptive Node](./img/DataTypeForAdaptiveNode.png)
+![Generic Use Adaptive Node](./img/GenericUseAdaptiveNodes.png)
 
 Some nodes that are `pin groups` so there inputs can be extended with `ctrl +/-`
 
@@ -148,7 +148,7 @@ To reset the value of an `IOBox` we can hold down `alt + right click`
 ## Switch between values
 With the `switch` node we can use a control `integer` value to switch between different values.
 
-![alt text](./img/SwitchBetweenValues.png)
+![Switch Between Values](./img/SwitchBetweenValues.png)
 
 
 # Math
@@ -190,8 +190,6 @@ For creating and manipulating vectors there are two important nodes which are `V
 
 `Vector(Join)` - bring values together into a vector
 `Vector(Split)` - split vector into single values
-
-
 
 To convert a *vector2*  into *vector3* we first can split up the `vector2` in its elements and then plug them into `vector3` inputs.
 
@@ -266,6 +264,7 @@ If you find an error check also if the file contains custom *definitions* that n
 Sometimes it can help to use `Changed` node to see if the changes you want are applied or not.
 # C#
 VVVV ulitzies C# libraries under the hood. This allows also the implementation of other c# libraries into vvvv.
+
 
 # Process Nodes
 To avoid duplicate code we can use and create *Process Nodes*, which are sub patches in vvvv.

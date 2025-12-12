@@ -28,7 +28,10 @@ Every data type is not just a *VL.object* but also an `IVL.object`. We can check
 `shift+ctrl+k` - Create all getter and setter operations in Data type
 
 ## Process Node
+Generally a `Process` is a wrapper when you want to group functionality in a sub patch together. We use it to structure the patch. In the background a `Process` is ether a *Record* or a *Class*.
+
 When we create our own `Node` in the *Node browser* we generate a so called `Process Node`.
+
 The `Process Node` is taking care of *creating* and *updating* the *thing*. It is incapsulating a living thing with a state.
 
 The `Process Node` has an *Update* function/Operation that get's called when the Node is in your patch. 
@@ -43,7 +46,7 @@ The `Process` comes to life when it is placed in the patch or when the patch is 
 
 The `Process Node` is stored on the *Definition Side* of the patch.
 
-Generally a `Process` is a wrapper when you want to group functionality in a subpatch together. We use it to structure the patch. In the background a `Process` is ether a *Record* or a *Class*.
+
 
 In some cases you also can execute the `Update` function of an object on the `Create` operation. For example you want to `Update` the state of object on the creation of the the patch.
 
@@ -120,8 +123,6 @@ Classes are mutable so they can be changed, like a cassette tape that you can ov
 There are multiple ways to create classes. 
 We can type in the *class name* in the node browser and then click on `Class`.
 Another way is to create a `Node` with the Classname then go inside of the node and on the left top assign `Class` instead of `Process`
-
-
 
 # Objects
 We also can assign the data type `Object` then it is not specified but something is there. Because everything is an object.

@@ -7,14 +7,6 @@ tags:
 # Channel Data
 Here is a collection of information about channel data
 
-## Create value always ascending value
-`Stopwatch` creates a global runtime value of the passed time.
-
-We also can use `Playhead` which also allows to loop to value at a certain range.
-
-The `Integrator` node let's us create something similar but we can decide how much we want to add every frame.
-
-![PlayHeadIntegrator](./img/PlayHeadAndIntegrator.png)
 
 ## Create ascending values from 1 to one
 `LFO` node lets us create ascending values from zero to one. *Period* defines how much time it takes to go from zero to one.
@@ -115,8 +107,6 @@ We can use these nodes to define how the values should behave when an input devi
 
 ## Smooth transition between two inputs
 The `Lerp` node allows us to create a smooth transition between the two inputs of the node. The *skalar* input defines the position of the transition between the two inputs.
-
-
 
 ## Quantize - Convert smooth value into stepped values
 The `Quantize` node allows us to convert an input value into a stepped output value. So for example the smooth `LFO` node that creates values from 0.0 to 1.0 get quantized into a 0.0 -> 0.2 -> 0.4 -> 0.6 -> 0.8 -> 1.0

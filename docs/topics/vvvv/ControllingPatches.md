@@ -115,7 +115,5 @@ Especially when we want to use input devices to trigger something `TogEdge` is s
 ## OnOpen
 If you wan't to trigger some logic when you open your patch or the application you can use the `OnOpen` node.
 
-
-
 # Send and Receive
 We also can send data inside a patch with `Send`and `Receive` Nodes. They need custom channel name and a type. This works without a frame delay.

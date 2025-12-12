@@ -9,9 +9,9 @@ tags:
 
 React is a JS library for building dynamic and interactive user-interfaces.
 
-With React we describe a webpage with small reusuable components and react will take care of creating efficient DOM elements.
+With React we describe a webpage with small reusable components and react will take care of creating efficient DOM elements.
 
-Components help us write reusuable, modular and better organized code.
+Components help us write reusable, modular and better organized code.
 
 We build components individually and then combine them to build the page.
 

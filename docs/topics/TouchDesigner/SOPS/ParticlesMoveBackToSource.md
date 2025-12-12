@@ -5,7 +5,7 @@ tags:
   - TouchDesigner
 ---
 
-![Using multiple TransformSOPs to Merge the Metaballs](./img/LetParticleMoveBackToSource.png)
+![Using multiple TransformSOPs to Merge the Metaballs](../img/LetParticleMoveBackToSource.png)
 
 # Particles Move Back To Source Shape
 

@@ -142,6 +142,9 @@ Shining effect along bright areas direction.
 If you have for example a metal material for your shape and you want that the other objects in the scene get properly reflected on the material
 we can use `LocalReflection` PostFX node. It can affect your performance.
 
+## Effects
+https://doc.stride3d.net/latest/en/manual/graphics/post-effects/index.html
+
 # Shortcuts
 Reset view - `long press r`
 

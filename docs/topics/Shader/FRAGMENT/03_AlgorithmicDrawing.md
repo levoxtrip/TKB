@@ -289,7 +289,7 @@ float circle(vec2 uv, float rad, vec2 center){
 }
 ```
 
-To be able to calculate how far the currently calculted pixel is away from the circle center we first have to subtract the center position from the current pixel position. This gives us the relative distance from the current pixel to the center.
+To be able to calculate how far the currently calculated pixel is away from the circle center we first have to subtract the center position from the current pixel position. This gives us the relative distance from the current pixel to the center.
 
 ![Subtracting Pixelpos minus center](../img/SubtractingPixelCenter.png)
 
@@ -344,7 +344,7 @@ float circle(vec2 pt, float r, vec2 center, float lineWidth,bool soften){
 To draw a square we want to test if a pixel lies inside the outer edges of the rectangle or not.
 
 First we subtract the center coord from the current uv coords. The resulting pos coords. This gives us values where all values to the left and below the center are negative, while all values to the right and above the center are positive.
-A positive value for `pos.x` means taht the point is to the right of the center and negative value to the left.
+A positive value for `pos.x` means that the point is to the right of the center and negative value to the left.
 
 At the end we test with `step` whether the pixel is inside or outside the rectangle.
 
